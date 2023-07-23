@@ -39,6 +39,7 @@
     "typescript": "5.0.4"
   },
   "devDependencies": {
+    "@motionone/utils": "^10.15.1",
     "@reduxjs/toolkit": "^1.9.5",
     "@types/gtag.js": "^0.0.12",
     "@types/react-beautiful-dnd": "^13.1.4",
