@@ -22,9 +22,12 @@ const ImageCarousel = ({ items }: Props) => {
       <button className='btn-ghost btn-circle btn absolute left-0 z-10 border' onClick={onClickPrev}>
         <GoChevronLeft className='text-xl text-black' />
       </button>
-      <div className='carousel-center carousel relative max-w-md space-x-4 p-4' ref={scrollRef}>
+      <div
+        className='carousel-center carousel relative flex h-[250px] max-w-md flex-nowrap space-x-4 overflow-x-scroll p-4'
+        ref={scrollRef}
+      >
         {items?.map((item) => (
-          <div className='carousel-item flex w-full justify-center' key={item.key}>
+          <div key={item.key} className='carousel-item mx-auto flex h-auto w-full flex-shrink-0 justify-center'>
             {item}
           </div>
         ))}

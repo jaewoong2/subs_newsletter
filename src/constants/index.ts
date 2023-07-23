@@ -2,7 +2,14 @@ import { Metadata } from 'next'
 
 export const BASEURL = process.env.NODE_ENV === 'development' ? 'http://localhost:3000' : ''
 
-export const IMAGE = {}
+export const IMAGE = {
+  example: {
+    image1: 'https://ndavhlqivyieuaehsnne.supabase.co/storage/v1/object/public/image/kakao-share.png',
+    image2: 'https://ndavhlqivyieuaehsnne.supabase.co/storage/v1/object/public/image/thumbnail.png',
+    image3: 'https://ndavhlqivyieuaehsnne.supabase.co/storage/v1/object/public/image/og.png',
+    image4: 'https://ndavhlqivyieuaehsnne.supabase.co/storage/v1/object/public/image/main2.png',
+  },
+}
 
 export const METADATA: Metadata = {
   generator: 'Next.js',

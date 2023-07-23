@@ -4,6 +4,7 @@ import Body from '../atoms/Body'
 import ImageCarousel from './ImageCarousel'
 import { motion } from 'framer-motion'
 import { sleep } from '@/lib/sleep'
+import { IMAGE } from '@/constants'
 
 const CarouselSection = () => {
   return (
@@ -32,27 +33,27 @@ const CarouselSection = () => {
           items={[
             <img
               key={'1'}
-              src='https://daisyui.com/images/stock/photo-1559703248-dcaaec9fab78.jpg'
+              src={IMAGE.example.image1}
               alt=''
-              className='rounded-box'
+              className='rounded-box h-auto max-h-full w-auto max-w-full'
             />,
             <img
               key={2}
-              src='https://daisyui.com/images/stock/photo-1565098772267-60af42b81ef2.jpg'
+              src={IMAGE.example.image2}
               alt=''
-              className='rounded-box'
+              className='rounded-box h-auto max-h-full w-auto max-w-full'
             />,
             <img
               key={3}
               alt=''
-              src='https://daisyui.com/images/stock/photo-1572635148818-ef6fd45eb394.jpg'
-              className='rounded-box'
+              src={IMAGE.example.image3}
+              className='rounded-box h-auto max-h-full w-auto max-w-full'
             />,
             <img
               key={4}
-              src='https://daisyui.com/images/stock/photo-1601004890684-d8cbf643f5f2.jpg'
+              src={IMAGE.example.image4}
               alt=''
-              className='rounded-box'
+              className='rounded-box h-auto max-h-full w-auto max-w-full'
             />,
           ]}
         />

@@ -1,8 +1,6 @@
 import { Hero, Intro } from '@/components/atoms'
 import { Home } from '@/components/pages/Home'
 import { Navigation, Register } from '@/components/blocks'
-import ImageCarousel from '@/components/blocks/ImageCarousel'
-import Body from '@/components/atoms/Body'
 import CarouselSection from '@/components/blocks/CarouselSection'
 
 export default async function Page() {
