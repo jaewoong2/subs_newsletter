@@ -30,10 +30,10 @@ export const Register = () => {
   }
 
   return (
-    <section className='flex w-full justify-center bg-slate-100 p-20'>
+    <section className='flex w-full justify-center bg-slate-100 p-20 dark:bg-darkBg-400'>
       <form
         onSubmit={onSubmitForm}
-        className='flex flex-col items-center justify-center gap-3 rounded-xl border bg-white p-5'
+        className='flex flex-col items-center justify-center gap-3 rounded-xl border bg-white p-5 dark:border-darkBg-300 dark:bg-darkBg-200 dark:text-white'
       >
         <fieldset className='flex flex-col items-center justify-center gap-3 rounded-xl font-semibold'>
           <h2 className='mb-5 text-lg font-bold'>📮 뉴섭에 문의 해주세요</h2>
@@ -46,7 +46,7 @@ export const Register = () => {
                 value={'register'}
                 defaultChecked={true}
               />
-              <span className='label-text font-black'>{LABEl_OBJECT['register']}</span>
+              <span className='label-text font-black dark:text-white'>{LABEl_OBJECT['register']}</span>
             </label>
           </div>
           <div className='flex w-[350px] flex-col justify-start'>
@@ -57,17 +57,17 @@ export const Register = () => {
                 className='radio radio-sm checked:bg-green-500'
                 value={'checksome'}
               />
-              <span className='label-text font-black'>{LABEl_OBJECT['checksome']}</span>
+              <span className='label-text font-black dark:text-white'>{LABEl_OBJECT['checksome']}</span>
             </label>
           </div>
           <div className='flex w-[350px] flex-col justify-start'>
             <label className='flex cursor-pointer items-center gap-3'>
               <input type='radio' name='checksome' className='radio radio-sm checked:bg-blue-500' value={'etc'} />
-              <span className='label-text font-black'>{LABEl_OBJECT['etc']}</span>
+              <span className='label-text font-black dark:text-white'>{LABEl_OBJECT['etc']}</span>
             </label>
           </div>
         </fieldset>
-        <button type='submit' className='btn mt-10 w-full'>
+        <button type='submit' className='btn mt-10 w-full dark:bg-violet-400'>
           문의하기
         </button>
       </form>

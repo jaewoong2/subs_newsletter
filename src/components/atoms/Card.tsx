@@ -1,6 +1,6 @@
 export const Card = () => {
   return (
-    <li className='card mx-auto w-full border bg-base-100 md:w-80'>
+    <li className='card mx-auto w-full border bg-base-100 dark:border-darkBg-800 dark:bg-darkBg-100'>
       <figure>
         <img src='https://daisyui.com/images/stock/photo-1606107557195-0e29a4b5b4aa.jpg' alt='Shoes' />
       </figure>

@@ -14,12 +14,12 @@ const Body = ({ title, subTitle, button, buttonVariant = 'normal' }: Props) => {
       <h1
         className={twMerge(
           'relative mb-4 max-w-2xl text-3xl font-extrabold leading-none  tracking-tight',
-          ' dark:text-white md:text-4xl xl:text-5xl'
+          ' md:text-4xl xl:text-5xl'
         )}
       >
-        <span className='text-black'>{title}</span>
+        <span className='text-black dark:text-slate-300'>{title}</span>
       </h1>
-      <p className='mb-6 max-w-2xl text-gray-600 dark:text-gray-400 md:text-lg lg:mb-8 lg:text-xl'>{subTitle}</p>
+      <p className='mb-6 max-w-2xl text-gray-600 dark:text-white md:text-lg lg:mb-8 lg:text-xl'>{subTitle}</p>
       <button
         className={twMerge(
           'btn relative z-[10] mr-3 inline-flex items-center justify-center rounded-lg px-5 py-3 text-center text-base font-medium hover:text-white focus:ring-4 focus:ring-blue-300',

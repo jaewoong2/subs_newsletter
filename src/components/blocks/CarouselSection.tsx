@@ -3,18 +3,12 @@ import React from 'react'
 import Body from '../atoms/Body'
 import ImageCarousel from './ImageCarousel'
 import { motion } from 'framer-motion'
-import { sleep } from '@/lib/sleep'
 import { IMAGE } from '@/constants'
 
 const CarouselSection = () => {
   return (
     <section className='flex w-full items-center justify-center gap-10 bg-emerald-200 p-20 text-blue-800 max-lg:flex-col-reverse max-lg:p-10'>
-      <motion.div
-        className=''
-        onViewportEnter={(e) => {
-          e?.target.classList.add(...'animate-fade-right max-lg:animate-fade-down'.split(' '))
-        }}
-      >
+      <motion.div>
         <Body
           title='인기 있는 뉴스레터는 뭐가 있을까?'
           subTitle='요리, 경제, 문화 찾으시는 모든 것이 여기 다 있어요!'
@@ -22,13 +16,7 @@ const CarouselSection = () => {
           buttonVariant='success'
         />
       </motion.div>
-      <motion.div
-        className='opacity-0'
-        onViewportEnter={async (e) => {
-          await sleep(500)
-          e?.target.classList.add(...'opacity-100 animate-fade-left max-lg:animate-fade-down'.split(' '))
-        }}
-      >
+      <motion.div>
         <ImageCarousel
           items={[
             <img

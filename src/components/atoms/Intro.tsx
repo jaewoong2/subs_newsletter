@@ -15,14 +15,14 @@ export const Intro = ({ title, subTitle, index }: IntroProps) => {
 
   return (
     <motion.li
-      className='flex min-h-[200px] w-full opacity-0'
+      className='flex min-h-[200px] w-full opacity-0 dark:text-white'
       onViewportEnter={async (e) => {
         await sleep(index * 500)
         e?.target.classList.add(...'animate-fade-down flex-col items-center justify-center gap-3'.split(' '))
       }}
     >
       <div className={`flex h-16 w-16 items-center justify-center rounded-full ${BACKGROUND_COLOR[index - 1]} p-8}`}>
-        <span className='text-2xl font-extrabold max-lg:text-xl'>{index}</span>
+        <span className='text-2xl font-extrabold dark:text-darkBg-200 max-lg:text-xl'>{index}</span>
       </div>
       <div className='flex flex-col gap-2'>
         <div className={`mx-auto text-center text-xl font-bold max-lg:text-lg ${TEXT_COLOR[index - 1]}`}>{title}</div>
