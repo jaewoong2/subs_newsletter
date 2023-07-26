@@ -19,7 +19,7 @@ const SimpleModal = ({ onClose, isOpen, title, children }: ModalProps & Props) =
   return (
     <Modal onClose={onClose} isOpen={isOpen} isCentered size={'md'}>
       <ModalOverlay />
-      <ModalContent>
+      <ModalContent className='max-[450px]:max-w-[345px]'>
         <ModalHeader>
           <div className='flex flex-col'>
             <h1>{title}</h1>

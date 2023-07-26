@@ -1,18 +1,26 @@
-export const Card = () => {
+type Props = {
+  image?: string | null
+  alt?: string
+  title?: React.ReactNode
+  description?: React.ReactNode
+  tags?: string[]
+}
+
+export const Card = ({ title, description, image, alt, tags }: Props) => {
   return (
-    <li className='card mx-auto w-full border bg-base-100 dark:border-darkBg-800 dark:bg-darkBg-100'>
-      <figure>
-        <img src='https://daisyui.com/images/stock/photo-1606107557195-0e29a4b5b4aa.jpg' alt='Shoes' />
+    <li className='group card mx-auto h-full w-full border bg-base-100 transition-colors hover:border-slate-400 dark:border-darkBg-800 dark:bg-darkBg-100'>
+      <figure className='min-h-[50%] scale-90 transition-transform group-hover:scale-100'>
+        <img src={image ?? ''} alt={alt} className='h-auto max-h-full w-auto max-w-full' />
       </figure>
-      <div className='card-body'>
-        <h2 className='card-title'>
-          Shoes!
-          <div className='badge badge-secondary'>NEW</div>
-        </h2>
-        <p>If a dog chews shoes whose shoes does he choose?</p>
+      <div className='flex h-full flex-col gap-3 text-clip px-6 py-2'>
+        <h4 className='card-title'>{title}</h4>
+        <span className='line-clamp-4 overflow-hidden'>{description}</span>
         <div className='card-actions justify-end'>
-          <div className='badge badge-outline'>Fashion</div>
-          <div className='badge badge-outline'>Products</div>
+          {tags?.map((tag) => (
+            <div className='badge badge-outline' key={tag}>
+              {tag}
+            </div>
+          ))}
         </div>
       </div>
     </li>

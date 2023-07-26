@@ -1,40 +1,60 @@
 'use client'
-import React, { useRef } from 'react'
-import { GoChevronLeft, GoChevronRight } from 'react-icons/go'
+import React, { useRef, useState } from 'react'
+import { CgArrowLongRight, CgArrowLongLeft } from 'react-icons/cg'
+import { motion } from 'framer-motion'
 
 type Props = {
   items?: React.ReactElement[]
 }
 
 const ImageCarousel = ({ items }: Props) => {
+  const [buttonStatus, setButtonStatus] = useState<'left' | 'both' | 'right'>('right')
+
   const scrollRef = useRef<HTMLDivElement>(null)
+  const itemRef = useRef<HTMLDivElement>(null)
 
   const onClickNext = () => {
-    scrollRef.current?.scrollBy({ behavior: 'smooth', left: scrollRef.current.clientWidth })
+    scrollRef.current?.scrollBy({ behavior: 'smooth', left: itemRef.current?.clientWidth })
   }
 
   const onClickPrev = () => {
-    scrollRef.current?.scrollBy({ behavior: 'smooth', left: -scrollRef.current.clientWidth })
+    scrollRef.current?.scrollBy({ behavior: 'smooth', left: -`${itemRef.current?.clientWidth}` })
   }
 
   return (
-    <div className='relative flex items-center justify-center'>
-      <button className='btn-ghost btn-circle btn absolute left-0 z-10 border' onClick={onClickPrev}>
-        <GoChevronLeft className='text-xl text-black' />
-      </button>
+    <div className='relative flex w-full max-w-full items-center justify-start px-20 max-md:px-0'>
+      {buttonStatus !== 'right' && (
+        <button className='btn-ghost btn-circle btn absolute left-0 z-10 border max-md:-left-8' onClick={onClickPrev}>
+          <CgArrowLongLeft className='text-2xl text-black max-md:text-xl' />
+        </button>
+      )}
       <div
-        className='carousel-center carousel relative flex h-[250px] max-w-md flex-nowrap space-x-4 overflow-x-scroll p-4'
         ref={scrollRef}
+        className='flex w-full max-w-full gap-5 overflow-x-scroll py-10 max-md:carousel-center max-md:carousel'
       >
-        {items?.map((item) => (
-          <div key={item.key} className='carousel-item mx-auto flex h-auto w-full flex-shrink-0 justify-center'>
+        {items?.map((item, index) => (
+          <motion.div
+            ref={itemRef}
+            key={item.key}
+            className='h-[400px] w-1/4 flex-shrink-0 max-md:carousel-item max-lg:w-1/2 max-md:w-full'
+            onViewportEnter={() => {
+              if (index === 0) setButtonStatus('right')
+              if (index === items.length - 1) setButtonStatus('left')
+            }}
+            onViewportLeave={() => {
+              if (index === 0) setButtonStatus('both')
+              if (index === items.length - 1) setButtonStatus('both')
+            }}
+          >
             {item}
-          </div>
+          </motion.div>
         ))}
       </div>
-      <button className='btn-ghost btn-circle btn absolute right-0' onClick={onClickNext}>
-        <GoChevronRight className='text-xl text-black' />
-      </button>
+      {buttonStatus !== 'left' && (
+        <button className='btn-ghost btn-circle btn absolute right-0 max-md:-right-8' onClick={onClickNext}>
+          <CgArrowLongRight className='text-2xl text-black max-md:text-xl' />
+        </button>
+      )}
     </div>
   )
 }

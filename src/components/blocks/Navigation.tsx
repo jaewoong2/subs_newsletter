@@ -1,17 +1,20 @@
 'use client'
-import { useTheme } from 'next-themes'
+import React, { useEffect, useRef, useState } from 'react'
 import Link from 'next/link'
-import React from 'react'
+import { useTheme } from 'next-themes'
+import { twMerge } from 'tailwind-merge'
+import { motion } from 'framer-motion'
+import useDebounceCallback from '@/hooks/useDebounceCallback'
 
-export const Navigation = () => {
+// eslint-disable-next-line react/display-name
+const NavigationBody = React.memo(() => {
   const { resolvedTheme, setTheme } = useTheme()
-
   const onClickToogleIcon = (theme: 'light' | 'dark') => {
     setTheme(theme)
   }
 
   return (
-    <nav className='fixed top-0 z-[100] flex  w-full justify-between border border-black bg-white bg-opacity-40 p-5 backdrop-blur-md dark:border-darkBg-300 dark:bg-darkBg-200 dark:bg-opacity-40 dark:text-white'>
+    <>
       <h1 className='whitespace-nowrap font-bold'>뉴섭</h1>
       <ul className='flex w-full items-center justify-center gap-5'>
         <Link className='hover:text-slate-400' href={'/newsletter'}>
@@ -42,6 +45,34 @@ export const Navigation = () => {
           </svg>
         </label>
       </div>
-    </nav>
+    </>
+  )
+})
+
+export const Navigation = () => {
+  const [scrollHeightDiff, setScrollHeightDiff] = useState(0)
+
+  const onScrollDebounce = useDebounceCallback(() => {
+    setScrollHeightDiff(document.body.clientHeight - document.body.scrollTop)
+  }, 10)
+
+  useEffect(() => {
+    setScrollHeightDiff(document.body.clientHeight - document.body.scrollTop)
+    document.body.addEventListener('scroll', onScrollDebounce)
+    return () => {
+      document.body.removeEventListener('scroll', onScrollDebounce)
+    }
+  }, [])
+
+  return (
+    <motion.nav
+      className={twMerge(
+        'fixed top-0 z-[100] flex w-full justify-between bg-white p-5 backdrop-blur-md',
+        'dark:bg-darkBg-200 dark:bg-opacity-0 dark:text-white',
+        scrollHeightDiff < 0 ? 'bg-opacity-40 text-black' : 'bg-opacity-0 text-white'
+      )}
+    >
+      <NavigationBody />
+    </motion.nav>
   )
 }

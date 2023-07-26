@@ -5,7 +5,7 @@ import { IMAGE } from '@/constants'
 
 const BlockCards = () => {
   return (
-    <div className='flex max-h-full w-full items-center justify-center bg-slate-200 dark:bg-darkBg-300'>
+    <div className='flex max-h-full w-full items-center justify-center bg-slate-200 py-10 dark:bg-darkBg-300'>
       <div className='flex w-full max-w-5xl flex-col items-center justify-center gap-4 p-10 max-md:p-5'>
         <div className='grid w-full grid-cols-[3fr_2fr] gap-x-3 gap-y-5 overflow-hidden max-md:grid-cols-1'>
           <BlockCard title='다양한 뉴스레터' description='요리, 경제, 문화 찾으시는 모든 것이 여기 다 있어요!'>
