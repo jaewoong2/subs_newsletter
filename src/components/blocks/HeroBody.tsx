@@ -10,7 +10,7 @@ type Props = {
 
 const HeroBody = ({ title, subTitle }: Props) => {
   return (
-    <div className='mockup-window z-[21] mx-5 border bg-slate-300 bg-opacity-40 backdrop-blur-lg dark:border-darkBg-200 dark:bg-darkBg-200 dark:bg-opacity-60'>
+    <div className='z-[21] mx-5'>
       <div className='z-20 flex min-h-full w-full flex-col items-center justify-center p-20 max-lg:p-10'>
         <Body
           title={title}
