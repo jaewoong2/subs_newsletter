@@ -8,6 +8,13 @@ module.exports = {
   ],
   theme: {
     extend: {
+      fontFamily: {
+        tossFace: 'Tossface',
+        PyeongChangPeace: 'PyeongChangPeace-Bold',
+        neurimboGothicRegular: 'neurimboGothicRegular',
+        SUITE: 'SUITE-Regular',
+      },
+
       colors: {
         darkBg: {
           100: '#585a5d',
