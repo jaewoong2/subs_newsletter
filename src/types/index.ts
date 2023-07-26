@@ -1,5 +1,4 @@
 import { Database } from './supabase'
 
-type DbItem = Database['public']['Tables']['item']['Row']
-
-export type PrimaryItem = DbItem
+export type NewsLetter = Database['public']['Tables']['newsletter']['Row']
+export type Checksome = Database['public']['Tables']['checksome']['Row']

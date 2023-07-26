@@ -1,21 +1,44 @@
 import React from 'react'
+import Link from 'next/link'
+import { twMerge } from 'tailwind-merge'
 import { Card } from '../atoms'
+import ImageCarousel from '../blocks/ImageCarousel'
+import { getNewsLetters } from '@/app/supabase-server'
 
-export const Home = () => {
+export const Home = async () => {
+  const response = await getNewsLetters()
+
   return (
-    <main className='grid w-full grid-cols-[1fr_5fr_1fr] flex-no-wrap justify-center dark:bg-darkBg-300 dark:text-white'>
-      <div className='w-full'></div>
-      <section className='flex w-full flex-col justify-center gap-5 py-10'>
-        <h1 className='px-10 text-xl font-bold max-md:px-5' id='new'>
+    <main className='flex px-10 dark:bg-darkBg-300 dark:text-white'>
+      <section className='flex w-full flex-col justify-center py-10'>
+        <h1 className='px-20 text-xl font-bold max-md:px-0' id='new'>
           최신 뉴스레터
         </h1>
-        <ul className='grid w-full grid-cols-3 justify-center gap-5 px-10 max-lg:grid-cols-2 max-md:grid-cols-1 max-md:px-5'>
-          {new Array(10).fill(0).map((_, index) => (
-            <Card key={`card-${index}`} />
-          ))}
-        </ul>
+        <ImageCarousel
+          items={response?.data
+            ?.map(({ name, thumbnail, category, description, id }) => (
+              <figure key={`card-${id}`} className='h-full w-full'>
+                <Link href={'https://page.stibee.com/subscriptions/78183'}>
+                  <Card title={name} description={description} image={thumbnail} tags={category ?? []} />
+                </Link>
+              </figure>
+            ))
+            .concat(
+              <Link href={'newsletter'} className='flex h-full w-full justify-end'>
+                <div
+                  className={twMerge(
+                    'flex h-full w-full flex-col items-center justify-center rounded-2xl border font-bold ',
+                    'bg-slate-50 hover:bg-slate-200 dark:bg-darkBg-100 dark:hover:bg-darkBg-400',
+                    'dark:border-darkBg-700'
+                  )}
+                >
+                  <p className='text-xl font-semibold'>더욱 많은 뉴스레터가 있어요</p>
+                  <p className='font-thin'>정말 다양한 뉴스레터를 확인 해보세요!</p>
+                </div>
+              </Link>
+            )}
+        />
       </section>
-      <div className='w-full'></div>
     </main>
   )
 }
