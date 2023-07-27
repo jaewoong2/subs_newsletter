@@ -11,20 +11,23 @@ export const Home = async () => {
   return (
     <main className='flex px-10 dark:bg-darkBg-300 dark:text-white'>
       <section className='flex w-full flex-col justify-center py-10'>
-        <h1 className='px-20 text-xl font-bold max-md:px-0' id='new'>
+        <h1 className='px-20 text-xl font-bold max-lg:px-10 max-md:px-0' id='new'>
           최신 뉴스레터
         </h1>
         <ImageCarousel
           items={response?.data
-            ?.map(({ name, thumbnail, category, description, id }) => (
+            ?.map(({ name, thumbnail, category, description, id, Link: link }) => (
               <figure key={`card-${id}`} className='h-full w-full'>
-                <Link href={'https://page.stibee.com/subscriptions/78183'}>
+                <Link href={link ?? ''}>
                   <Card title={name} description={description} image={thumbnail} tags={category ?? []} />
                 </Link>
               </figure>
             ))
             .concat(
-              <Link href={'newsletter'} className='flex h-full w-full justify-end'>
+              <Link
+                href={'newsletter'}
+                className='flex h-full w-full scale-95 justify-end transition-transform hover:scale-100'
+              >
                 <div
                   className={twMerge(
                     'flex h-full w-full flex-col items-center justify-center rounded-2xl border font-bold ',
@@ -33,7 +36,7 @@ export const Home = async () => {
                   )}
                 >
                   <p className='text-xl font-semibold'>더욱 많은 뉴스레터가 있어요</p>
-                  <p className='font-thin'>정말 다양한 뉴스레터를 확인 해보세요!</p>
+                  <p className='font-thin'>내 취향에 맞는 뉴스레터를 확인 해보세요!</p>
                 </div>
               </Link>
             )}

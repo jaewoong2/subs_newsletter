@@ -22,7 +22,7 @@ const ImageCarousel = ({ items }: Props) => {
   }
 
   return (
-    <div className='relative flex w-full max-w-full items-center justify-start px-20 max-md:px-0'>
+    <div className='relative flex w-full max-w-full items-center justify-start px-20 max-lg:px-10 max-md:px-0'>
       {buttonStatus !== 'right' && (
         <button className='btn-ghost btn-circle btn absolute left-0 z-10 border max-md:-left-8' onClick={onClickPrev}>
           <CgArrowLongLeft className='text-2xl text-black max-md:text-xl' />
@@ -36,7 +36,7 @@ const ImageCarousel = ({ items }: Props) => {
           <motion.div
             ref={itemRef}
             key={item.key}
-            className='h-[400px] w-1/4 flex-shrink-0 max-md:carousel-item max-lg:w-1/2 max-md:w-full'
+            className='h-[400px] w-1/4 flex-shrink-0 max-md:carousel-item max-lg:w-[40%] max-md:w-full'
             onViewportEnter={() => {
               if (index === 0) setButtonStatus('right')
               if (index === items.length - 1) setButtonStatus('left')
