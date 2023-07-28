@@ -1,5 +1,5 @@
 'use client'
-import React from 'react'
+import React, { PropsWithChildren } from 'react'
 import { twMerge } from 'tailwind-merge'
 type Props = {
   title?: React.ReactNode
@@ -8,7 +8,7 @@ type Props = {
   buttonVariant?: 'success' | 'normal' | 'error'
 }
 
-const Body = ({ title, subTitle, button, buttonVariant = 'normal' }: Props) => {
+const Body = ({ children, title, subTitle, button, buttonVariant = 'normal' }: PropsWithChildren<Props>) => {
   return (
     <>
       <h1
@@ -30,6 +30,7 @@ const Body = ({ title, subTitle, button, buttonVariant = 'normal' }: Props) => {
       >
         {button}
       </button>
+      {children}
     </>
   )
 }

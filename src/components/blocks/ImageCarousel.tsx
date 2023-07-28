@@ -4,11 +4,11 @@ import { CgArrowLongRight, CgArrowLongLeft } from 'react-icons/cg'
 import { motion } from 'framer-motion'
 
 type Props = {
-  items?: React.ReactElement[]
+  items: React.ReactElement[]
 }
 
 const ImageCarousel = ({ items }: Props) => {
-  const [buttonStatus, setButtonStatus] = useState<'left' | 'both' | 'right'>('right')
+  const [buttonStatus, setButtonStatus] = useState<number[]>([])
 
   const scrollRef = useRef<HTMLDivElement>(null)
   const itemRef = useRef<HTMLDivElement>(null)
@@ -23,14 +23,14 @@ const ImageCarousel = ({ items }: Props) => {
 
   return (
     <div className='relative flex w-full max-w-full items-center justify-start px-20 max-lg:px-10 max-md:px-0'>
-      {buttonStatus !== 'right' && (
+      {!buttonStatus.includes(0) && (
         <button className='btn-ghost btn-circle btn absolute left-0 z-10 border max-md:-left-8' onClick={onClickPrev}>
-          <CgArrowLongLeft className='text-2xl text-black max-md:text-xl' />
+          <CgArrowLongLeft className='text-2xl text-black dark:text-white max-md:text-xl' />
         </button>
       )}
       <div
         ref={scrollRef}
-        className='flex w-full max-w-full gap-5 overflow-x-scroll py-10 max-md:carousel-center max-md:carousel'
+        className='flex w-full max-w-full gap-5 overflow-x-scroll py-5 max-md:carousel-center max-md:carousel'
       >
         {items?.map((item, index) => (
           <motion.div
@@ -38,21 +38,23 @@ const ImageCarousel = ({ items }: Props) => {
             key={item.key}
             className='h-[400px] w-1/4 flex-shrink-0 max-md:carousel-item max-lg:w-[40%] max-md:w-full'
             onViewportEnter={() => {
-              if (index === 0) setButtonStatus('right')
-              if (index === items.length - 1) setButtonStatus('left')
+              setButtonStatus((prev) => {
+                return [...prev, index]
+              })
             }}
             onViewportLeave={() => {
-              if (index === 0) setButtonStatus('both')
-              if (index === items.length - 1) setButtonStatus('both')
+              setButtonStatus((prev) => {
+                return prev.filter((value) => value !== index)
+              })
             }}
           >
             {item}
           </motion.div>
         ))}
       </div>
-      {buttonStatus !== 'left' && (
+      {!buttonStatus.includes(items.length - 1) && (
         <button className='btn-ghost btn-circle btn absolute right-0 max-md:-right-8' onClick={onClickNext}>
-          <CgArrowLongRight className='text-2xl text-black max-md:text-xl' />
+          <CgArrowLongRight className='text-2xl text-black dark:text-white max-md:text-xl' />
         </button>
       )}
     </div>

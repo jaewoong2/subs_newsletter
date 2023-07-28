@@ -3,6 +3,7 @@ import { Home } from '@/components/pages/Home'
 import { Navigation, Register } from '@/components/blocks'
 import BlockCards from '@/components/blocks/BlockCards'
 import Footer from '@/components/atoms/Footer'
+import { RegisterNewsLetter } from '@/components/blocks/RegisterNewsLetter'
 
 export default async function Page() {
   return (
@@ -18,6 +19,7 @@ export default async function Page() {
         </ul>
       </section>
       <Home />
+      <RegisterNewsLetter />
       <Register />
       <Footer />
     </div>

@@ -33,7 +33,7 @@ export interface Database {
           created_at: string | null
           description: string | null
           id: number
-          Link: string | null
+          link: string | null
           name: string | null
           thumbnail: string | null
         }
@@ -42,7 +42,7 @@ export interface Database {
           created_at?: string | null
           description?: string | null
           id?: number
-          Link?: string | null
+          link?: string | null
           name?: string | null
           thumbnail?: string | null
         }
@@ -51,7 +51,7 @@ export interface Database {
           created_at?: string | null
           description?: string | null
           id?: number
-          Link?: string | null
+          link?: string | null
           name?: string | null
           thumbnail?: string | null
         }

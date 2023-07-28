@@ -27,7 +27,7 @@ const HeroBody = ({ title, subTitle }: Props) => {
               </div>
             </>
           }
-        />
+        ></Body>
       </div>
     </div>
   )
