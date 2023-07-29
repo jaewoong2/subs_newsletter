@@ -1,8 +1,9 @@
 import useSWRMutation, { MutationFetcher } from 'swr/mutation'
 
 interface UploadResponse {
-  data: {
-    path: string
+  data?: {
+    path?: string
+    name?: string
   }
   path: string
   error: null | string

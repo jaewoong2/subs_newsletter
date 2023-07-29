@@ -1,17 +1,27 @@
 import React, { PropsWithChildren } from 'react'
+import { motion } from 'framer-motion'
 
 type Props = React.DetailedHTMLProps<React.InputHTMLAttributes<HTMLInputElement>, HTMLInputElement>
 
 const Dropzone = ({ children, ...props }: PropsWithChildren<Props>) => {
   return (
-    <div className='flex h-full w-full items-center justify-center'>
-      <label
+    <div className='relative flex h-full w-full cursor-pointer items-center justify-center'>
+      <motion.label
+        onDragOver={(event) => {
+          event.currentTarget.classList.add('border-gray-500')
+        }}
+        onDragLeave={(event) => {
+          event.currentTarget.classList.remove('border-gray-500')
+        }}
+        onDrop={(event) => {
+          event.currentTarget.classList.remove('border-gray-500')
+        }}
         htmlFor='dropzone-file'
-        className='dark:hover:bg-bray-800 flex h-full w-full cursor-pointer flex-col items-center justify-center rounded-lg border-2 border-dashed border-gray-300 bg-gray-50 hover:bg-gray-100 dark:border-gray-600 dark:bg-gray-700 dark:hover:border-gray-500 dark:hover:bg-gray-600'
+        className='flex h-full w-full cursor-pointer flex-col items-center justify-center rounded-lg border-2 border-dashed border-gray-300 bg-gray-50 hover:bg-gray-100'
       >
         <div className='flex flex-col items-center justify-center pb-6 pt-5'>
           <svg
-            className='mb-1 h-8 w-8 text-gray-500 dark:text-gray-400'
+            className='mb-1 h-8 w-8 text-gray-500'
             aria-hidden='true'
             xmlns='http://www.w3.org/2000/svg'
             fill='none'
@@ -27,8 +37,14 @@ const Dropzone = ({ children, ...props }: PropsWithChildren<Props>) => {
           </svg>
           {children}
         </div>
-        <input id='dropzone-file' type='file' className='hidden' {...props} />
-      </label>
+        <input
+          id='dropzone-file'
+          type='file'
+          className='absolute h-full w-full cursor-pointer opacity-0'
+          accept='image/*'
+          {...props}
+        />
+      </motion.label>
     </div>
   )
 }
