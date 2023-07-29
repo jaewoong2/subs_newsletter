@@ -16,7 +16,24 @@ export const createServerSupabaseClient = () =>
 export async function getNewsLetters() {
   const supabase = createServerSupabaseClient()
   try {
-    const response = await supabase.from('newsletter').select('*')
+    const response = await supabase.from('newsletter').select('*').limit(10)
+
+    if (!response.data) {
+      throw new Error('No data found')
+    }
+
+    if (response.data?.length === 0) {
+      throw new Error('No data found')
+    }
+
+    return response
+  } catch (err) {}
+}
+
+export async function getArticles() {
+  const supabase = createServerSupabaseClient()
+  try {
+    const response = await supabase.from('article').select('*').limit(10)
 
     if (!response.data) {
       throw new Error('No data found')

@@ -3,6 +3,36 @@ export type Json = string | number | boolean | null | { [key: string]: Json | un
 export interface Database {
   public: {
     Tables: {
+      article: {
+        Row: {
+          created_at: string | null
+          description: string | null
+          id: number
+          link: string | null
+          thumbnail: string | null
+          title: string | null
+          view: string | null
+        }
+        Insert: {
+          created_at?: string | null
+          description?: string | null
+          id?: number
+          link?: string | null
+          thumbnail?: string | null
+          title?: string | null
+          view?: string | null
+        }
+        Update: {
+          created_at?: string | null
+          description?: string | null
+          id?: number
+          link?: string | null
+          thumbnail?: string | null
+          title?: string | null
+          view?: string | null
+        }
+        Relationships: []
+      }
       checksome: {
         Row: {
           category: string | null
