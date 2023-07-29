@@ -4,6 +4,7 @@ import { useModal } from '@chakra-ui/react'
 import CheckSome from './CheckSome'
 import SimpleModal from '../atoms/SimpleModal'
 import { Checksome } from '@/types'
+import useSimpleModal from '@/hooks/useSimpleModal'
 
 const LABEl_OBJECT = {
   register: '뉴스레터를 등록 하고 싶어요 😀',
@@ -15,7 +16,7 @@ export const Register = () => {
   const [category, setCategory] = useState<Checksome['category']>('')
   const [modalTitle, setModalTitle] = useState('')
   const [isCheckSomeModalOpen, setIsCheckSomeModalOpen] = useState(false)
-  const { onClose, isOpen } = useModal({
+  const { onClose, isOpen } = useSimpleModal({
     isOpen: isCheckSomeModalOpen,
     onClose: () => {
       setIsCheckSomeModalOpen(false)

@@ -7,16 +7,26 @@ import useGetCategories from '@/hooks/useGetCategories'
 import { NewsLetter } from '@/types'
 import Dropzone from '../atoms/Dropzone'
 import useFileUpload from '@/hooks/useUploadImage'
+import Link from 'next/link'
+import usePostNewsletter from '@/hooks/usePostNewsletter'
 
 const Register = () => {
+  const { trigger } = usePostNewsletter()
   const [newsLetter, setNewsLetter] = useState<Partial<NewsLetter>>({})
-  const { upload, data, error } = useFileUpload()
+  const { upload, data } = useFileUpload()
+  const { data: categories } = useGetCategories()
+  const [selected, setSelected] = useState<string[]>([])
 
   const onSubmit: React.FormEventHandler<HTMLFormElement> = useCallback(
     (event) => {
       event.preventDefault()
+      trigger({
+        ...newsLetter,
+        category: selected,
+        thumbnail: `${process.env.NEXT_PUBLIC_SUPABASE_STORAGE_URL}${data?.data?.path}`,
+      })
     },
-    [newsLetter]
+    [newsLetter, trigger, data?.data?.path, selected]
   )
 
   const onChangeNewsLetter = useCallback((event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
@@ -28,8 +38,6 @@ const Register = () => {
     })
   }, [])
 
-  const { data: categories } = useGetCategories()
-  const [selected, setSelected] = useState<string[]>([''])
   const toggleBadge = (category: string) => {
     setSelected((prev) => {
       if (prev.includes(category)) return prev.filter((value) => value !== category)
@@ -39,7 +47,7 @@ const Register = () => {
 
   return (
     <div className='w-full flex-col'>
-      <form onSubmit={() => {}} id='checksome'>
+      <form onSubmit={onSubmit} id='newsletter'>
         <div className='form-control'>
           <label className='label'>
             <div>
@@ -53,6 +61,7 @@ const Register = () => {
             required
             className='input-bordered input'
             name='link'
+            onChange={onChangeNewsLetter}
           />
         </div>
         <div className='form-control'>
@@ -68,6 +77,7 @@ const Register = () => {
             required
             className='input-bordered input'
             name='name'
+            onChange={onChangeNewsLetter}
           />
         </div>
         <div className='form-control'>
@@ -82,6 +92,7 @@ const Register = () => {
             rows={6}
             className='textarea-bordered textarea font-tossFace'
             name='description'
+            onChange={onChangeNewsLetter}
           />
         </div>
         <div className='form-control'>
@@ -92,20 +103,15 @@ const Register = () => {
             </div>
           </label>
           <div className='flex h-32 w-full items-center justify-center'>
-            {!error && data?.data.path ? (
-              <div className='h-full max-h-64'>
-                <img
-                  className='h-auto max-h-full w-auto max-w-full'
-                  src={process.env.NEXT_PUBLIC_SUPABASE_STORAGE_URL + data?.data?.path}
-                  alt='미리보기 이미지'
-                />
-              </div>
-            ) : (
-              <Dropzone onChange={(e) => upload(e.target.files ? e.target.files[0] : null)}>
-                <p className='text-xs text-gray-500 dark:text-gray-400'>썸네일에 사용될 이미지를 업로드 해주세요</p>
-              </Dropzone>
-            )}
+            <Dropzone onChange={(e) => upload(e.target.files ? e.target.files[0] : null)}>
+              <p className='text-xs text-gray-500'>썸네일에 사용될 이미지를 업로드 해주세요</p>
+            </Dropzone>
           </div>
+          {data?.data && (
+            <Link href={`${process.env.NEXT_PUBLIC_SUPABASE_STORAGE_URL}${data?.data?.path}`} target='_blank'>
+              <p className='text-xs text-blue-500 hover:text-blue-400'>이미지: {data?.data?.name}</p>
+            </Link>
+          )}
         </div>
         <div className='form-control'>
           <label className='label'>
@@ -132,7 +138,7 @@ const Register = () => {
         </div>
       </form>
       <div className='form-control my-6'>
-        <button className='btn-primary btn' type='submit' form='checksome'>
+        <button className='btn-primary btn' type='submit' form='newsletter'>
           등록하기
         </button>
       </div>
