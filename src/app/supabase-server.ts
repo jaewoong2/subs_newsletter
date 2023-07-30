@@ -1,6 +1,7 @@
 import { cookies } from 'next/headers'
 import { createServerComponentClient } from '@supabase/auth-helpers-nextjs'
 import { Database } from '../types/supabase'
+import shuffle from '@/lib/suffle'
 
 export const runtime = 'edge'
 
@@ -13,6 +14,13 @@ export const createServerSupabaseClient = () =>
     }
   )
 
+const getOrder = (searchParams?: string) => {
+  if (searchParams === 'popular') return 'view'
+  if (searchParams === 'new') return 'created_at'
+  if (searchParams === 'random') return 'id'
+  return 'created_at'
+}
+
 export async function getNewsLetters(searchParams?: string | 'popular' | 'new' | 'random') {
   const supabase = createServerSupabaseClient()
   try {
@@ -20,7 +28,7 @@ export async function getNewsLetters(searchParams?: string | 'popular' | 'new' |
       .from('newsletter')
       .select('*')
       .limit(10)
-      .order(searchParams === 'popular' ? 'view' : 'created_at')
+      .order(getOrder(searchParams), { foreignTable: '', ascending: false })
 
     if (!response.data) {
       throw new Error('No data found')
@@ -28,6 +36,10 @@ export async function getNewsLetters(searchParams?: string | 'popular' | 'new' |
 
     if (response.data?.length === 0) {
       throw new Error('No data found')
+    }
+
+    if (searchParams === 'random') {
+      return { ...response, data: shuffle(response.data) }
     }
 
     return response

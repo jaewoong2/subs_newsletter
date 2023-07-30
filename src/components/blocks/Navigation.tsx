@@ -57,7 +57,7 @@ type Props = {
 export const Navigation = ({ isAnimate = true, className }: Props) => {
   const [scrollHeightDiff, setScrollHeightDiff] = useState(0)
 
-  const onScrollDebounce = useDebounceCallback(() => {
+  const [onScrollDebounce] = useDebounceCallback(() => {
     setScrollHeightDiff(document.body.clientHeight - document.body.scrollTop)
   }, 10)
 
