@@ -13,7 +13,7 @@ export const createServerSupabaseClient = () =>
     }
   )
 
-export async function getNewsLetters(searchParams?: 'popular' | 'new' | 'random') {
+export async function getNewsLetters(searchParams?: string | 'popular' | 'new' | 'random') {
   const supabase = createServerSupabaseClient()
   try {
     const response = await supabase

@@ -32,6 +32,36 @@ export const CardImage = ({ image, alt }: Props) => {
   }
 
   useEffect(() => {
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        // 요소가 뷰포트와 교차하면 이미지를 로딩합니다.
+        if (entry.isIntersecting) {
+          const img = entry.target
+          const src = img.getAttribute('data-src') ?? ''
+          img.setAttribute('src', src)
+          img.classList.remove('lazy')
+          img.classList.remove('animate-pulse')
+
+          // 이미지가 로딩되었으므로 observer에서 제거합니다.
+          observer.unobserve(img)
+        }
+      })
+    })
+
+    // 이미지 요소에 observer를 붙입니다.
+    if (imageRef.current) {
+      observer.observe(imageRef.current)
+    }
+
+    // 컴포넌트가 unmount되면 observer를 해제합니다.
+    return () => {
+      if (imageRef.current) {
+        observer.unobserve(imageRef.current)
+      }
+    }
+  }, [])
+
+  useEffect(() => {
     const resize = () => {
       onLoadImage()
     }
@@ -45,7 +75,15 @@ export const CardImage = ({ image, alt }: Props) => {
 
   return (
     <figure className='h-full max-h-[50%] min-h-[50%] w-full' ref={figureRef}>
-      <motion.img src={image ?? ''} alt={alt} ref={imageRef} onLoad={onLoadImage} onResize={onLoadImage} />
+      <motion.img
+        src={'https://ywnfqdpcmgtllkshgzsl.supabase.co/storage/v1/object/public/newsletter/image/placeholder.png'}
+        alt={alt}
+        ref={imageRef}
+        onLoad={onLoadImage}
+        onResize={onLoadImage}
+        className='lazy animate-pulse'
+        data-src={image}
+      />
     </figure>
   )
 }

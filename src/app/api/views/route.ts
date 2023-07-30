@@ -23,7 +23,6 @@ export async function POST(request: NextRequest): Promise<NextResponse<null> | R
         .from('newsletter')
         .update({ view: view.view + 1 })
         .eq('id', +id)
-      console.log(response, id)
 
       return NextResponse.json({ status: response.status, statusText: response.statusText })
     }
@@ -35,7 +34,7 @@ export async function POST(request: NextRequest): Promise<NextResponse<null> | R
     const supabase = createRouteHandlerClient<Database>({ cookies })
     const { data: view } = await supabase.from('article').select('view').eq('id', +id).single()
 
-    if (view?.view) {
+    if (typeof view?.view !== 'undefined' && view?.view !== null) {
       const response = await supabase
         .from('article')
         .update({ view: view.view + 1 })
