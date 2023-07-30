@@ -13,10 +13,14 @@ export const createServerSupabaseClient = () =>
     }
   )
 
-export async function getNewsLetters() {
+export async function getNewsLetters(searchParams?: 'popular' | 'new' | 'random') {
   const supabase = createServerSupabaseClient()
   try {
-    const response = await supabase.from('newsletter').select('*').limit(10)
+    const response = await supabase
+      .from('newsletter')
+      .select('*')
+      .limit(10)
+      .order(searchParams === 'popular' ? 'view' : 'created_at')
 
     if (!response.data) {
       throw new Error('No data found')

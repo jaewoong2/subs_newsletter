@@ -11,7 +11,7 @@ export interface Database {
           link: string | null
           thumbnail: string | null
           title: string | null
-          view: string | null
+          view: number | null
         }
         Insert: {
           created_at?: string | null
@@ -20,7 +20,7 @@ export interface Database {
           link?: string | null
           thumbnail?: string | null
           title?: string | null
-          view?: string | null
+          view?: number | null
         }
         Update: {
           created_at?: string | null
@@ -29,7 +29,7 @@ export interface Database {
           link?: string | null
           thumbnail?: string | null
           title?: string | null
-          view?: string | null
+          view?: number | null
         }
         Relationships: []
       }
@@ -65,11 +65,13 @@ export interface Database {
           id: number
           link: string | null
           name: string | null
+          view: number | null
           thumbnail: string | null
         }
         Insert: {
           category?: string[] | null
           created_at?: string | null
+          view?: number | null
           description?: string | null
           id?: number
           link?: string | null
@@ -79,6 +81,7 @@ export interface Database {
         Update: {
           category?: string[] | null
           created_at?: string | null
+          view?: number | null
           description?: string | null
           id?: number
           link?: string | null
