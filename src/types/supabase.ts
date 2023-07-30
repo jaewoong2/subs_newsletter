@@ -65,34 +65,66 @@ export interface Database {
           id: number
           link: string | null
           name: string | null
-          view: number | null
           thumbnail: string | null
+          view: number | null
         }
         Insert: {
           category?: string[] | null
           created_at?: string | null
-          view?: number | null
           description?: string | null
           id?: number
           link?: string | null
           name?: string | null
           thumbnail?: string | null
+          view?: number | null
         }
         Update: {
           category?: string[] | null
           created_at?: string | null
-          view?: number | null
           description?: string | null
           id?: number
           link?: string | null
           name?: string | null
           thumbnail?: string | null
+          view?: number | null
         }
         Relationships: []
       }
     }
     Views: {
-      [_ in never]: never
+      newsletter_random: {
+        Row: {
+          category: string[] | null
+          created_at: string | null
+          description: string | null
+          id: number | null
+          link: string | null
+          name: string | null
+          thumbnail: string | null
+          view: number | null
+        }
+        Insert: {
+          category?: string[] | null
+          created_at?: string | null
+          description?: string | null
+          id?: number | null
+          link?: string | null
+          name?: string | null
+          thumbnail?: string | null
+          view?: number | null
+        }
+        Update: {
+          category?: string[] | null
+          created_at?: string | null
+          description?: string | null
+          id?: number | null
+          link?: string | null
+          name?: string | null
+          thumbnail?: string | null
+          view?: number | null
+        }
+        Relationships: []
+      }
     }
     Functions: {
       [_ in never]: never

@@ -62,7 +62,7 @@ const NewsLetter = async ({ searchParams }: Props) => {
             </li>
             <li className={'relative flex w-full flex-col items-end'}>
               <Link
-                href={'newsletter?category=random'}
+                href={'newsletter/random'}
                 isActive={searchParams.category === 'random'}
                 className='h-full w-full rounded-xl px-3 py-3 text-start font-tossFace transition-colors hover:bg-base-300 dark:hover:bg-darkBg-100 max-md:rounded-none max-md:bg-transparent max-md:text-center max-md:hover:bg-transparent'
               >

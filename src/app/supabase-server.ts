@@ -17,11 +17,10 @@ export const createServerSupabaseClient = () =>
 const getOrder = (searchParams?: string) => {
   if (searchParams === 'popular') return 'view'
   if (searchParams === 'new') return 'created_at'
-  if (searchParams === 'random') return 'id'
   return 'created_at'
 }
 
-export async function getNewsLetters(searchParams?: string | 'popular' | 'new' | 'random') {
+export async function getNewsLetters(searchParams?: string | 'popular' | 'new') {
   const supabase = createServerSupabaseClient()
   try {
     const response = await supabase
@@ -50,6 +49,23 @@ export async function getArticles() {
   const supabase = createServerSupabaseClient()
   try {
     const response = await supabase.from('article').select('*').limit(10)
+
+    if (!response.data) {
+      throw new Error('No data found')
+    }
+
+    if (response.data?.length === 0) {
+      throw new Error('No data found')
+    }
+
+    return response
+  } catch (err) {}
+}
+
+export async function getNewsLettersRandom() {
+  const supabase = createServerSupabaseClient()
+  try {
+    const response = await supabase.from('newsletter_random').select('*').limit(10)
 
     if (!response.data) {
       throw new Error('No data found')
