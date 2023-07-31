@@ -10,7 +10,7 @@ const BlockCards = () => {
         <div className='grid w-full grid-cols-[3fr_2fr] gap-x-3 gap-y-5 overflow-hidden max-md:grid-cols-1'>
           <BlockCard title='다양한 뉴스레터' description='요리, 경제, 문화 찾으시는 모든 것이 여기 다 있어요!'>
             <figure className='flex items-end justify-end gap-5 px-10 group-hover:animate-wiggle'>
-              <Image
+              <img
                 src={IMAGE.example.image1}
                 alt='image2'
                 className='h-auto w-[85%] -translate-x-9 -translate-y-5 rounded-2xl drop-shadow-2xl'
@@ -25,7 +25,7 @@ const BlockCards = () => {
             className='bg-blue-300 text-white'
           >
             <figure className='flex items-end justify-end gap-5 px-10 group-hover:animate-fade-right'>
-              <Image
+              <img
                 src={IMAGE.example.image1}
                 alt='image2'
                 className='h-auto w-[85%] -translate-x-9 translate-y-5 rounded-2xl drop-shadow-2xl'
@@ -42,7 +42,7 @@ const BlockCards = () => {
             className='bg-green-300'
           >
             <figure className='flex -translate-x-28 translate-y-24 items-end justify-end gap-5 px-10 transition-transform  duration-500 group-hover:translate-x-0 group-hover:translate-y-0'>
-              <Image
+              <img
                 src={IMAGE.example.image1}
                 alt='image2'
                 className='h-auto w-[85%] -translate-x-9 -translate-y-5 rounded-2xl drop-shadow-2xl'
@@ -57,7 +57,7 @@ const BlockCards = () => {
             className='bg-violet-700 text-white'
           >
             <figure className='flex items-end justify-end gap-5 px-10 group-hover:animate-jump'>
-              <Image
+              <img
                 src={IMAGE.example.image1}
                 alt='image2'
                 className='h-auto w-[85%] -translate-x-9 translate-y-5 rounded-2xl drop-shadow-2xl'

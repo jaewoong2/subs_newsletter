@@ -8,6 +8,8 @@ import Footer from '@/components/atoms/Footer'
 import { getNewsLettersRandom } from '@/app/supabase-server'
 import Aside from '../components/Aside'
 
+export const dynamic = 'force-static'
+
 const NewsLetter = async () => {
   const newsletters = await getNewsLettersRandom()
 

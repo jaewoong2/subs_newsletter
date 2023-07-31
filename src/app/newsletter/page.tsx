@@ -15,6 +15,8 @@ type Props = {
   }
 }
 
+export const dynamic = 'force-static'
+
 const NewsLetter = async ({ searchParams }: Props) => {
   const category = searchParams.category
   const newsletters = await getNewsLetters(category)

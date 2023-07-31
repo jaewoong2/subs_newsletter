@@ -5,6 +5,8 @@ import BlockCards from '@/components/blocks/BlockCards'
 import Footer from '@/components/atoms/Footer'
 import { RegisterNewsLetter } from '@/components/blocks/RegisterNewsLetter'
 
+export const dynamic = 'force-static'
+
 export default async function Page() {
   return (
     <div className='min-h-full w-full'>
@@ -18,6 +20,7 @@ export default async function Page() {
           <Intro title='🎉 매일 업데이트 해요' index={3} subTitle='매일 새로운 뉴스레터를 추가 하고 있어요' />
         </ul>
       </section>
+      {/* @ts-expect-error Async Server Component */}
       <Home />
       <RegisterNewsLetter />
       <Register />
