@@ -39,6 +39,7 @@
     "typescript": "5.0.4"
   },
   "devDependencies": {
+    "@cloudflare/next-on-pages": "^1.4.0",
     "@motionone/utils": "^10.15.1",
     "@reduxjs/toolkit": "^1.9.5",
     "@types/gtag.js": "^0.0.12",

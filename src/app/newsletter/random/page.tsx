@@ -9,11 +9,7 @@ import { getNewsLettersRandom } from '@/app/supabase-server'
 import Aside from '../components/Aside'
 
 const NewsLetter = async () => {
-  let newsletters = await getNewsLettersRandom()
-
-  const onClickRandomLink = async () => {
-    newsletters = await getNewsLettersRandom()
-  }
+  const newsletters = await getNewsLettersRandom()
 
   return (
     <div className='flex h-full w-full flex-col'>
