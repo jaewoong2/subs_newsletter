@@ -20,7 +20,6 @@ export default async function Page() {
           <Intro title='🎉 매일 업데이트 해요' index={3} subTitle='매일 새로운 뉴스레터를 추가 하고 있어요' />
         </ul>
       </section>
-      {/* @ts-expect-error Async Server Component */}
       <Home />
       <RegisterNewsLetter />
       <Register />
