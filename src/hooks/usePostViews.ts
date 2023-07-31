@@ -6,7 +6,7 @@ type Request = {
   id: string | number
 }
 
-const fetcher: MutationFetcher<NextResponse, Request, string> = (url, { arg }) =>
+const fetcher: MutationFetcher<NextResponse, string, Request> = (url, { arg }) =>
   fetch(url, {
     method: 'POST',
     body: JSON.stringify(arg),

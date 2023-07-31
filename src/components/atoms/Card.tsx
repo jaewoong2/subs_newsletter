@@ -48,15 +48,16 @@ export const CardImage = ({ image, alt }: Props) => {
       })
     })
 
+    const image = imageRef.current
     // 이미지 요소에 observer를 붙입니다.
-    if (imageRef.current) {
-      observer.observe(imageRef.current)
+    if (image) {
+      observer.observe(image)
     }
 
     // 컴포넌트가 unmount되면 observer를 해제합니다.
     return () => {
-      if (imageRef.current) {
-        observer.unobserve(imageRef.current)
+      if (image) {
+        observer.unobserve(image)
       }
     }
   }, [])

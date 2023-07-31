@@ -2,7 +2,7 @@
 import useDebounceCallback from '@/hooks/useDebounceCallback'
 import usePostViews from '@/hooks/usePostViews'
 import NextLink, { LinkProps as InternalLinkProps } from 'next/link'
-import React, { PropsWithChildren, useEffect } from 'react'
+import React, { PropsWithChildren } from 'react'
 import { twMerge } from 'tailwind-merge'
 
 type LinkProps = Omit<React.AnchorHTMLAttributes<HTMLAnchorElement>, keyof InternalLinkProps> & InternalLinkProps

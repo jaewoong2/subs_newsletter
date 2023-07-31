@@ -1,6 +1,5 @@
 'use client'
 import React, { useState } from 'react'
-import { useModal } from '@chakra-ui/react'
 import CheckSome from './CheckSome'
 import SimpleModal from '../atoms/SimpleModal'
 import { Checksome } from '@/types'

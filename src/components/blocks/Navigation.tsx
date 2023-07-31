@@ -28,7 +28,7 @@ const NavigationBody = React.memo(() => {
         </Link>
       </ul>
       <div className='flex items-center justify-center gap-10'>
-        <label className='swap-rotate swap'>
+        <label className='swap'>
           {/* this hidden checkbox controls the state */}
           <input
             type='checkbox'

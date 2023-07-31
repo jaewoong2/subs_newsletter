@@ -1,7 +1,6 @@
 import { cookies } from 'next/headers'
 import { createServerComponentClient } from '@supabase/auth-helpers-nextjs'
 import { Database } from '../types/supabase'
-import shuffle from '@/lib/suffle'
 
 export const runtime = 'edge'
 
@@ -35,10 +34,6 @@ export async function getNewsLetters(searchParams?: string | 'popular' | 'new') 
 
     if (response.data?.length === 0) {
       throw new Error('No data found')
-    }
-
-    if (searchParams === 'random') {
-      return { ...response, data: shuffle(response.data) }
     }
 
     return response

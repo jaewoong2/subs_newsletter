@@ -5,7 +5,6 @@ import { NewsLetter } from '@/types'
 import { Database } from '@/types/supabase'
 
 export const runtime = 'edge'
-export const dynamic = 'force-dynamic'
 
 export async function POST(request: NextRequest): Promise<NextResponse<null> | Response> {
   const newsLetter: NewsLetter | null = await request.json()

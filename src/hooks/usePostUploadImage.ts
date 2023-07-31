@@ -11,7 +11,7 @@ interface UploadResponse {
   statusText: string
 }
 
-const fetcher: MutationFetcher<UploadResponse, FormData, string> = (url, { arg }) =>
+const fetcher: MutationFetcher<UploadResponse, string, FormData> = (url, { arg }) =>
   fetch(url, {
     method: 'POST',
     body: arg,

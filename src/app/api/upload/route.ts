@@ -34,7 +34,5 @@ export async function POST(request: NextRequest) {
       },
       error,
     })
-  } catch (err) {
-    console.error('ERROR!!')
-  }
+  } catch (err) {}
 }

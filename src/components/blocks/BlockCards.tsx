@@ -1,6 +1,5 @@
 import React from 'react'
 import BlockCard from '../atoms/BlockCard'
-import Image from 'next/image'
 import { IMAGE } from '@/constants'
 
 const BlockCards = () => {
