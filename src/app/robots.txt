@@ -1,3 +1,0 @@
-User-Agent: *
-Allow: /
-Sitemap: https://ux-tester.vercel.app/sitemap.xml

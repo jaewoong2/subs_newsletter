@@ -6,8 +6,6 @@ import './globals.css'
 
 export const metadata: Metadata = {}
 
-export const runtime = 'edge'
-
 type Props = {
   children: React.ReactNode
 }

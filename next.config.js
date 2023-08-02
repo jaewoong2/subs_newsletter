@@ -1,6 +1,7 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  output: 'export',
+  reactStrictMode: true,
+  swcMinify: true,
   images: {
     formats: ['image/avif', 'image/webp'],
     minimumCacheTTL: 86400,

@@ -2,8 +2,6 @@ import { cookies } from 'next/headers'
 import { createServerComponentClient } from '@supabase/auth-helpers-nextjs'
 import { Database } from '../types/supabase'
 
-export const runtime = 'edge'
-
 export const createServerSupabaseClient = () =>
   createServerComponentClient<Database>(
     { cookies },
@@ -12,6 +10,8 @@ export const createServerSupabaseClient = () =>
       supabaseUrl: process.env.NEXT_PUBLIC_SUPABASE_URL,
     }
   )
+
+export const runtime = 'edge'
 
 const getOrder = (searchParams?: string) => {
   if (searchParams === 'popular') return 'view'
