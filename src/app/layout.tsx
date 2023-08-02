@@ -5,6 +5,7 @@ import { ThemeProviders } from '@/lib/ThemeProvider'
 import './globals.css'
 
 export const metadata: Metadata = {}
+export const dynamic = 'force-dynamic'
 
 type Props = {
   children: React.ReactNode

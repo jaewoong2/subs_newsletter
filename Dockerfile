@@ -1,31 +1,43 @@
-# Get NPM packages
-FROM node:16-alpine AS dependencies
+FROM node:18-alpine AS base
+
+RUN apk add --no-cache --virtual .gyp python3 make g++ \
+    && apk del .gyp
+
+RUN apk add --update --no-cache python3 build-base gcc && ln -sf /usr/bin/python3 /usr/bin/python
+
+# Install dependencies only when needed
+FROM base AS deps
 RUN apk add --no-cache libc6-compat
 WORKDIR /app
+
+# Install dependencies based on the preferred package manager
 COPY package.json package-lock.json ./
-RUN npm ci --only=production
+RUN npm ci --only=production 
 
 # Rebuild the source code only when needed
-FROM node:16-alpine AS builder
+FROM base AS builder
 WORKDIR /app
+COPY --from=deps /app/node_modules ./node_modules
 COPY . .
-COPY --from=dependencies /app/node_modules ./node_modules
 RUN npm run build
 
 # Production image, copy all the files and run next
-FROM node:16-alpine AS runner
+FROM base AS runner
 WORKDIR /app
 
-ENV NODE_ENV production
+ENV NODE_ENV=production
 
-RUN addgroup -g 1001 -S nodejs
-RUN adduser -S nextjs -u 1001
+RUN addgroup --system --gid 1001 nodejs
+RUN adduser --system --uid 1001 nextjs
 
 COPY --from=builder --chown=nextjs:nodejs /app/.next ./.next
 COPY --from=builder /app/node_modules ./node_modules
 COPY --from=builder /app/package.json ./package.json
 
 USER nextjs
+
 EXPOSE 3000
 
-CMD ["npm", "start"]
+ENV PORT 3000
+
+CMD ["npm", "run", "start"]

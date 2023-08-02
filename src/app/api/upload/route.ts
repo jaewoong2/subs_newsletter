@@ -2,7 +2,7 @@ import { cookies } from 'next/headers'
 import { NextRequest, NextResponse } from 'next/server'
 import { createRouteHandlerClient } from '@supabase/auth-helpers-nextjs'
 import { Database } from '@/types/supabase'
-import { v4 as uuid } from 'uuid'
+import * as uuid from 'uuid'
 
 function getExtension(filename: string) {
   return filename.split('.').pop()
@@ -19,7 +19,7 @@ export async function POST(request: NextRequest) {
 
     const { data, error } = await supabase.storage
       .from('newsletter')
-      .upload(`image/${uuid()}_${date.getTime()}_${name}`, file, {
+      .upload(`image/${uuid.v4()}_${date.getTime()}_${name}`, file, {
         contentType: `image/${getExtension(name)}`,
       })
 
