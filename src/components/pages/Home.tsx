@@ -4,8 +4,6 @@ import { Card } from '../atoms'
 import { getArticles, getNewsLetters } from '@/app/supabase-server'
 import DataList from '../blocks/DataList'
 
-export const runtime = 'edge'
-
 export const Home = async () => {
   const newsletters = await getNewsLetters()
   const articles = await getArticles()

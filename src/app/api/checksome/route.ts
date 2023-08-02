@@ -6,8 +6,6 @@ import { Database } from '@/types/supabase'
 
 type RequestData = Checksome
 
-export const runtime = 'edge'
-
 export async function POST(request: NextRequest): Promise<NextResponse<null> | Response> {
   const checksome: RequestData | null = await request.json()
 

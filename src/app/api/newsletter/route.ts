@@ -4,8 +4,6 @@ import { createRouteHandlerClient } from '@supabase/auth-helpers-nextjs'
 import { NewsLetter } from '@/types'
 import { Database } from '@/types/supabase'
 
-export const runtime = 'edge'
-
 export async function POST(request: NextRequest): Promise<NextResponse<null> | Response> {
   const newsLetter: NewsLetter | null = await request.json()
 

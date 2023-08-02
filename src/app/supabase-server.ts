@@ -11,8 +11,6 @@ export const createServerSupabaseClient = () =>
     }
   )
 
-export const runtime = 'edge'
-
 const getOrder = (searchParams?: string) => {
   if (searchParams === 'popular') return 'view'
   if (searchParams === 'new') return 'created_at'

@@ -16,8 +16,6 @@ type Props = {
   }
 }
 
-export const runtime = 'edge'
-
 const NewsLetter = async ({ searchParams }: Props) => {
   const category = searchParams.category
   const newsletters = await getNewsLetters(category)

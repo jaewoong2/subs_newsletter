@@ -4,8 +4,6 @@ import { createRouteHandlerClient } from '@supabase/auth-helpers-nextjs'
 import { Database } from '@/types/supabase'
 import { v4 as uuid } from 'uuid'
 
-export const runtime = 'edge'
-
 function getExtension(filename: string) {
   return filename.split('.').pop()
 }

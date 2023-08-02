@@ -4,8 +4,6 @@ import { createRouteHandlerClient } from '@supabase/auth-helpers-nextjs'
 import { Database } from '@/types/supabase'
 import { NewsLetter } from '@/types'
 
-export const runtime = 'edge'
-
 export async function GET() {
   const supabase = createRouteHandlerClient<Database>({ cookies })
 
