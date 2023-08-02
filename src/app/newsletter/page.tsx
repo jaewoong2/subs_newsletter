@@ -1,11 +1,12 @@
+import React from 'react'
+import { getNewsLetters } from '../supabase-server'
 import { Navigation } from '@/components/blocks'
 import DataList from '@/components/blocks/DataList'
 import Link from '@/components/blocks/Link'
-import React from 'react'
 import { twMerge } from 'tailwind-merge'
-import { getNewsLetters } from '../supabase-server'
 import { Card } from '@/components/atoms'
 import Footer from '@/components/atoms/Footer'
+
 type Props = {
   params: {
     [key: string]: string
@@ -14,8 +15,6 @@ type Props = {
     [key: string]: string
   }
 }
-
-export const dynamic = 'force-static'
 
 const NewsLetter = async ({ searchParams }: Props) => {
   const category = searchParams.category

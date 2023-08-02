@@ -5,8 +5,6 @@ import BlockCards from '@/components/blocks/BlockCards'
 import Footer from '@/components/atoms/Footer'
 import { RegisterNewsLetter } from '@/components/blocks/RegisterNewsLetter'
 
-export const dynamic = 'force-static'
-
 export default async function Page() {
   return (
     <div className='min-h-full w-full'>
