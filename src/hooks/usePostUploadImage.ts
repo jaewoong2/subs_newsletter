@@ -1,4 +1,5 @@
-import useSWRMutation, { MutationFetcher } from 'swr/mutation'
+import { NextResponse } from 'next/server'
+import useSWRMutation, { MutationFetcher, SWRMutationConfiguration } from 'swr/mutation'
 
 interface UploadResponse {
   data?: {
@@ -17,8 +18,8 @@ const fetcher: MutationFetcher<UploadResponse, string, FormData> = (url, { arg }
     body: arg,
   }).then((res) => res.json())
 
-const usePostUploadImage = () => {
-  const { data, ...rest } = useSWRMutation('api/upload', fetcher)
+const usePostUploadImage = (configuration?: SWRMutationConfiguration<UploadResponse, Error, 'string'>) => {
+  const { data, ...rest } = useSWRMutation('api/upload', fetcher, configuration)
 
   return {
     data: data,

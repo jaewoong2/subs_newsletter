@@ -1,5 +1,5 @@
 import { NextResponse } from 'next/server'
-import useSWRMutation, { MutationFetcher } from 'swr/mutation'
+import useSWRMutation, { MutationFetcher, SWRMutationConfiguration } from 'swr/mutation'
 
 type Request = {
   type: 'article' | 'newsletter'
@@ -12,8 +12,8 @@ const fetcher: MutationFetcher<NextResponse, string, Request> = (url, { arg }) =
     body: JSON.stringify(arg),
   }).then((res) => res.json())
 
-const usePostViews = () => {
-  const { data, ...rest } = useSWRMutation('api/views', fetcher)
+const usePostViews = (configuration?: SWRMutationConfiguration<NextResponse, Error, 'string'>) => {
+  const { data, ...rest } = useSWRMutation('api/views', fetcher, configuration)
 
   return {
     data: data,
