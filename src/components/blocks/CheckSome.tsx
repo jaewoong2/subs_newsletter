@@ -1,9 +1,11 @@
 import usePostChecksome from '@/hooks/usePostChecksome'
 import { Checksome } from '@/types'
+import { useToast } from '@chakra-ui/react'
 import React, { useCallback, useState } from 'react'
 
 type Props = {
   category: Checksome['category']
+  onClose: () => void
 }
 
 const initialChecksome: Partial<Checksome> = {
@@ -12,9 +14,15 @@ const initialChecksome: Partial<Checksome> = {
   email: '',
 }
 
-const CheckSome = ({ category }: Props) => {
-  const { trigger } = usePostChecksome()
+const CheckSome = ({ category, onClose }: Props) => {
   const [checksome, setChecksome] = useState<Partial<Checksome>>(initialChecksome)
+  const toast = useToast()
+  const { trigger } = usePostChecksome({
+    onSuccess: () => {
+      onClose()
+      toast({ title: '문의가 등록 되었어요 👏', position: 'top' })
+    },
+  })
 
   const onSubmit: React.FormEventHandler<HTMLFormElement> = useCallback(
     (event) => {

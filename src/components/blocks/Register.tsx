@@ -85,7 +85,7 @@ export const Register = () => {
         title={modalTitle}
         subTitle='문의를 남겨주시면, 2~3일 내에 답변 드리겠습니다 📝'
       >
-        <CheckSome category={category} />
+        <CheckSome category={category} onClose={onClose} />
       </SimpleModal>
     </section>
   )
