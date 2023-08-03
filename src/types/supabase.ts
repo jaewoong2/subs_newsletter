@@ -33,6 +33,36 @@ export interface Database {
         }
         Relationships: []
       }
+      blocks: {
+        Row: {
+          bgcolor: string | null
+          created_at: string | null
+          id: number
+          image: string | null
+          subtitle: string | null
+          textcolor: string | null
+          title: string | null
+        }
+        Insert: {
+          bgcolor?: string | null
+          created_at?: string | null
+          id?: number
+          image?: string | null
+          subtitle?: string | null
+          textcolor?: string | null
+          title?: string | null
+        }
+        Update: {
+          bgcolor?: string | null
+          created_at?: string | null
+          id?: number
+          image?: string | null
+          subtitle?: string | null
+          textcolor?: string | null
+          title?: string | null
+        }
+        Relationships: []
+      }
       checksome: {
         Row: {
           category: string | null
