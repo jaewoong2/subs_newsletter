@@ -71,3 +71,20 @@ export async function getNewsLettersRandom() {
     return response
   } catch (err) {}
 }
+
+export async function getBlocks() {
+  const supabase = createServerSupabaseClient()
+  try {
+    const response = await supabase.from('blocks').select('*')
+
+    if (!response.data) {
+      throw new Error('No data found')
+    }
+
+    if (response.data?.length === 0) {
+      throw new Error('No data found')
+    }
+
+    return response
+  } catch (err) {}
+}
