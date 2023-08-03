@@ -48,11 +48,12 @@ on:
   push:
     branches: [ "main" ]
 
-env:
-  PROJECT_ID: YOUR_PROJECT_ID # TODO: update Google Cloud project id
-  GAR_LOCATION: YOUR_GAR_LOCATION # TODO: update Artifact Registry location
-  SERVICE: YOUR_SERVICE_NAME # TODO: update Cloud Run service name
-  REGION: YOUR_SERVICE_REGION # TODO: update Cloud Run service region
+env: 
+    PROJECT_ID: "newsuvs" # Dashboard에서 확인
+    GAR_LOCATION: "gcr.io/newsubs/nextjs"
+    # gcr.io/${PROJECT_ID}/${SERVICE_NAME} 구조이다.
+    SERVICE: "nextjs" # Cloud Run에서 생성한 서비스 이름
+    REGION: "asia-northeast3" # 혹은 원하는 region
 
 jobs:
   deploy:
