@@ -1,15 +1,16 @@
 'use client'
-import { useEffect, useRef } from 'react'
-import { motion } from 'framer-motion'
+import React, { useEffect, useRef } from 'react'
 
 type Props = {
-  image?: string | null
+  image: string
   alt?: string
   title?: React.ReactNode
   description?: React.ReactNode
   tags?: string[]
 }
 
+const IMAGE_PLACEHOLDER =
+  'https://ywnfqdpcmgtllkshgzsl.supabase.co/storage/v1/object/public/newsletter/image/placeholder.png'
 const FIT_WIDTH_CLASS = ['w-full', 'max-w-full', 'h-auto', 'max-h-full', 'object-cover']
 const FIT_HEIGHT_CLASS = ['h-full', 'max-h-full', 'w-auto', 'max-w-full', 'object-cover']
 
@@ -49,6 +50,7 @@ export const CardImage = ({ image, alt }: Props) => {
     })
 
     const image = imageRef.current
+
     // 이미지 요소에 observer를 붙입니다.
     if (image) {
       observer.observe(image)
@@ -76,20 +78,23 @@ export const CardImage = ({ image, alt }: Props) => {
 
   return (
     <figure className='h-full max-h-[50%] min-h-[50%] w-full' ref={figureRef}>
-      <motion.img
-        src={'https://ywnfqdpcmgtllkshgzsl.supabase.co/storage/v1/object/public/newsletter/image/placeholder.png'}
-        alt={alt}
+      <img
+        src={IMAGE_PLACEHOLDER}
+        alt={alt ?? '카드 이미지'}
         ref={imageRef}
+        onError={(event) => {
+          event.currentTarget.setAttribute('src', IMAGE_PLACEHOLDER)
+        }}
         onLoad={onLoadImage}
         onResize={onLoadImage}
-        className='lazy animate-pulse'
+        className='lazy h-auto w-auto animate-pulse'
         data-src={image}
       />
     </figure>
   )
 }
 
-export const Card = ({ title, description, image, alt, tags }: Props) => {
+const Card = ({ title, description, image, alt, tags }: Props) => {
   return (
     <li className='group card mx-auto h-full w-full scale-95 border bg-base-100 transition-transform hover:scale-100 hover:border-slate-400 dark:border-darkBg-800 dark:bg-darkBg-100 '>
       <CardImage image={image} alt={alt} />
@@ -107,3 +112,5 @@ export const Card = ({ title, description, image, alt, tags }: Props) => {
     </li>
   )
 }
+
+export default React.memo(Card)

@@ -3,10 +3,10 @@ import DataList from '@/components/blocks/DataList'
 import Link from '@/components/blocks/Link'
 import React from 'react'
 import { twMerge } from 'tailwind-merge'
-import { Card } from '@/components/atoms'
 import Footer from '@/components/atoms/Footer'
 import { getNewsLettersRandom } from '@/app/supabase-server'
 import Aside from '../components/Aside'
+import Card from '@/components/atoms/Card'
 
 const NewsLetter = async () => {
   const newsletters = await getNewsLettersRandom()
@@ -35,7 +35,7 @@ const NewsLetter = async () => {
             items={newsletters?.data.map(({ id, link, description, name, thumbnail, category }) => (
               <figure key={`card-${id}`} className='h-full w-full'>
                 <Link href={link ?? ''} newsLetterId={id ?? 0}>
-                  <Card title={name} description={description} image={thumbnail} tags={category ?? []} />
+                  <Card title={name} description={description} image={thumbnail ?? ''} tags={category ?? []} />
                 </Link>
               </figure>
             ))}

@@ -1,8 +1,8 @@
 import React from 'react'
 import Link from 'next/link'
-import { Card } from '../atoms'
 import { getArticles, getNewsLetters } from '@/app/supabase-server'
 import DataList from '../blocks/DataList'
+import Card from '../atoms/Card'
 
 export const Home = async () => {
   const newsletters = await getNewsLetters()
