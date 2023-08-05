@@ -1,9 +1,10 @@
 import React, { PropsWithChildren } from 'react'
 import { motion } from 'framer-motion'
+import { twMerge } from 'tailwind-merge'
 
 type Props = React.DetailedHTMLProps<React.InputHTMLAttributes<HTMLInputElement>, HTMLInputElement>
 
-const Dropzone = ({ children, ...props }: PropsWithChildren<Props>) => {
+const Dropzone = ({ className, children, ...props }: PropsWithChildren<Props>) => {
   return (
     <div className='relative flex h-full w-full cursor-pointer items-center justify-center'>
       <motion.label
@@ -40,7 +41,7 @@ const Dropzone = ({ children, ...props }: PropsWithChildren<Props>) => {
         <input
           id='dropzone-file'
           type='file'
-          className='absolute h-full w-full cursor-pointer opacity-0'
+          className={twMerge('absolute h-full w-full cursor-pointer opacity-0', className)}
           accept='image/*'
           {...props}
         />

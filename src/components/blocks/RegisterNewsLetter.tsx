@@ -1,17 +1,29 @@
 'use client'
 import React, { useCallback, useState } from 'react'
-import { useModal } from '@chakra-ui/react'
+import { useModal, useToast } from '@chakra-ui/react'
 import SimpleModal from '../atoms/SimpleModal'
 import { twMerge } from 'tailwind-merge'
 import useGetCategories from '@/hooks/useGetCategories'
 import { NewsLetter } from '@/types'
-import Dropzone from '../atoms/Dropzone'
 import useFileUpload from '@/hooks/useUploadImage'
 import Link from 'next/link'
 import usePostNewsletter from '@/hooks/usePostNewsletter'
+import FormInput from '../atoms/FormInput'
+import FormTextarea from '../atoms/FormTextarea'
+import FormDropzone from '../atoms/FormDropzone'
+import FormBase from '../atoms/FormBase'
 
 const Register = () => {
-  const { trigger } = usePostNewsletter()
+  const toast = useToast()
+  const [isClicked, setIsClicked] = useState<boolean>(false)
+  const { trigger } = usePostNewsletter({
+    onSuccess: () => {
+      toast({
+        title: '등록 성공',
+        position: 'top-right',
+      })
+    },
+  })
   const [newsLetter, setNewsLetter] = useState<Partial<NewsLetter>>({})
   const { upload, data } = useFileUpload()
   const { data: categories } = useGetCategories()
@@ -48,78 +60,45 @@ const Register = () => {
   return (
     <div className='w-full flex-col'>
       <form onSubmit={onSubmit} id='newsletter'>
-        <div className='form-control'>
-          <label className='label'>
-            <div>
-              <span className='label-text'>뉴스레터 주소</span>
-              <span className='text-red-500'>*</span>
-            </div>
-          </label>
-          <input
-            type='text'
-            placeholder='구독 신청이 가능한 주소를 작성해주세요'
-            required
-            className='input-bordered input'
-            name='link'
-            onChange={onChangeNewsLetter}
-          />
-        </div>
-        <div className='form-control'>
-          <label className='label'>
-            <div>
-              <span className='label-text'>뉴스레터 제목</span>
-              <span className='text-red-500'>*</span>
-            </div>
-          </label>
-          <input
-            type='text'
-            placeholder='뉴스레터 제목에 대해 알려주세요'
-            required
-            className='input-bordered input'
-            name='name'
-            onChange={onChangeNewsLetter}
-          />
-        </div>
-        <div className='form-control'>
-          <label className='label'>
-            <div>
-              <span className='label-text'>뉴스레터 소개</span>
-              <span className='text-red-500'>*</span>
-            </div>
-          </label>
-          <textarea
-            placeholder='📰 뉴섭은 흩어진 뉴스레터를 소개해주는 서비스 입니다 :) 관심이 있으시면 구독 😉'
-            rows={6}
-            className='textarea-bordered textarea font-tossFace'
-            name='description'
-            onChange={onChangeNewsLetter}
-          />
-        </div>
-        <div className='form-control'>
-          <label className='label'>
-            <div>
-              <span className='label-text'>뉴스레터 썸네일</span>
-              <span className='text-red-500'>*</span>
-            </div>
-          </label>
-          <div className='flex h-32 w-full items-center justify-center'>
-            <Dropzone onChange={(e) => upload(e.target.files ? e.target.files[0] : null)}>
-              <p className='text-xs text-gray-500'>썸네일에 사용될 이미지를 업로드 해주세요</p>
-            </Dropzone>
-          </div>
+        <FormInput
+          isClicked={isClicked}
+          required={true}
+          label='뉴스레터 주소'
+          name='link'
+          onChange={onChangeNewsLetter}
+          placeholder='구독 신청이 가능한 주소를 작성해주세요'
+        />
+        <FormInput
+          isClicked={isClicked}
+          required={true}
+          label='뉴스레터 제목'
+          name='name'
+          onChange={onChangeNewsLetter}
+          placeholder='뉴스레터 제목에 대해 알려주세요'
+        />
+        <FormTextarea
+          isClicked={isClicked}
+          required={true}
+          label='뉴스레터 소개'
+          name='description'
+          onChange={onChangeNewsLetter}
+          placeholder='📰 뉴섭은 흩어진 뉴스레터를 소개해주는 서비스 입니다 :) 관심이 있으시면 구독 😉'
+        />
+        <FormDropzone
+          isClicked={isClicked}
+          required={true}
+          label='뉴스레터 썸네일'
+          name='description'
+          onChange={(e) => upload(e.target.files ? e.target.files[0] : null)}
+          placeholder='📰 썸네일에 사용될 이미지를 업로드 해주세요'
+        >
           {data?.data && (
             <Link href={`${process.env.NEXT_PUBLIC_SUPABASE_STORAGE_URL}${data?.data?.path}`} target='_blank'>
               <p className='text-xs text-blue-500 hover:text-blue-400'>이미지: {data?.data?.name}</p>
             </Link>
           )}
-        </div>
-        <div className='form-control'>
-          <label className='label'>
-            <div>
-              <span className='label-text'>카테고리 설정</span>
-              <span className='text-red-500'>*</span>
-            </div>
-          </label>
+        </FormDropzone>
+        <FormBase label='카테고리 설정'>
           <div className='flex gap-1'>
             {categories?.data.map((category) => (
               <button
@@ -135,10 +114,10 @@ const Register = () => {
               </button>
             ))}
           </div>
-        </div>
+        </FormBase>
       </form>
       <div className='form-control my-6'>
-        <button className='btn-primary btn' type='submit' form='newsletter'>
+        <button className='btn-primary btn' type='submit' form='newsletter' onClick={() => setIsClicked(true)}>
           등록하기
         </button>
       </div>

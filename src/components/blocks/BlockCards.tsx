@@ -3,7 +3,7 @@ import BlockCard from '../atoms/BlockCard'
 import { getBlocks } from '@/app/supabase-server'
 import Image from 'next/image'
 
-const BG_COLORS = ['bg-[#F1A4CE]', 'bg-[#92C5FE]', 'bg-[#86EFAC]', 'bg-[#6D27D8]']
+const BG_COLORS = ['bg-[#F1A4CE]', 'bg-[#92C5FE]', 'bg-[#86EFAC]', 'bg-[#b28dea]']
 const BLOCKS_ANIMATION = [
   'group-hover:animate-fade-left',
   'group-hover:animate-wiggle',
@@ -23,13 +23,13 @@ const BlockCards = async () => {
               title={title ?? ''}
               description={subtitle ?? ''}
               key={id}
-              className={`${BG_COLORS[index]} text-black dark:text-white`}
+              className={`${BG_COLORS[index]} h-96 text-black dark:text-white`}
             >
-              <figure className='flex items-end justify-end gap-5'>
+              <figure className='flex min-w-[150px] items-end justify-end gap-5 px-10 py-5'>
                 <Image
                   src={image ?? ''}
                   alt={subtitle ?? 'block-image'}
-                  className={`h-auto w-[300px] drop-shadow-2xl ${BLOCKS_ANIMATION[index]}`}
+                  className={`max-w-auto h-auto max-h-full w-auto min-w-[150px] drop-shadow-2xl ${BLOCKS_ANIMATION[index]}`}
                   width={350}
                   height={350}
                 />
@@ -45,11 +45,13 @@ const BlockCards = async () => {
               key={id}
               className={`${BG_COLORS[index + 2]} text-black dark:text-white`}
             >
-              <figure className='flex items-end justify-end gap-5'>
+              <figure className='flex min-w-[150px] items-end justify-end gap-5 px-10 py-5'>
                 <Image
                   src={image ?? ''}
                   alt={subtitle ?? 'block-image'}
-                  className={`h-auto w-[300px] drop-shadow-2xl ${BLOCKS_ANIMATION[index + 2]}`}
+                  className={`max-w-auto h-auto max-h-full w-auto min-w-[150px] drop-shadow-2xl ${
+                    BLOCKS_ANIMATION[index + 2]
+                  }`}
                   width={350}
                   height={350}
                 />
