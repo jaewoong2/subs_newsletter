@@ -19,7 +19,7 @@ export async function POST(request: NextRequest) {
 
     const { data, error } = await supabase.storage
       .from('newsletter')
-      .upload(`image/${uuid.v4()}_${date.getTime()}_${name}`, file, {
+      .upload(`image/${uuid.v4()}_${date.getTime()}`, file, {
         contentType: `image/${getExtension(name)}`,
       })
 
@@ -29,6 +29,7 @@ export async function POST(request: NextRequest) {
       data: {
         ...data,
         name,
+        path: `${process.env.NEXT_PUBLIC_SUPABASE_STORAGE_URL}${data?.path}`,
       },
       error,
     })

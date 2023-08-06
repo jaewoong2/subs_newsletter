@@ -43,7 +43,7 @@ const NewsLetter = async ({ searchParams }: Props) => {
           <ul className='flex flex-col gap-2 bg-white font-tossFace font-semibold dark:border-darkBg-100 dark:bg-darkBg-300  max-md:flex-row max-md:border-t max-md:px-1 max-md:py-2'>
             <li className={'relative flex w-full flex-col items-end'}>
               <Link
-                href={'newsletter'}
+                href={process.env.NEXT_PUBLIC_CURRENT_URL + '/newsletter'}
                 isActive={!('category' in searchParams)}
                 className='h-full w-full rounded-xl px-3 py-3 text-start font-tossFace transition-colors hover:bg-base-300 dark:hover:bg-darkBg-100 max-md:rounded-none max-md:bg-transparent max-md:text-center max-md:hover:bg-transparent'
               >
@@ -53,7 +53,7 @@ const NewsLetter = async ({ searchParams }: Props) => {
             </li>
             <li className={'relative flex w-full flex-col items-end'}>
               <Link
-                href={'newsletter?category=popular'}
+                href={process.env.NEXT_PUBLIC_CURRENT_URL + '/newsletter?category=popular'}
                 isActive={searchParams.category === 'popular'}
                 className='h-full w-full rounded-xl px-3 py-3 text-start font-tossFace transition-colors hover:bg-base-300 dark:hover:bg-darkBg-100 max-md:rounded-none max-md:bg-transparent max-md:text-center max-md:hover:bg-transparent'
               >
@@ -63,7 +63,7 @@ const NewsLetter = async ({ searchParams }: Props) => {
             </li>
             <li className={'relative flex w-full flex-col items-end'}>
               <Link
-                href={'newsletter/random'}
+                href={process.env.NEXT_PUBLIC_CURRENT_URL + '/newsletter/random'}
                 isActive={searchParams.category === 'random'}
                 className='h-full w-full rounded-xl px-3 py-3 text-start font-tossFace transition-colors hover:bg-base-300 dark:hover:bg-darkBg-100 max-md:rounded-none max-md:bg-transparent max-md:text-center max-md:hover:bg-transparent'
               >

@@ -7,7 +7,6 @@ type Props = {
   title: string
   items?: React.ReactElement[]
   lastItem?: React.ReactElement
-
   variant?: 'carousel' | 'block'
 }
 
@@ -21,7 +20,7 @@ const DataList = ({ title, items, lastItem, variant = 'carousel' }: Props) => {
         <ImageCarousel
           items={items.concat(
             <Link
-              href={'newsletter'}
+              href={process.env.NEXT_PUBLIC_CURRENT_URL + '/newsletter'}
               className='flex h-full w-full scale-95 justify-end transition-transform hover:scale-100'
             >
               <div
