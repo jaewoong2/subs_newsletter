@@ -5,7 +5,7 @@ import useSWRMutation, { MutationFetcher, SWRMutationConfiguration } from 'swr/m
 const fetcher: MutationFetcher<NextResponse, string, Partial<NewsLetter>> = (url, { arg }) =>
   fetch(url, { method: 'POST', body: JSON.stringify(arg) }).then((res) => res.json())
 
-const usePostNewsletter = (configuration?: SWRMutationConfiguration<NextResponse, Error, 'string'>) => {
+const usePostNewsletter = (configuration?: SWRMutationConfiguration<NextResponse, Error, string>) => {
   return useSWRMutation('api/newsletter', fetcher, configuration)
 }
 
