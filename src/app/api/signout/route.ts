@@ -12,5 +12,5 @@ export async function POST(): Promise<NextResponse<null> | Response> {
     return NextResponse.error()
   }
 
-  return NextResponse.json({ message: '전송 완료' }, { status: 200 })
+  return NextResponse.json({ message: '로그아웃 성공' }, { status: 200 })
 }

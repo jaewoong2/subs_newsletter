@@ -16,6 +16,8 @@ type Props = {
   }
 }
 
+export const revalidate = process.env.NODE_ENV === 'development' ? 3600 : 0
+
 const NewsLetter = async ({ searchParams }: Props) => {
   const category = searchParams.category
   const newsletters = await getNewsLetters(category)

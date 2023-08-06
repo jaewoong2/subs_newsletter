@@ -11,6 +11,8 @@ const BLOCKS_ANIMATION = [
   'group-hover:animate-jump',
 ]
 
+export const dynamic = 'force-static'
+
 const BlockCards = async () => {
   const blocks = await getBlocks()
 
@@ -29,7 +31,8 @@ const BlockCards = async () => {
                 <Image
                   src={image ?? ''}
                   alt={subtitle ?? 'block-image'}
-                  className={`max-w-auto h-auto max-h-full w-auto min-w-[150px] drop-shadow-2xl ${BLOCKS_ANIMATION[index]}`}
+                  className={`max-w-auto h-auto max-h-full w-auto min-w-[150px] drop-shadow-2xl
+                  max-md:min-w-[120px] ${BLOCKS_ANIMATION[index]}`}
                   width={350}
                   height={350}
                 />
@@ -49,9 +52,9 @@ const BlockCards = async () => {
                 <Image
                   src={image ?? ''}
                   alt={subtitle ?? 'block-image'}
-                  className={`max-w-auto h-auto max-h-full w-auto min-w-[150px] drop-shadow-2xl ${
-                    BLOCKS_ANIMATION[index + 2]
-                  }`}
+                  className={`max-w-auto h-auto max-h-full w-auto min-w-[150px] drop-shadow-2xl
+                  max-md:min-w-[120px] 
+                  ${BLOCKS_ANIMATION[index + 2]}`}
                   width={350}
                   height={350}
                 />

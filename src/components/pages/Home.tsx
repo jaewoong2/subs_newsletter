@@ -9,13 +9,13 @@ export const Home = async () => {
   const articles = await getArticles()
 
   return (
-    <main className='flex flex-col gap-5 px-10 py-10 dark:bg-darkBg-300 dark:text-white'>
+    <main className='flex flex-col gap-5 px-10 py-10 dark:bg-darkBg-300 dark:text-white max-md:px-5'>
       <DataList
         title='최신 뉴스레터'
         items={newsletters?.data.map(({ id, link, description, name, thumbnail, category }) => (
           <figure key={`card-${id}`} className='h-full w-full'>
             <Link href={link ?? ''}>
-              <Card title={name} description={description} image={thumbnail} tags={category ?? []} />
+              <Card title={name} description={description} image={thumbnail ?? ''} tags={category ?? []} />
             </Link>
           </figure>
         ))}
@@ -31,7 +31,7 @@ export const Home = async () => {
         items={articles?.data.map(({ id, link, description, title, thumbnail }) => (
           <figure key={`card-${id}`} className='h-full w-full'>
             <Link href={link ?? ''}>
-              <Card title={title} description={description} image={thumbnail} />
+              <Card title={title} description={description} image={thumbnail ?? ''} />
             </Link>
           </figure>
         ))}

@@ -1,13 +1,11 @@
 'use client'
 import useGetSession from '@/hooks/useGetSesstion'
-import useGoogleLogin from '@/hooks/useGoogleLogin'
 import Link from 'next/link'
 import React, { useState } from 'react'
 import SignInModal from './SignInModal'
 import useSimpleModal from '@/hooks/useSimpleModal'
 
 const NavDropBox = () => {
-  const signin = useGoogleLogin()
   const session = useGetSession()
   const url = typeof window === 'undefined' ? '' : window.location.href
   const [isOpenModal, setIsOpenModal] = useState(false)

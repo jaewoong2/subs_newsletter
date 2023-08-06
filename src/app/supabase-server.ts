@@ -76,7 +76,7 @@ export async function getNewsLettersRandom() {
 export async function getBlocks() {
   const supabase = createServerSupabaseClient()
   try {
-    const response = await supabase.from('blocks').select('*')
+    const response = await supabase.from('blocks').select('*').order('created_at')
 
     if (!response.data) {
       throw new Error('No data found')
