@@ -8,11 +8,15 @@ type Props = {
   isClicked?: boolean
 } & JSX.IntrinsicElements['input']
 
-const FormInput = ({ label, helper, isClicked, ...props }: Props) => {
+const FormInput = ({ label, helper, isClicked, className, ...props }: Props) => {
   return (
     <FormBase label={label} required={props.required} helper={helper}>
       <input
-        className={twMerge('input-bordered input font-tossFace', isClicked && 'peer/form invalid:input-error')}
+        className={twMerge(
+          'input-bordered input font-tossFace',
+          isClicked && 'peer/form invalid:input-error',
+          className
+        )}
         {...props}
       />
     </FormBase>

@@ -8,13 +8,15 @@ type Props = {
 
 const FormBase = ({ label, required, helper, children }: PropsWithChildren<Props>) => {
   return (
-    <div className='form-control'>
-      <label className='label'>
-        <div>
-          <span className='label-text'>{label}</span>
-          {required ? <span className='text-red-500'>*</span> : null}
-        </div>
-      </label>
+    <div className='form-control w-full'>
+      {label && (
+        <label className='label'>
+          <div>
+            <span className='label-text'>{label}</span>
+            {required ? <span className='text-red-500'>*</span> : null}
+          </div>
+        </label>
+      )}
       {children}
       <label className='hidden peer-invalid/form:block'>
         <span className='text-xs text-error'>{helper ?? `${label}가 비었어요 🥹`}</span>

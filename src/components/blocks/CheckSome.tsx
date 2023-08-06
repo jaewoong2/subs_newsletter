@@ -20,7 +20,7 @@ const CheckSome = ({ category, onClose }: Props) => {
   const [isClicked, setIsClicked] = useState(false)
   const [checksome, setChecksome] = useState<Partial<Checksome>>(initialChecksome)
   const toast = useToast()
-  const { trigger } = usePostChecksome({
+  const { trigger, isMutating } = usePostChecksome({
     onSuccess: () => {
       onClose()
       toast({ title: '문의가 등록 되었어요 👏', position: 'top' })
@@ -65,7 +65,13 @@ const CheckSome = ({ category, onClose }: Props) => {
         />
       </form>
       <div className='form-control my-6'>
-        <button className='btn-primary btn' type='submit' form='checksome' onClick={() => setIsClicked(true)}>
+        <button
+          disabled={isMutating}
+          className='btn-primary btn'
+          type='submit'
+          form='checksome'
+          onClick={() => setIsClicked(true)}
+        >
           보내기
         </button>
       </div>
