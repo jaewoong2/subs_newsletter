@@ -8,7 +8,7 @@ import { RegisterNewsLetter } from '@/components/blocks/RegisterNewsLetter'
 export default async function Page() {
   return (
     <div className='min-h-full w-full'>
-      <Navigation />
+      <Navigation className='h-16 bg-white bg-opacity-10 dark:border-darkBg-200 dark:bg-opacity-10' />
       <Hero />
       <BlockCards />
       <section className='border-y dark:border-darkBg-200 dark:bg-darkBg-400'>

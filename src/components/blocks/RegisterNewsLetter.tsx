@@ -12,14 +12,23 @@ import FormInput from '../atoms/FormInput'
 import FormTextarea from '../atoms/FormTextarea'
 import FormDropzone from '../atoms/FormDropzone'
 import FormBase from '../atoms/FormBase'
+import useGetSession from '@/hooks/useGetSesstion'
 
 const Register = () => {
   const toast = useToast()
   const [isClicked, setIsClicked] = useState<boolean>(false)
-  const { trigger } = usePostNewsletter({
+  const { trigger, isMutating } = usePostNewsletter({
     onSuccess: () => {
       toast({
-        title: '등록 성공',
+        title: '등록 완료',
+        position: 'top-right',
+      })
+    },
+    onError: (error) => {
+      toast({
+        status: 'error',
+        title: '등록 실패',
+        description: error.message,
         position: 'top-right',
       })
     },
@@ -32,13 +41,14 @@ const Register = () => {
   const onSubmit: React.FormEventHandler<HTMLFormElement> = useCallback(
     (event) => {
       event.preventDefault()
+      if (isMutating) return
       trigger({
         ...newsLetter,
         category: selected,
-        thumbnail: `${process.env.NEXT_PUBLIC_SUPABASE_STORAGE_URL}${data?.data?.path}`,
+        thumbnail: `${data?.data?.path}`,
       })
     },
-    [newsLetter, trigger, data?.data?.path, selected]
+    [newsLetter, trigger, data?.data?.path, selected, isMutating]
   )
 
   const onChangeNewsLetter = useCallback((event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
@@ -93,7 +103,7 @@ const Register = () => {
           placeholder='📰 썸네일에 사용될 이미지를 업로드 해주세요'
         >
           {data?.data && (
-            <Link href={`${process.env.NEXT_PUBLIC_SUPABASE_STORAGE_URL}${data?.data?.path}`} target='_blank'>
+            <Link href={`${data?.data?.path}`} target='_blank'>
               <p className='text-xs text-blue-500 hover:text-blue-400'>이미지: {data?.data?.name}</p>
             </Link>
           )}
@@ -117,7 +127,13 @@ const Register = () => {
         </FormBase>
       </form>
       <div className='form-control my-6'>
-        <button className='btn-primary btn' type='submit' form='newsletter' onClick={() => setIsClicked(true)}>
+        <button
+          disabled={isMutating}
+          className='btn-primary btn'
+          type='submit'
+          form='newsletter'
+          onClick={() => setIsClicked(true)}
+        >
           등록하기
         </button>
       </div>
@@ -126,6 +142,8 @@ const Register = () => {
 }
 
 export const RegisterNewsLetter = () => {
+  const session = useGetSession()
+  const toast = useToast()
   const [isModalOpen, setIsModalOpen] = useState(false)
   const { onClose, isOpen } = useModal({
     isOpen: isModalOpen,
@@ -134,13 +152,21 @@ export const RegisterNewsLetter = () => {
     },
   })
 
+  const onClickButton = () => {
+    if (session) {
+      setIsModalOpen(true)
+      return
+    }
+    toast({ status: 'error', title: '로그인 후 등록이 가능해요' })
+  }
+
   return (
     <section className='flex w-full justify-center bg-violet-100 p-20 dark:bg-darkBg-400 max-md:p-5 '>
       <div className='flex w-full flex-col items-center justify-center border-x-0 p-20 dark:bg-darkBg-300 dark:text-white'>
         <div>
           <span className='card-title font-tossFace'>📰 뉴섭에 소개하고 싶은 나만의 뉴스레터가 있다면?</span>
           <p className='font-semibold'>간단하게 등록하고, 뉴섭에 뉴스레터 소개하기</p>
-          <button className='btn-primary btn mt-4 w-full' onClick={() => setIsModalOpen(true)}>
+          <button className='btn-primary btn mt-4 w-full' onClick={onClickButton}>
             등록하기
           </button>
         </div>
