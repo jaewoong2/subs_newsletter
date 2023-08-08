@@ -1,7 +1,7 @@
 import { cookies } from 'next/headers'
 import { createServerComponentClient } from '@supabase/auth-helpers-nextjs'
 import { Database } from '../types/supabase'
-import { NextResponse } from 'next/server'
+import getMetaTags from '@/lib/getMetatag'
 
 export const createServerSupabaseClient = () =>
   createServerComponentClient<Database>(
@@ -16,6 +16,34 @@ const getOrder = (searchParams?: string) => {
   if (searchParams === 'popular') return 'view'
   if (searchParams === 'new') return 'created_at'
   return 'created_at'
+}
+
+export async function getDataByMetatag() {
+  const supabase = createServerSupabaseClient()
+  try {
+    const response = await supabase.from('newsletter').select('link').limit(10)
+
+    if (!response.data) {
+      throw new Error('No data found')
+    }
+    const metatags = await Promise.all(
+      response.data?.map((data) => {
+        console.log(data.link)
+        if (!data.link) return null
+        return getMetaTags(data.link)
+      })
+    )
+
+    if (!response.data) {
+      throw new Error('No data found')
+    }
+
+    if (response.data?.length === 0) {
+      throw new Error('No data found')
+    }
+
+    return metatags
+  } catch (err) {}
 }
 
 export async function getNewsLetters(searchParams?: string | 'popular' | 'new') {

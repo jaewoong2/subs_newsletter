@@ -5,7 +5,7 @@ import BlockCards from '@/components/blocks/BlockCards'
 import Footer from '@/components/atoms/Footer'
 import { RegisterNewsLetter } from '@/components/blocks/RegisterNewsLetter'
 
-export default async function Page() {
+export default function Page() {
   return (
     <div className='min-h-full w-full'>
       <Navigation className='h-16 bg-white bg-opacity-10 dark:border-darkBg-200 dark:bg-opacity-10' />

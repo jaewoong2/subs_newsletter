@@ -32,7 +32,7 @@ const BlockCards = async () => {
                   src={image ?? ''}
                   alt={subtitle ?? 'block-image'}
                   className={`max-w-auto h-auto max-h-full w-auto min-w-[150px] drop-shadow-2xl
-                  max-md:min-w-[120px] ${BLOCKS_ANIMATION[index]}`}
+                  max-md:min-h-[50%] ${BLOCKS_ANIMATION[index]}`}
                   width={350}
                   height={350}
                 />
