@@ -122,6 +122,21 @@ export interface Database {
       }
     }
     Views: {
+      categories: {
+        Row: {
+          categories?: string | null
+          count?: number | null
+        }
+        Insert: {
+          categories?: string | null
+          count?: number | null
+        }
+        Update: {
+          categories?: string | null
+          count?: number | null
+        }
+        Relationships: []
+      }
       newsletter_random: {
         Row: {
           category: string[] | null

@@ -1,8 +1,8 @@
 'use client'
+import NextLink, { LinkProps as InternalLinkProps } from 'next/link'
+import React, { PropsWithChildren, useEffect, useState } from 'react'
 import useDebounceCallback from '@/hooks/useDebounceCallback'
 import usePostViews from '@/hooks/usePostViews'
-import NextLink, { LinkProps as InternalLinkProps } from 'next/link'
-import React, { PropsWithChildren } from 'react'
 import { twMerge } from 'tailwind-merge'
 
 type LinkProps = Omit<React.AnchorHTMLAttributes<HTMLAnchorElement>, keyof InternalLinkProps> & InternalLinkProps
@@ -11,12 +11,20 @@ type Props = {
   isActive?: boolean
   href: string
   className?: string
-
   newsLetterId?: string | number
   artlceId?: string | number
 } & LinkProps
 
-const Link = ({ isActive, href, children, className, newsLetterId, artlceId, ...props }: PropsWithChildren<Props>) => {
+const CardLink = ({
+  isActive: isActive_,
+  href,
+  children,
+  className,
+  newsLetterId,
+  artlceId,
+  ...props
+}: PropsWithChildren<Props>) => {
+  const [isActive, setIsActive] = useState(isActive_)
   const { trigger } = usePostViews()
   const [debouncedOnClickLink] = useDebounceCallback(() => {
     if (newsLetterId) {
@@ -26,6 +34,14 @@ const Link = ({ isActive, href, children, className, newsLetterId, artlceId, ...
       trigger({ id: +artlceId, type: 'article' })
     }
   }, 1000 * 60)
+
+  useEffect(() => {
+    if (location.href === href) {
+      setIsActive(true)
+    } else {
+      setIsActive(false)
+    }
+  }, [href])
 
   return (
     <NextLink
@@ -39,4 +55,4 @@ const Link = ({ isActive, href, children, className, newsLetterId, artlceId, ...
   )
 }
 
-export default Link
+export default CardLink

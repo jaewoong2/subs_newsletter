@@ -1,6 +1,6 @@
 import { Navigation } from '@/components/blocks'
 import DataList from '@/components/blocks/DataList'
-import Link from '@/components/blocks/Link'
+import Link from '@/components/blocks/CardLink'
 import React from 'react'
 import { twMerge } from 'tailwind-merge'
 import Footer from '@/components/atoms/Footer'

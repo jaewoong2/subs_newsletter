@@ -1,17 +1,28 @@
 import React from 'react'
-import { getNewsLetters } from '../supabase-server'
 import { Navigation } from '@/components/blocks'
-import DataList from '@/components/blocks/DataList'
-import Link from '@/components/blocks/CardLink'
 import { twMerge } from 'tailwind-merge'
 import Footer from '@/components/atoms/Footer'
+import { getNewsLettersByCategory } from '@/app/supabase-server'
+import { notFound } from 'next/navigation'
+import DataList from '@/components/blocks/DataList'
+import CardLink from '@/components/blocks/CardLink'
 import Card from '@/components/atoms/Card'
-import Aside from './components/Aside'
+import Aside from '../components/Aside'
 
-export const revalidate = process.env.NODE_ENV === 'development' ? 3600 : 0
+// export const revalidate = process.env.NODE_ENV === 'development' ? 3600 : 0
 
-const NewsLetter = async () => {
-  const newsletters = await getNewsLetters('new')
+type Props = {
+  params: {
+    category?: string
+  }
+}
+
+const NewsLetter = async ({ params }: Props) => {
+  const newsletters = await getNewsLettersByCategory(params.category)
+
+  if (!newsletters) {
+    notFound()
+  }
 
   return (
     <div className='flex h-full w-full flex-col'>
@@ -30,15 +41,15 @@ const NewsLetter = async () => {
         )}
       >
         <Aside />
-        <main className='pb-20'>
+        <main className='min-h-screen pb-20'>
           <DataList
             variant='block'
             title=''
             items={newsletters?.data.map(({ id, link, description, name, thumbnail, category }) => (
-              <figure key={`card-${id}`} className='h-full w-full'>
-                <Link href={link ?? ''} newsLetterId={id}>
+              <figure key={`card-${id}`} className='h-[400px] w-full'>
+                <CardLink href={link ?? ''} newsLetterId={id}>
                   <Card title={name} description={description} image={thumbnail ?? ''} tags={category ?? []} />
-                </Link>
+                </CardLink>
               </figure>
             ))}
           />

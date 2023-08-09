@@ -28,7 +28,6 @@ export async function getDataByMetatag() {
     }
     const metatags = await Promise.all(
       response.data?.map((data) => {
-        console.log(data.link)
         if (!data.link) return null
         return getMetaTags(data.link)
       })
@@ -116,4 +115,49 @@ export async function getBlocks() {
 
     return response
   } catch (err) {}
+}
+
+export async function getCategories() {
+  const supabase = createServerSupabaseClient()
+
+  try {
+    const response = await supabase.from('categories').select('categories').order('count', { ascending: false })
+
+    if (!response.data) {
+      throw new Error('No data found')
+    }
+
+    if (response.data?.length === 0) {
+      throw new Error('No data found')
+    }
+
+    return response
+  } catch (err) {}
+}
+
+export async function getNewsLettersByCategory(category?: string) {
+  const supabase = createServerSupabaseClient()
+
+  if (!category) {
+    return null
+  }
+
+  try {
+    const response = await supabase
+      .from('newsletter')
+      .select('*')
+      .overlaps('category', [decodeURIComponent(category)])
+
+    if (!response.data) {
+      throw new Error('No data found')
+    }
+
+    if (response.data?.length === 0) {
+      throw new Error('No data found')
+    }
+
+    return response
+  } catch (err) {
+    return null
+  }
 }

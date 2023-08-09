@@ -23,14 +23,15 @@ async function getRenderedHTML(url: string) {
 
 export default async function getMetaTags(url: string) {
   try {
-    const htmlContent = await getRenderedHTML(url)
+    // const htmlContent = await getRenderedHTML(url)
 
     // console.log(htmlContent)
-    if (!htmlContent) {
-      throw new Error(' no html content')
-    }
+    // if (!htmlContent) {
+    //   throw new Error(' n  o html content')
+    // }
     const ogsOptions: OpenGraphScraperOptions = {
-      html: htmlContent,
+      // html: htmlContent,
+      url,
       onlyGetOpenGraphInfo: true,
     }
 

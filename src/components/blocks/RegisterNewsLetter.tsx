@@ -110,17 +110,17 @@ const Register = () => {
         </FormDropzone>
         <FormBase label='카테고리 설정'>
           <div className='flex gap-1'>
-            {categories?.data.map((category) => (
+            {categories?.data.map(({ categories }) => (
               <button
-                key={category}
+                key={categories}
                 type='button'
-                onClick={() => toggleBadge(category)}
+                onClick={() => toggleBadge(categories)}
                 className={twMerge(
                   'badge py-2.5 text-xs ',
-                  selected.includes(category) ? 'badge-primary text-white' : 'badge-outline hover:bg-slate-200'
+                  selected.includes(categories) ? 'badge-primary text-white' : 'badge-outline hover:bg-slate-200'
                 )}
               >
-                {category}
+                {categories}
               </button>
             ))}
           </div>
