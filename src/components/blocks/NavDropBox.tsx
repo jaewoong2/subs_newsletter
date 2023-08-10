@@ -1,26 +1,9 @@
-'use client'
-import useGetSession from '@/hooks/useGetSesstion'
-import Link from 'next/link'
-import React, { useState } from 'react'
-import SignInModal from './SignInModal'
-import useSimpleModal from '@/hooks/useSimpleModal'
+import React from 'react'
+import AuthButton from './AuthButton'
 
 const NavDropBox = () => {
-  const session = useGetSession()
-  const url = typeof window === 'undefined' ? '' : window.location.href
-  const [isOpenModal, setIsOpenModal] = useState(false)
-  const { isOpen, onClose } = useSimpleModal({
-    isOpen: isOpenModal,
-    onClose: () => {
-      setIsOpenModal(false)
-    },
-  })
-  const onClickSignInButton = () => {
-    setIsOpenModal(true)
-  }
-
   return (
-    <div className='flex-none'>
+    <div className='flex-none max-md:hidden'>
       <div className='dropdown-end dropdown'>
         <button className='btn-ghost btn-square btn'>
           <svg
@@ -38,28 +21,9 @@ const NavDropBox = () => {
           </svg>
         </button>
         <ul tabIndex={0} className='dropdown-content menu rounded-box z-[1] w-52 bg-base-100 p-2 shadow'>
-          {session ? (
-            <>
-              <li>
-                <button>내 뉴스레터 관리</button>
-              </li>
-              <li>
-                <Link className='text-black' href={`/auth/signout?redirectUrl=${url}`}>
-                  로그아웃
-                </Link>
-              </li>
-            </>
-          ) : (
-            <li>
-              <button className='text-black' onClick={onClickSignInButton}>
-                로그인
-              </button>
-            </li>
-          )}
+          <AuthButton />
         </ul>
       </div>
-
-      <SignInModal isOpen={isOpen} onClose={onClose} />
     </div>
   )
 }

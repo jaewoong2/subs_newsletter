@@ -24,7 +24,9 @@ const NewsLetterLayout = ({ children }: PropsWithChildren) => {
           'dark:bg-darkBg-300 dark:text-white'
         )}
       >
-        <Aside />
+        <div className='max-md:hidden'>
+          <Aside />
+        </div>
         <main className='min-h-screen pb-20'>{children}</main>
         <div />
       </section>

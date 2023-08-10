@@ -2,6 +2,7 @@ import React from 'react'
 import Link from 'next/link'
 import ThemeToogleButton from '../blocks/ThemeToogleButton'
 import NavDropBox from '../blocks/NavDropBox'
+import MobileNavDropBox from '../blocks/MobileNavDropBox'
 
 const NavigationBody = () => {
   return (
@@ -19,6 +20,7 @@ const NavigationBody = () => {
       </ul>
       <div className='flex items-center justify-center gap-2'>
         <NavDropBox />
+        <MobileNavDropBox />
         <ThemeToogleButton />
       </div>
     </>
