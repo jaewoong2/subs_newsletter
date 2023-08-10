@@ -1,11 +1,7 @@
-import { Navigation } from '@/components/blocks'
+import React from 'react'
 import DataList from '@/components/blocks/DataList'
 import Link from '@/components/blocks/CardLink'
-import React from 'react'
-import { twMerge } from 'tailwind-merge'
-import Footer from '@/components/atoms/Footer'
 import { getNewsLetters } from '@/app/supabase-server'
-import Aside from '../components/Aside'
 import Card from '@/components/atoms/Card'
 
 const NewsLetter = async () => {
