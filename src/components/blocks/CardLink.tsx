@@ -4,6 +4,7 @@ import React, { PropsWithChildren, useEffect, useState } from 'react'
 import useDebounceCallback from '@/hooks/useDebounceCallback'
 import usePostViews from '@/hooks/usePostViews'
 import { twMerge } from 'tailwind-merge'
+import { usePathname } from 'next/navigation'
 
 type LinkProps = Omit<React.AnchorHTMLAttributes<HTMLAnchorElement>, keyof InternalLinkProps> & InternalLinkProps
 
@@ -24,6 +25,8 @@ const CardLink = ({
   artlceId,
   ...props
 }: PropsWithChildren<Props>) => {
+  const pathname = usePathname()
+
   const [isActive, setIsActive] = useState(isActive_)
   const { trigger } = usePostViews()
   const [debouncedOnClickLink] = useDebounceCallback(() => {
@@ -41,7 +44,7 @@ const CardLink = ({
     } else {
       setIsActive(false)
     }
-  }, [href])
+  }, [href, pathname])
 
   return (
     <NextLink
