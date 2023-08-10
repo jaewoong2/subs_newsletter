@@ -40,7 +40,7 @@ const SignInModal = ({ isOpen, onClose }: Props) => {
   }, [email, login, isMutating])
 
   const onClickGoogleSignIn = useCallback(() => {
-    googleLogin()
+    googleLogin(window.location.href)
   }, [])
 
   return (
