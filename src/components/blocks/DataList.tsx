@@ -37,7 +37,7 @@ const DataList = ({ title, items, lastItem, variant = 'carousel' }: Props) => {
         />
       )}
       {variant === 'block' && (
-        <div className='grid grid-cols-3 px-10 max-lg:grid-cols-2 max-md:grid-cols-1 max-md:px-0'>
+        <div className='grid grid-cols-3 px-10 max-lg:grid-cols-2 max-md:grid-cols-2 max-md:px-0'>
           {items.map((item) => item)}
         </div>
       )}

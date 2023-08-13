@@ -26,18 +26,18 @@ const AuthButton = ({ className }: JSX.IntrinsicElements['button']) => {
       {session && (
         <Link
           className={twMerge(
-            'cursor-pointer list-none rounded-xl px-3 py-3 text-left text-sm font-bold hover:bg-green-50',
+            'cursor-pointer list-none rounded-xl px-3 py-3 text-left text-sm font-bold hover:bg-slate-50 dark:hover:bg-darkBg-100',
             className
           )}
           href={`/auth/signout?redirectUrl=${url}`}
         >
-          <button className=' text-black'>로그아웃</button>
+          <button className=' text-black dark:text-white'>로그아웃</button>
         </Link>
       )}
       {!session && (
         <button
           className={twMerge(
-            'cursor-pointer list-none rounded-xl px-3 py-3 text-left text-sm font-bold hover:bg-green-50',
+            'cursor-pointer list-none rounded-xl px-3 py-3 text-left text-sm font-bold hover:bg-slate-50 dark:hover:bg-darkBg-100',
             className
           )}
           onClick={onClickSignInButton}

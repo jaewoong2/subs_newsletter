@@ -22,9 +22,9 @@ const ImageCarousel = ({ items }: Props) => {
   }
 
   return (
-    <div className='relative flex w-full max-w-full items-center justify-start px-20 max-lg:px-10 max-md:px-0'>
+    <div className='relative flex w-full max-w-full items-center justify-start px-20 max-lg:px-10 max-md:px-5'>
       {!buttonStatus.includes(0) && (
-        <button className='btn-ghost btn-circle btn absolute left-0 z-10 border max-md:-left-8' onClick={onClickPrev}>
+        <button className='btn-ghost btn-circle btn absolute left-0 z-10 border max-md:-left-4' onClick={onClickPrev}>
           <CgArrowLongLeft className='text-2xl text-black dark:text-white max-md:text-xl' />
         </button>
       )}
@@ -53,7 +53,7 @@ const ImageCarousel = ({ items }: Props) => {
         ))}
       </div>
       {!buttonStatus.includes(items.length - 1) && (
-        <button className='btn-ghost btn-circle btn absolute right-0 max-md:-right-8' onClick={onClickNext}>
+        <button className='btn-ghost btn-circle btn absolute right-0 max-md:-right-4' onClick={onClickNext}>
           <CgArrowLongRight className='text-2xl text-black dark:text-white max-md:text-xl' />
         </button>
       )}

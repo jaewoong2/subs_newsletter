@@ -33,3 +33,33 @@ export const METADATA: Metadata = {
     description: '나만의 회원가입 UX 를 만들고 점수를 확인 해보세요 :)',
   },
 }
+
+export const NEWSLETTER_ASIDE_LINK_ITEM = [
+  {
+    href: process.env.NEXT_PUBLIC_CURRENT_URL + '/newsletter',
+    title: '최신 뉴스레터 🥳',
+    badge: 'NEW',
+  },
+  {
+    href: process.env.NEXT_PUBLIC_CURRENT_URL + '/newsletter/popular',
+    title: '인기 뉴스레터 🔥',
+    badge: '인기',
+  },
+  {
+    href: process.env.NEXT_PUBLIC_CURRENT_URL + '/newsletter/random',
+    title: '랜덤 뉴스레터 🎲',
+  },
+]
+
+export const ARTICLE_ASIDE_LINK_ITEM = [
+  {
+    href: process.env.NEXT_PUBLIC_CURRENT_URL + '/article',
+    title: '최신 뉴스레터 소식 🥳',
+    badge: 'NEW',
+  },
+  {
+    href: process.env.NEXT_PUBLIC_CURRENT_URL + '/article/popular',
+    title: '인기 뉴스레터 소식 🔥',
+    badge: '인기',
+  },
+]

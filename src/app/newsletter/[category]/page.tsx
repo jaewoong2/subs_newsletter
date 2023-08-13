@@ -1,9 +1,8 @@
 import React from 'react'
-import { getNewsLettersByCategory } from '@/app/supabase-server'
 import { notFound } from 'next/navigation'
+import { getNewsLettersByCategory } from '@/app/supabase-server'
 import DataList from '@/components/blocks/DataList'
-import CardLink from '@/components/blocks/CardLink'
-import Card from '@/components/atoms/Card'
+import CardItem from '../components/CardItem'
 
 type Props = {
   params: {
@@ -22,12 +21,8 @@ const NewsLetter = async ({ params }: Props) => {
     <DataList
       variant='block'
       title=''
-      items={newsletters?.data.map(({ id, link, description, name, thumbnail, category }) => (
-        <figure key={`card-${id}`} className='h-[400px] w-full'>
-          <CardLink href={link ?? ''} newsLetterId={id}>
-            <Card title={name} description={description} image={thumbnail ?? ''} tags={category ?? []} />
-          </CardLink>
-        </figure>
+      items={newsletters?.data.map((newsletter) => (
+        <CardItem {...newsletter} key={newsletter.id} />
       ))}
     />
   )

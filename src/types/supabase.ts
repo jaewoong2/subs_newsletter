@@ -142,7 +142,7 @@ export interface Database {
           category: string[] | null
           created_at: string | null
           description: string | null
-          id: number | null
+          id: number
           link: string | null
           name: string | null
           thumbnail: string | null

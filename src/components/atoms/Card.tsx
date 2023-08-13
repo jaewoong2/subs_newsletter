@@ -100,7 +100,7 @@ const Card = ({ title, description, image, alt, tags }: Props) => {
       <CardImage image={image} alt={alt} />
       <div className='flex h-full flex-col gap-3 text-clip px-6 py-2'>
         <h4 className='card-title'>{title}</h4>
-        <span className='line-clamp-3 overflow-hidden'>{description}</span>
+        <span className='line-clamp-3 overflow-hidden max-md:text-sm'>{description}</span>
         <div className='card-actions justify-end'>
           {tags?.map((tag) => (
             <div className='badge badge-outline' key={tag}>
