@@ -66,10 +66,14 @@ export async function getNewsLetters(searchParams?: string | 'popular' | 'new') 
   } catch (err) {}
 }
 
-export async function getArticles() {
+export async function getArticles(searchParams?: string | 'popular' | 'new') {
   const supabase = createServerSupabaseClient()
   try {
-    const response = await supabase.from('article').select('*').limit(10)
+    const response = await supabase
+      .from('article')
+      .select('*')
+      .limit(10)
+      .order(getOrder(searchParams), { foreignTable: '', ascending: false })
 
     if (!response.data) {
       throw new Error('No data found')
