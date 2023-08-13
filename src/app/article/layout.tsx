@@ -2,14 +2,13 @@ import React, { PropsWithChildren } from 'react'
 import { twMerge } from 'tailwind-merge'
 import Footer from '@/components/atoms/Footer'
 import { Navigation } from '@/components/blocks'
-import Aside from './components/Aside'
-import CategoryList from './components/CaretoryList'
-import { NEWSLETTER_ASIDE_LINK_ITEM } from '@/constants'
+import Aside from '../newsletter/components/Aside'
 import NavDropBox from '@/components/blocks/NavDropBox'
 import MobileNavDropBox from '@/components/blocks/MobileNavDropBox'
 import ThemeToogleButton from '@/components/blocks/ThemeToogleButton'
+import { ARTICLE_ASIDE_LINK_ITEM } from '@/constants'
 
-const NewsLetterLayout = ({ children }: PropsWithChildren) => {
+const ArticleLayout = ({ children }: PropsWithChildren) => {
   return (
     <div className='flex h-full w-full flex-col'>
       <Navigation
@@ -21,9 +20,7 @@ const NewsLetterLayout = ({ children }: PropsWithChildren) => {
         menu={
           <div className='flex items-center justify-center gap-2'>
             <NavDropBox />
-            <MobileNavDropBox asideItems={NEWSLETTER_ASIDE_LINK_ITEM}>
-              <CategoryList />
-            </MobileNavDropBox>
+            <MobileNavDropBox asideItems={ARTICLE_ASIDE_LINK_ITEM} />
             <ThemeToogleButton />
           </div>
         }
@@ -36,9 +33,7 @@ const NewsLetterLayout = ({ children }: PropsWithChildren) => {
         )}
       >
         <div className='max-md:hidden'>
-          <Aside items={NEWSLETTER_ASIDE_LINK_ITEM}>
-            <CategoryList />
-          </Aside>
+          <Aside items={ARTICLE_ASIDE_LINK_ITEM} />
         </div>
         <main className='min-h-screen pb-20'>{children}</main>
         <div />
@@ -48,4 +43,4 @@ const NewsLetterLayout = ({ children }: PropsWithChildren) => {
   )
 }
 
-export default NewsLetterLayout
+export default ArticleLayout

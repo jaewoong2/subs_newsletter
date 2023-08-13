@@ -4,11 +4,27 @@ import { Navigation, Register } from '@/components/blocks'
 import BlockCards from '@/components/blocks/BlockCards'
 import Footer from '@/components/atoms/Footer'
 import { RegisterNewsLetter } from '@/components/blocks/RegisterNewsLetter'
+import MobileNavDropBox from '@/components/blocks/MobileNavDropBox'
+import NavDropBox from '@/components/blocks/NavDropBox'
+import ThemeToogleButton from '@/components/blocks/ThemeToogleButton'
+import { NEWSLETTER_ASIDE_LINK_ITEM } from '@/constants'
+import CategoryList from './newsletter/components/CaretoryList'
 
 export default function Page() {
   return (
     <div className='min-h-full w-full'>
-      <Navigation className='h-16 bg-white bg-opacity-10 dark:border-darkBg-200 dark:bg-opacity-10' />
+      <Navigation
+        className='h-16 bg-white bg-opacity-10 dark:border-darkBg-200 dark:bg-opacity-10'
+        menu={
+          <div className='flex items-center justify-center gap-2'>
+            <NavDropBox />
+            <MobileNavDropBox asideItems={NEWSLETTER_ASIDE_LINK_ITEM}>
+              <CategoryList />
+            </MobileNavDropBox>
+            <ThemeToogleButton />
+          </div>
+        }
+      />
       <Hero />
       <BlockCards />
       <section className='border-y dark:border-darkBg-200 dark:bg-darkBg-400'>

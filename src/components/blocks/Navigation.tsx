@@ -4,9 +4,11 @@ import NavigationBody from '../atoms/NavigationBody'
 type Props = {
   isAnimate?: boolean
   className?: string
+
+  menu?: React.ReactNode
 }
 
-export const Navigation = ({ className }: Props) => {
+export const Navigation = ({ className, menu }: Props) => {
   return (
     <nav
       className={twMerge(
@@ -15,7 +17,7 @@ export const Navigation = ({ className }: Props) => {
         className
       )}
     >
-      <NavigationBody />
+      <NavigationBody menu={menu} />
     </nav>
   )
 }

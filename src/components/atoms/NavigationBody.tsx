@@ -1,10 +1,11 @@
 import React from 'react'
 import Link from 'next/link'
-import ThemeToogleButton from '../blocks/ThemeToogleButton'
-import NavDropBox from '../blocks/NavDropBox'
-import MobileNavDropBox from '../blocks/MobileNavDropBox'
 
-const NavigationBody = () => {
+type Props = {
+  menu: React.ReactNode
+}
+
+const NavigationBody = ({ menu }: Props) => {
   return (
     <>
       <Link href={'/'}>
@@ -18,11 +19,7 @@ const NavigationBody = () => {
           아티클
         </Link>
       </ul>
-      <div className='flex items-center justify-center gap-2'>
-        <NavDropBox />
-        <MobileNavDropBox />
-        <ThemeToogleButton />
-      </div>
+      {menu}
     </>
   )
 }
