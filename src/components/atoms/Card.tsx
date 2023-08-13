@@ -1,5 +1,9 @@
 'use client'
 import React, { useEffect, useRef } from 'react'
+import { twMerge } from 'tailwind-merge'
+import Link from 'next/link'
+import { NewsLetter } from '@/types'
+import CardLink from '../blocks/CardLink'
 
 type Props = {
   image: string
@@ -7,7 +11,7 @@ type Props = {
   title?: React.ReactNode
   description?: React.ReactNode
   tags?: string[]
-}
+} & Partial<NewsLetter>
 
 const IMAGE_PLACEHOLDER =
   'https://ywnfqdpcmgtllkshgzsl.supabase.co/storage/v1/object/public/newsletter/image/placeholder.png'
@@ -77,7 +81,7 @@ export const CardImage = ({ image, alt }: Props) => {
   }, [])
 
   return (
-    <figure className='h-full max-h-[50%] min-h-[50%] w-full' ref={figureRef}>
+    <figure className='h-[50%] max-h-[50%] min-h-[50%] w-full' ref={figureRef}>
       <img
         src={IMAGE_PLACEHOLDER}
         alt={alt ?? '카드 이미지'}
@@ -94,20 +98,39 @@ export const CardImage = ({ image, alt }: Props) => {
   )
 }
 
-const Card = ({ title, description, image, alt, tags }: Props) => {
+const Card = ({ title, description, image, alt, tags, link, id, days }: Props) => {
   return (
-    <li className='group card mx-auto h-full w-full scale-95 border bg-base-100 transition-transform hover:scale-100 hover:border-slate-400 dark:border-darkBg-800 dark:bg-darkBg-100 '>
-      <CardImage image={image} alt={alt} />
-      <div className='flex h-full flex-col gap-3 text-clip px-6 py-2'>
-        <h4 className='card-title'>{title}</h4>
-        <span className='line-clamp-3 overflow-hidden max-md:text-sm'>{description}</span>
-        <div className='card-actions justify-end'>
-          {tags?.map((tag) => (
-            <div className='badge badge-outline' key={tag}>
-              {tag}
-            </div>
-          ))}
+    <li
+      className={twMerge(
+        'group card mx-auto h-full w-full scale-95 overflow-hidden border bg-base-100 transition-transform',
+        'hover:scale-100 hover:border-slate-400 dark:border-darkBg-800 dark:bg-darkBg-100'
+      )}
+    >
+      <CardLink href={link ?? ''} newsLetterId={id} className='h-[95%]'>
+        <CardImage image={image} alt={alt} />
+        <div className='flex flex-col gap-3 text-clip px-6 py-2'>
+          <h4 className='card-title'>{title}</h4>
+          <div className='flex items-center'>
+            {days?.map((day) => (
+              <span key={day} className='badge'>
+                {day}
+              </span>
+            ))}
+          </div>
+          <span className='line-clamp-3 overflow-hidden max-md:text-sm'>{description}</span>
         </div>
+      </CardLink>
+      <div className='flex w-fit justify-end gap-3 px-3 pb-4'>
+        {tags?.map((tag) => (
+          <Link
+            href={process.env.NEXT_PUBLIC_CURRENT_URL + `/newsletter/${tag}`}
+            tabIndex={0}
+            key={tag}
+            className={twMerge('badge badge-outline z-[20]', 'hover:badge-neutral hover:bg-slate-200')}
+          >
+            {tag}
+          </Link>
+        ))}
       </div>
     </li>
   )

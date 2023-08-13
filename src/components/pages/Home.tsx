@@ -1,8 +1,8 @@
 import React from 'react'
-import Link from 'next/link'
 import { getArticles, getNewsLetters } from '@/app/supabase-server'
 import DataList from '../blocks/DataList'
 import Card from '../atoms/Card'
+import CardItem from '@/app/newsletter/components/CardItem'
 
 export const dynamic = 'force-static'
 export const revalidate = process.env.NODE_ENV === 'development' ? 3600 : 0
@@ -15,12 +15,17 @@ export const Home = async () => {
     <main className='flex flex-col gap-5 px-10 py-10 dark:bg-darkBg-300 dark:text-white max-md:px-5'>
       <DataList
         title='최신 뉴스레터'
-        items={newsletters?.data.map(({ id, link, thumbnail, name, description, category }) => (
-          <figure key={`card-${id}`} className='h-full w-full'>
-            <Link href={link ?? ''}>
-              <Card title={name} description={description} image={thumbnail ?? ''} tags={category ?? []} />
-            </Link>
-          </figure>
+        items={newsletters?.data.map(({ id, link, thumbnail, name, description, category, days }) => (
+          <CardItem
+            days={days}
+            key={id}
+            id={id}
+            link={link}
+            thumbnail={thumbnail}
+            name={name}
+            description={description}
+            category={category}
+          />
         ))}
         lastItem={
           <>
@@ -33,9 +38,7 @@ export const Home = async () => {
         title='뉴스레터 소식'
         items={articles?.data.map(({ id, link, description, title, thumbnail }) => (
           <figure key={`card-${id}`} className='h-full w-full'>
-            <Link href={link ?? ''}>
-              <Card title={title} description={description} image={thumbnail ?? ''} />
-            </Link>
+            <Card title={title} description={description} image={thumbnail ?? ''} link={link} />
           </figure>
         ))}
         lastItem={

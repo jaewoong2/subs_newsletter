@@ -97,6 +97,7 @@ export interface Database {
           name: string | null
           thumbnail: string | null
           view: number | null
+          days: string[] | null
         }
         Insert: {
           category?: string[] | null
@@ -107,6 +108,7 @@ export interface Database {
           name?: string | null
           thumbnail?: string | null
           view?: number | null
+          days?: string[] | null
         }
         Update: {
           category?: string[] | null
@@ -117,6 +119,7 @@ export interface Database {
           name?: string | null
           thumbnail?: string | null
           view?: number | null
+          days?: string[] | null
         }
         Relationships: []
       }
@@ -146,6 +149,7 @@ export interface Database {
           link: string | null
           name: string | null
           thumbnail: string | null
+          days: string[] | null
           view: number | null
         }
         Insert: {
@@ -153,6 +157,7 @@ export interface Database {
           created_at?: string | null
           description?: string | null
           id?: number | null
+          days?: string[] | null
           link?: string | null
           name?: string | null
           thumbnail?: string | null
@@ -161,6 +166,7 @@ export interface Database {
         Update: {
           category?: string[] | null
           created_at?: string | null
+          days?: string[] | null
           description?: string | null
           id?: number | null
           link?: string | null
