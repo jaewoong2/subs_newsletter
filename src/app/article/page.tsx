@@ -17,6 +17,7 @@ const ArticlePage = async () => {
           name={title}
           description={description}
           category={[]}
+          days={[]}
           thumbnail={thumbnail}
           link={link}
           id={id}

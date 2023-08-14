@@ -18,6 +18,7 @@ const NewsLetter = async () => {
           thumbnail={thumbnail}
           link={link}
           id={id}
+          days={[]}
           key={id}
         />
       ))}
