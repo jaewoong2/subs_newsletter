@@ -2,12 +2,13 @@
 import useGetSession from '@/hooks/useGetSesstion'
 import useSimpleModal from '@/hooks/useSimpleModal'
 import Link from 'next/link'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import SignInModal from './SignInModal'
 import { twMerge } from 'tailwind-merge'
+import SupabaseProvider from '@/app/supabase-provider'
 
 const AuthButton = ({ className }: JSX.IntrinsicElements['button']) => {
-  const session = useGetSession()
+  const { data, trigger } = useGetSession()
   const url = typeof window === 'undefined' ? '' : window.location.href
   const [isOpenModal, setIsOpenModal] = useState(false)
   const { isOpen, onClose } = useSimpleModal({
@@ -16,14 +17,19 @@ const AuthButton = ({ className }: JSX.IntrinsicElements['button']) => {
       setIsOpenModal(false)
     },
   })
+
   const onClickSignInButton = () => {
-    if (session) return
+    if (data?.data.session) return
     setIsOpenModal(true)
   }
 
+  useEffect(() => {
+    trigger()
+  }, [trigger])
+
   return (
-    <>
-      {session && (
+    <SupabaseProvider>
+      {data?.data.session && (
         <Link
           className={twMerge(
             'cursor-pointer list-none rounded-xl px-3 py-3 text-left text-sm font-bold hover:bg-slate-50 dark:hover:bg-darkBg-100',
@@ -34,7 +40,7 @@ const AuthButton = ({ className }: JSX.IntrinsicElements['button']) => {
           <button className=' text-black dark:text-white'>로그아웃</button>
         </Link>
       )}
-      {!session && (
+      {!data?.data.session && (
         <button
           className={twMerge(
             'cursor-pointer list-none rounded-xl px-3 py-3 text-left text-sm font-bold hover:bg-slate-50 dark:hover:bg-darkBg-100',
@@ -46,7 +52,7 @@ const AuthButton = ({ className }: JSX.IntrinsicElements['button']) => {
         </button>
       )}
       <SignInModal isOpen={isOpen} onClose={onClose} />
-    </>
+    </SupabaseProvider>
   )
 }
 

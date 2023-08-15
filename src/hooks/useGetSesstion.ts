@@ -1,23 +1,16 @@
-import { useSupabase } from '@/app/supabase-provider'
 import { Session } from '@supabase/supabase-js'
-import { useEffect, useState } from 'react'
+import { Key } from 'swr'
+import useSWRMutation, { MutationFetcher, SWRMutationConfiguration } from 'swr/mutation'
 
-const useGetSession = () => {
-  const [session, setSession] = useState<Session | null>(null)
-  const { supabase } = useSupabase()
+type Data = { data: { session: Session } }
 
-  const getSesstion = async () => {
-    const { data } = await supabase.auth.getSession()
-    if (data.session) {
-      setSession(data.session)
-    }
-  }
+const fetcher: MutationFetcher<Data> = (url: string) =>
+  fetch(url, { method: 'GET', cache: 'no-cache' }).then(async (res) => {
+    return res.json()
+  })
 
-  useEffect(() => {
-    getSesstion()
-  }, [])
-
-  return session
+const useGetSession = (configuration?: SWRMutationConfiguration<Data, any, Key, never, any>) => {
+  return useSWRMutation<Data>('api/session', fetcher, { ...configuration })
 }
 
 export default useGetSession

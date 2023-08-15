@@ -1,5 +1,5 @@
 'use client'
-import React, { useCallback, useState } from 'react'
+import React, { useCallback, useEffect, useState } from 'react'
 import { useModal, useToast } from '@chakra-ui/react'
 import SimpleModal from '../atoms/SimpleModal'
 import { twMerge } from 'tailwind-merge'
@@ -142,7 +142,14 @@ const Register = () => {
 }
 
 export const RegisterNewsLetter = () => {
-  const session = useGetSession()
+  const { data, trigger } = useGetSession({
+    onSuccess: () => {
+      setIsModalOpen(true)
+    },
+    onError: () => {
+      toast({ status: 'error', title: '로그인 후 등록이 가능해요' })
+    },
+  })
   const toast = useToast()
   const [isModalOpen, setIsModalOpen] = useState(false)
   const { onClose, isOpen } = useModal({
@@ -153,12 +160,12 @@ export const RegisterNewsLetter = () => {
   })
 
   const onClickButton = () => {
-    if (session) {
-      setIsModalOpen(true)
-      return
-    }
-    toast({ status: 'error', title: '로그인 후 등록이 가능해요' })
+    trigger()
   }
+
+  useEffect(() => {
+    console.log(data)
+  }, [data])
 
   return (
     <section className='flex w-full justify-center bg-violet-100 p-20 dark:bg-darkBg-400 max-md:p-5 '>
