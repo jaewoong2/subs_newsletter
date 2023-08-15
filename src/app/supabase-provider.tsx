@@ -13,7 +13,12 @@ type SupabaseContext = {
 const Context = createContext<SupabaseContext | undefined>(undefined)
 
 export default function SupabaseProvider({ children }: { children: React.ReactNode }) {
-  const [supabase] = useState(() => createPagesBrowserClient())
+  const [supabase] = useState(() =>
+    createPagesBrowserClient({
+      supabaseKey: process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY,
+      supabaseUrl: process.env.NEXT_PUBLIC_SUPABASE_URL,
+    })
+  )
 
   return (
     <Context.Provider value={{ supabase }}>
