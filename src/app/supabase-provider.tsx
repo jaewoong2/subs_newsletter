@@ -1,6 +1,6 @@
 'use client'
 
-import { createContext, useContext, useState } from 'react'
+import { PropsWithChildren, createContext, useContext, useState } from 'react'
 import { createPagesBrowserClient } from '@supabase/auth-helpers-nextjs'
 
 import type { SupabaseClient } from '@supabase/auth-helpers-nextjs'
@@ -10,13 +10,18 @@ type SupabaseContext = {
   supabase: SupabaseClient<Database>
 }
 
+type Props = {
+  supabaseUrl?: string | undefined
+  supabaseKey?: string | undefined
+}
+
 const Context = createContext<SupabaseContext | undefined>(undefined)
 
-export default function SupabaseProvider({ children }: { children: React.ReactNode }) {
+export default function SupabaseProvider({ children, supabaseKey, supabaseUrl }: PropsWithChildren<Props>) {
   const [supabase] = useState(() =>
     createPagesBrowserClient({
-      supabaseKey: process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY,
-      supabaseUrl: process.env.NEXT_PUBLIC_SUPABASE_URL,
+      supabaseKey,
+      supabaseUrl,
     })
   )
 

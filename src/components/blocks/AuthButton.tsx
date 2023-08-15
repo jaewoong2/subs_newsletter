@@ -5,7 +5,7 @@ import Link from 'next/link'
 import React, { useEffect, useState } from 'react'
 import SignInModal from './SignInModal'
 import { twMerge } from 'tailwind-merge'
-import SupabaseProvider from '@/app/supabase-provider'
+import SupabaseProvider from './SupabaseProvider'
 
 const AuthButton = ({ className }: JSX.IntrinsicElements['button']) => {
   const [mounted, setMounted] = useState(false)
