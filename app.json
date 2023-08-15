@@ -6,8 +6,5 @@
     "cpu": "1",
     "port": 3000,
     "http2": false
-  },
-  "hooks": {
-    "GOOGLE_CLOUD_REGION": "asia-northeast3"
   }
 }
