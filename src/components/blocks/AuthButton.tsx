@@ -5,6 +5,7 @@ import Link from 'next/link'
 import React, { useEffect, useState } from 'react'
 import SignInModal from './SignInModal'
 import { twMerge } from 'tailwind-merge'
+import SupabaseProvider from '@/app/supabase-provider'
 
 const AuthButton = ({ className }: JSX.IntrinsicElements['button']) => {
   const [mounted, setMounted] = useState(false)
@@ -35,7 +36,7 @@ const AuthButton = ({ className }: JSX.IntrinsicElements['button']) => {
   }, [mounted, trigger])
 
   return (
-    <>
+    <SupabaseProvider>
       {data?.data.session && (
         <Link
           className={twMerge(
@@ -59,7 +60,7 @@ const AuthButton = ({ className }: JSX.IntrinsicElements['button']) => {
         </button>
       )}
       <SignInModal isOpen={isOpen} onClose={onClose} />
-    </>
+    </SupabaseProvider>
   )
 }
 
