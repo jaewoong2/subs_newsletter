@@ -1,5 +1,6 @@
 FROM node:18-alpine AS base
 
+# Install dependencies needed for certain node modules
 RUN apk add --no-cache --virtual .gyp python3 make g++ \
     && apk del .gyp
 
@@ -10,16 +11,19 @@ FROM base AS deps
 RUN apk add --no-cache libc6-compat
 WORKDIR /app
 
+# Install yarn package manager
+RUN apk add --no-cache yarn
+
 # Install dependencies based on the preferred package manager
-COPY package.json package-lock.json ./
-RUN npm ci --only=production 
+COPY package.json yarn.lock ./
+RUN yarn
 
 # Rebuild the source code only when needed
 FROM base AS builder
 WORKDIR /app
 COPY --from=deps /app/node_modules ./node_modules
 COPY . .
-RUN npm run build
+RUN yarn build
 
 # Production image, copy all the files and run next
 FROM base AS runner
@@ -33,11 +37,12 @@ RUN adduser --system --uid 1001 nextjs
 COPY --from=builder --chown=nextjs:nodejs /app/.next ./.next
 COPY --from=builder /app/node_modules ./node_modules
 COPY --from=builder /app/package.json ./package.json
+COPY --from=builder /app/yarn.lock ./yarn.lock
 
-USER root
+USER nextjs
 
 EXPOSE 3000
 
 ENV PORT 3000
 
-CMD ["npm", "run", "start"]
+CMD ["yarn", "start"]
