@@ -12,7 +12,6 @@ export const revalidate = 0
 type Props = {
   children: React.ReactNode
 }
-
 export default function RootLayout({ children }: Props) {
   return (
     <html lang='kr' className='h-full overflow-scroll'>
