@@ -6,22 +6,19 @@ import { createPagesBrowserClient } from '@supabase/auth-helpers-nextjs'
 import type { SupabaseClient } from '@supabase/auth-helpers-nextjs'
 import type { Database } from '../types/supabase'
 
+import env from '@beam-australia/react-env'
+
 type SupabaseContext = {
   supabase: SupabaseClient<Database>
 }
 
-type Props = {
-  supabaseUrl?: string | undefined
-  supabaseKey?: string | undefined
-}
-
 const Context = createContext<SupabaseContext | undefined>(undefined)
 
-export default function SupabaseProvider({ children, supabaseKey, supabaseUrl }: PropsWithChildren<Props>) {
+export default function SupabaseProvider({ children }: PropsWithChildren) {
   const [supabase] = useState(() =>
     createPagesBrowserClient({
-      supabaseKey,
-      supabaseUrl,
+      supabaseKey: env('NEXT_PUBLIC_SUPABASE_ANON_KEY'),
+      supabaseUrl: env('NEXT_PUBLIC_SUPABASE_URL'),
     })
   )
 
