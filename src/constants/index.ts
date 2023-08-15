@@ -1,6 +1,6 @@
 import { Metadata } from 'next'
 
-export const BASEURL = process.env.NODE_ENV === 'development' ? 'http://localhost:3000' : ''
+export const BASEURL = process.env.NEXT_PUBLIC_CURRENT_URL ?? 'https://newsubs-rp2bw6ixvq-du.a.run.app/'
 
 export const IMAGE = {
   example: {
@@ -36,29 +36,29 @@ export const METADATA: Metadata = {
 
 export const NEWSLETTER_ASIDE_LINK_ITEM = [
   {
-    href: process.env.NEXT_PUBLIC_CURRENT_URL + '/newsletter',
+    href: BASEURL + '/newsletter',
     title: '최신 뉴스레터 🥳',
     badge: 'NEW',
   },
   {
-    href: process.env.NEXT_PUBLIC_CURRENT_URL + '/newsletter/popular',
+    href: BASEURL + '/newsletter/popular',
     title: '인기 뉴스레터 🔥',
     badge: '인기',
   },
   {
-    href: process.env.NEXT_PUBLIC_CURRENT_URL + '/newsletter/random',
+    href: BASEURL + '/newsletter/random',
     title: '랜덤 뉴스레터 🎲',
   },
 ]
 
 export const ARTICLE_ASIDE_LINK_ITEM = [
   {
-    href: process.env.NEXT_PUBLIC_CURRENT_URL + '/article',
+    href: BASEURL + '/article',
     title: '최신 뉴스레터 소식 🥳',
     badge: 'NEW',
   },
   {
-    href: process.env.NEXT_PUBLIC_CURRENT_URL + '/article/popular',
+    href: BASEURL + '/article/popular',
     title: '인기 뉴스레터 소식 🔥',
     badge: '인기',
   },

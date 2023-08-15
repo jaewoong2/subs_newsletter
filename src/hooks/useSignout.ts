@@ -6,7 +6,7 @@ const fetcher: MutationFetcher<NextResponse, string, undefined | null> = (url) =
   fetch(url, { method: 'POST' }).then((res) => res.json())
 
 const useSignout = (configuration?: SWRMutationConfiguration<NextResponse, Error, string>) => {
-  const { data, ...rest } = useSWRMutation('http://localhost:3000/api/signout', fetcher, { ...configuration })
+  const { data, ...rest } = useSWRMutation('api/signout', fetcher, { ...configuration })
 
   return {
     data: data,

@@ -12,7 +12,7 @@ const CategoryList = async () => {
       {categories.data?.map(({ categories }) => (
         <li className={'relative flex w-full flex-col items-end'} key={categories}>
           <CardLink
-            href={process.env.NEXT_PUBLIC_CURRENT_URL + `/newsletter/${encodeURIComponent(categories ?? '')}`}
+            href={`/newsletter/${encodeURIComponent(categories ?? '')}`}
             className='h-full w-full rounded-lg px-3 py-1 text-start font-tossFace text-sm font-semibold transition-colors hover:bg-base-300 dark:hover:bg-darkBg-100 '
           >
             {categories}

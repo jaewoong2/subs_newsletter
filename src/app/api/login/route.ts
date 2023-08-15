@@ -22,7 +22,7 @@ export async function POST(request: NextRequest): Promise<NextResponse<null> | R
           access_type: 'offline',
           prompt: 'consent',
         },
-        redirectTo: `http://localhost:3000/auth/callback?redirectUrl=${redirectUrl.redirectUrl}`,
+        redirectTo: `${process.env.NEXT_PUBLIC_CURRENT_URL}/auth/callback?redirectUrl=${redirectUrl.redirectUrl}`,
       },
     })
 
