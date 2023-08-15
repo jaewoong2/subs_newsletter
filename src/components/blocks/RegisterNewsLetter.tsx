@@ -1,5 +1,5 @@
 'use client'
-import React, { useCallback, useEffect, useState } from 'react'
+import React, { useCallback, useState } from 'react'
 import { useModal, useToast } from '@chakra-ui/react'
 import SimpleModal from '../atoms/SimpleModal'
 import { twMerge } from 'tailwind-merge'
@@ -142,7 +142,7 @@ const Register = () => {
 }
 
 export const RegisterNewsLetter = () => {
-  const { data, trigger } = useGetSession({
+  const { trigger } = useGetSession({
     onSuccess: () => {
       setIsModalOpen(true)
     },
@@ -162,10 +162,6 @@ export const RegisterNewsLetter = () => {
   const onClickButton = () => {
     trigger()
   }
-
-  useEffect(() => {
-    console.log(data)
-  }, [data])
 
   return (
     <section className='flex w-full justify-center bg-violet-100 p-20 dark:bg-darkBg-400 max-md:p-5 '>

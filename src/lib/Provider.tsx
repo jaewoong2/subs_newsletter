@@ -2,13 +2,16 @@
 import { SWRConfig } from 'swr'
 import { CacheProvider } from '@chakra-ui/next-js'
 import { ChakraProvider } from '@chakra-ui/react'
+import SupabaseProvider from '@/app/supabase-provider'
 
 export function Providers({ children }: { children: React.ReactNode }) {
   return (
-    <CacheProvider>
+    <SupabaseProvider>
       <SWRConfig>
-        <ChakraProvider resetCSS>{children}</ChakraProvider>
+        <ChakraProvider resetCSS>
+          <CacheProvider>{children}</CacheProvider>
+        </ChakraProvider>
       </SWRConfig>
-    </CacheProvider>
+    </SupabaseProvider>
   )
 }

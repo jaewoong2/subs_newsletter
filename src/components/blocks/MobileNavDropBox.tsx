@@ -1,6 +1,5 @@
 import React, { PropsWithChildren } from 'react'
 import Aside from '@/app/newsletter/components/Aside'
-import CategoryList from '@/app/newsletter/components/CaretoryList'
 import { HiOutlineMenu } from 'react-icons/hi'
 
 type Props = {

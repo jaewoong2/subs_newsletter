@@ -41,7 +41,7 @@ const SignInModal = ({ isOpen, onClose }: Props) => {
 
   const onClickGoogleSignIn = useCallback(() => {
     googleLogin(window.location.href)
-  }, [])
+  }, [googleLogin])
 
   return (
     <SimpleModal isOpen={isOpen} onClose={onClose} title='로그인'>

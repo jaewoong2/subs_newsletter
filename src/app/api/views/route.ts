@@ -3,6 +3,8 @@ import { NextRequest, NextResponse } from 'next/server'
 import { createRouteHandlerClient } from '@supabase/auth-helpers-nextjs'
 import { Database } from '@/types/supabase'
 
+export const dynamic = 'force-dynamic'
+
 export async function POST(request: NextRequest): Promise<NextResponse<null> | Response> {
   const json: { type: 'newsletter' | 'article'; id: string | number } | null = await request.json()
 

@@ -3,8 +3,6 @@ import { getArticles } from '../supabase-server'
 import DataList from '@/components/blocks/DataList'
 import CardItem from '../newsletter/components/CardItem'
 
-export const revalidate = process.env.NODE_ENV === 'development' ? 3600 : 0
-
 const ArticlePage = async () => {
   const article = await getArticles()
 

@@ -32,7 +32,7 @@ const SignOut = ({ searchParams }: Props) => {
 
   useEffect(() => {
     trigger()
-  }, [])
+  }, [trigger])
 
   return <div>로그아웃</div>
 }

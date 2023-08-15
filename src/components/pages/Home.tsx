@@ -4,9 +4,6 @@ import DataList from '../blocks/DataList'
 import Card from '../atoms/Card'
 import CardItem from '@/app/newsletter/components/CardItem'
 
-export const dynamic = 'force-static'
-export const revalidate = process.env.NODE_ENV === 'development' ? 3600 : 0
-
 export const Home = async () => {
   const articles = await getArticles()
   const newsletters = await getNewsLetters()

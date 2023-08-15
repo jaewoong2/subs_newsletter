@@ -4,6 +4,8 @@ import { createRouteHandlerClient } from '@supabase/auth-helpers-nextjs'
 import { Database } from '@/types/supabase'
 import * as uuid from 'uuid'
 
+export const dynamic = 'force-dynamic'
+
 function getExtension(filename: string) {
   return filename.split('.').pop()
 }

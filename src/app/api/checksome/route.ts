@@ -5,6 +5,7 @@ import { Checksome } from '@/types'
 import { Database } from '@/types/supabase'
 
 type RequestData = Checksome
+export const dynamic = 'force-dynamic'
 
 export async function POST(request: NextRequest): Promise<NextResponse<null> | Response> {
   const checksome: RequestData | null = await request.json()
@@ -14,6 +15,7 @@ export async function POST(request: NextRequest): Promise<NextResponse<null> | R
   }
 
   const supabase = createRouteHandlerClient<Database>({ cookies })
+
   const response = await supabase.from('checksome').insert({
     category: checksome.category,
     description: checksome.description,

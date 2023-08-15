@@ -4,8 +4,10 @@ import { createRouteHandlerClient } from '@supabase/auth-helpers-nextjs'
 import { Database } from '@/types/supabase'
 import { NewsLetter } from '@/types'
 
+export const dynamic = 'force-dynamic'
+
 export async function GET() {
-  const supabase = createRouteHandlerClient<Database>({ cookies })
+  const supabase = createRouteHandlerClient<Database>({ cookies: cookies })
 
   try {
     const response = await supabase.from('categories').select('categories').order('count', { ascending: false })
