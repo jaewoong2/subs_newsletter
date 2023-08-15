@@ -1,6 +1,6 @@
 import { Metadata } from 'next'
 
-export const BASEURL = process.env.NEXT_PUBLIC_CURRENT_URL ?? 'https://newsubs-rp2bw6ixvq-du.a.run.app/'
+export const BASEURL = process.env.NEXT_PUBLIC_CURRENT_URL ?? 'https://newsubs-rp2bw6ixvq-du.a.run.app'
 
 export const IMAGE = {
   example: {
