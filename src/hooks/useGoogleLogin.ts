@@ -1,7 +1,7 @@
-import { useSupabase } from '@/app/supabase-provider'
+import { createClientComponentClient } from '@supabase/auth-helpers-nextjs'
 
 const useGoogleLogin = () => {
-  const { supabase } = useSupabase()
+  const supabase = createClientComponentClient()
 
   const siginIn = async (redirectUrl?: string) => {
     return await supabase.auth.signInWithOAuth({
