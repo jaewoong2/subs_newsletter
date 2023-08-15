@@ -8,7 +8,6 @@
     "http2": false
   },
   "hooks": {
-    "GOOGLE_CLOUD_PROJECT": "newsubs",
     "GOOGLE_CLOUD_REGION": "asia-northeast3"
   }
 }
