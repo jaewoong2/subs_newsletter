@@ -1,22 +1,30 @@
-import { createClientComponentClient } from '@supabase/auth-helpers-nextjs'
+import { Provider } from '@supabase/supabase-js'
+import useSWRMutation, { MutationFetcher, SWRMutationConfiguration } from 'swr/mutation'
 
-const useGoogleLogin = () => {
-  const supabase = createClientComponentClient()
+const fetcher: MutationFetcher<
+  {
+    data: {
+      provider: Provider
+      url: string
+    }
+  },
+  string,
+  { redirectUrl: string }
+> = (url, { arg }) => fetch(url, { method: 'POST', body: JSON.stringify(arg) }).then((res) => res.json())
 
-  const siginIn = async (redirectUrl?: string) => {
-    return await supabase.auth.signInWithOAuth({
-      provider: 'google',
-      options: {
-        queryParams: {
-          access_type: 'offline',
-          prompt: 'consent',
-        },
-        redirectTo: `http://localhost:3000/auth/callback?redirectUrl=${redirectUrl}`,
-      },
-    })
-  }
-
-  return siginIn
+const useGoogleLogin = (
+  configuration?: SWRMutationConfiguration<
+    {
+      data: {
+        provider: Provider
+        url: string
+      }
+    },
+    Error,
+    string
+  >
+) => {
+  return useSWRMutation('api/login', fetcher, { ...configuration })
 }
 
 export default useGoogleLogin

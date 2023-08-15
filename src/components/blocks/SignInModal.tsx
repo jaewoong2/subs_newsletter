@@ -1,17 +1,23 @@
 'use client'
-import React, { useCallback, useState } from 'react'
+import React, { useCallback, useEffect, useState } from 'react'
 import SimpleModal from '@/components/atoms/SimpleModal'
 import { AbsoluteCenter, Box, Divider, UseModalProps, useToast } from '@chakra-ui/react'
 import { FcGoogle } from 'react-icons/fc'
 import useMagicLinkLogin from '@/hooks/useMagicLinkLogin'
 import FormInput from '../atoms/FormInput'
+import { useRouter } from 'next/navigation'
 import useGoogleLogin from '@/hooks/useGoogleLogin'
 
 type Props = UseModalProps
 
 const SignInModal = ({ isOpen, onClose }: Props) => {
   const toast = useToast()
-  const googleLogin = useGoogleLogin()
+  const router = useRouter()
+  const { data, trigger } = useGoogleLogin({
+    onSuccess(data) {
+      router.push(data.data.url)
+    },
+  })
   const { trigger: login, isMutating } = useMagicLinkLogin({
     onSuccess: () => {
       onClose()
@@ -40,8 +46,12 @@ const SignInModal = ({ isOpen, onClose }: Props) => {
   }, [email, login, isMutating])
 
   const onClickGoogleSignIn = useCallback(() => {
-    googleLogin(window.location.href)
-  }, [googleLogin])
+    trigger({ redirectUrl: window.location.href })
+  }, [trigger])
+
+  useEffect(() => {
+    console.log(data)
+  }, [data])
 
   return (
     <SimpleModal isOpen={isOpen} onClose={onClose} title='로그인'>

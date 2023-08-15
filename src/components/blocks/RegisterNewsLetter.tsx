@@ -143,7 +143,11 @@ const Register = () => {
 
 export const RegisterNewsLetter = () => {
   const { trigger } = useGetSession({
-    onSuccess: () => {
+    onSuccess: (data) => {
+      if (!data.data.session) {
+        toast({ status: 'error', title: '로그인 후 등록이 가능해요' })
+        return
+      }
       setIsModalOpen(true)
     },
     onError: () => {
