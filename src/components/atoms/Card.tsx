@@ -14,29 +14,25 @@ type Props = {
   tags?: string[]
 } & Partial<NewsLetter>
 
-const Card = ({ title, description, image, alt, tags, link, id, days }: Props) => {
+const Card = ({ title, description, image, alt, tags, link, id }: Props) => {
   return (
     <li
       className={twMerge(
         'group card mx-auto h-full w-full scale-95 overflow-hidden border bg-base-100 transition-transform',
-        'hover:scale-100 hover:border-slate-400 dark:border-darkBg-800 dark:bg-darkBg-100'
+        'hover:scale-100 hover:border-slate-400 dark:border-darkBg-800 dark:bg-darkBg-100',
+        'flex flex-col'
       )}
     >
-      <CardLink href={link ?? ''} newsLetterId={id} className='h-[95%]'>
-        <CardImage image={image} alt={alt} />
+      <CardLink href={link ?? ''} newsLetterId={id} className='grid h-[90%] w-full grid-rows-2'>
+        <div className='h-full w-full'>
+          <CardImage image={image} alt={alt} />
+        </div>
         <div className='flex flex-col gap-3 text-clip px-6 py-2'>
           <h4 className='card-title'>{title}</h4>
-          <div className='flex items-center'>
-            {days?.map((day) => (
-              <span key={day} className='badge'>
-                {day}
-              </span>
-            ))}
-          </div>
-          <span className='line-clamp-3 overflow-hidden max-md:text-sm'>{description}</span>
+          <span className='line-clamp-3 overflow-hidden max-md:line-clamp-2 max-md:text-sm'>{description}</span>
         </div>
       </CardLink>
-      <div className='flex w-fit justify-end gap-3 px-3 pb-4'>
+      <div className='flex w-fit items-center justify-end gap-3 px-3 pb-4'>
         {tags?.map((tag) => (
           <Link
             href={BASEURL + `/newsletter/${tag}`}

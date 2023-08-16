@@ -42,8 +42,8 @@ const ImageCarousel = ({ items, className }: Props) => {
         {items?.map((item, index) => (
           <motion.div
             ref={itemRef}
-            key={item.key}
-            className='w-1/4 flex-shrink-0 max-md:carousel-item max-lg:w-[40%] max-md:w-full'
+            key={`${item.key}_${index}_carousel`}
+            className='h-[400px] w-1/4 flex-shrink-0 max-md:carousel-item max-lg:w-[40%] max-md:w-[49%] max-sm:w-full'
             onViewportEnter={() => {
               setButtonStatus((prev) => {
                 return [...prev, index]

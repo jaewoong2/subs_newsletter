@@ -34,7 +34,7 @@ export const Home = async () => {
       <DataList
         title='뉴스레터 소식'
         items={articles?.data.map(({ id, link, description, title, thumbnail }) => (
-          <figure key={`card-${id}`} className='h-full w-full'>
+          <figure key={`card-${id}-${title}`} className='h-full w-full'>
             <Card title={title} description={description} image={thumbnail ?? ''} link={link} />
           </figure>
         ))}

@@ -12,16 +12,14 @@ const CardItem = ({
   days,
 }: Pick<NewsLetter, 'category' | 'id' | 'name' | 'link' | 'thumbnail' | 'description' | 'days'>) => {
   return (
-    <figure key={`card-${id}`} className='h-[500px] w-full'>
-      <Card
-        title={name}
-        description={description}
-        image={thumbnail ?? ''}
-        tags={category ?? []}
-        link={link}
-        days={days}
-      />
-    </figure>
+    <Card
+      title={name}
+      description={description}
+      image={thumbnail ?? ''}
+      tags={category ?? []}
+      link={link}
+      days={days}
+    />
   )
 }
 

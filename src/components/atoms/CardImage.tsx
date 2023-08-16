@@ -78,7 +78,7 @@ const CardImage = ({ image, alt }: Props) => {
   }, [])
 
   return (
-    <figure className='h-[50%] max-h-[50%] min-h-[50%] w-full' ref={figureRef}>
+    <figure className='h-[100%] max-h-[100%] min-h-[100%] w-full' ref={figureRef}>
       <img
         src={IMAGE_PLACEHOLDER}
         alt={alt ?? '카드 이미지'}
