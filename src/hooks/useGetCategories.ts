@@ -15,7 +15,7 @@ const fetcher: Fetcher<
   })
 
 const useGetCategories = () => {
-  return useSWR('api/categories', fetcher)
+  return useSWR('/api/categories', fetcher)
 }
 
 export default useGetCategories

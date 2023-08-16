@@ -24,7 +24,7 @@ const useGoogleLogin = (
     string
   >
 ) => {
-  return useSWRMutation('api/login', fetcher, { ...configuration })
+  return useSWRMutation('/api/login', fetcher, { ...configuration })
 }
 
 export default useGoogleLogin

@@ -7,7 +7,7 @@ const fetcher: MutationFetcher<NextResponse, string, Partial<Checksome>> = (url,
   fetch(url, { method: 'POST', body: JSON.stringify(arg) }).then((res) => res.json())
 
 const usePostChecksome = (configuration?: SWRMutationConfiguration<NextResponse, Error, string>) => {
-  const { data, ...rest } = useSWRMutation('api/checksome', fetcher, configuration)
+  const { data, ...rest } = useSWRMutation('/api/checksome', fetcher, configuration)
 
   return {
     data: data,

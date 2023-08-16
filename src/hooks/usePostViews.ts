@@ -13,7 +13,7 @@ const fetcher: MutationFetcher<NextResponse, string, Request> = (url, { arg }) =
   }).then((res) => res.json())
 
 const usePostViews = (configuration?: SWRMutationConfiguration<NextResponse, Error, 'string'>) => {
-  const { data, ...rest } = useSWRMutation('api/views', fetcher, configuration)
+  const { data, ...rest } = useSWRMutation('/api/views', fetcher, configuration)
 
   return {
     data: data,

@@ -18,7 +18,7 @@ const fetcher: MutationFetcher<UploadResponse, string, FormData> = (url, { arg }
   }).then((res) => res.json())
 
 const usePostUploadImage = (configuration?: SWRMutationConfiguration<UploadResponse, Error, string>) => {
-  const { data, ...rest } = useSWRMutation('api/upload', fetcher, configuration)
+  const { data, ...rest } = useSWRMutation('/api/upload', fetcher, configuration)
 
   return {
     data: data,

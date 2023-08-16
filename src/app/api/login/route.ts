@@ -29,7 +29,6 @@ export async function POST(request: NextRequest): Promise<NextResponse<null> | R
     if (response.error) {
       throw NextResponse.error()
     }
-
     return NextResponse.json({ ...response }, { status: 200 })
   } catch (error) {
     if (error instanceof Error) {
