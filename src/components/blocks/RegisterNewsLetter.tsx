@@ -12,7 +12,7 @@ import FormInput from '../atoms/FormInput'
 import FormTextarea from '../atoms/FormTextarea'
 import FormDropzone from '../atoms/FormDropzone'
 import FormBase from '../atoms/FormBase'
-import useGetSession from '@/hooks/useGetSesstion'
+import useGetSession from '@/hooks/useTriggerSession'
 
 const Register = () => {
   const toast = useToast()

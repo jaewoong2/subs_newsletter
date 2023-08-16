@@ -1,15 +1,14 @@
 'use client'
-import useGetSession from '@/hooks/useGetSesstion'
 import useSimpleModal from '@/hooks/useSimpleModal'
 import Link from 'next/link'
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import SignInModal from './SignInModal'
 import { twMerge } from 'tailwind-merge'
+import useGetSession from '@/hooks/useGetSession'
 
 const AuthButton = ({ className }: JSX.IntrinsicElements['button']) => {
-  const [mounted, setMounted] = useState(false)
+  const { data } = useGetSession({ errorRetryCount: 0 })
 
-  const { data, trigger } = useGetSession()
   const url = typeof window === 'undefined' ? '' : window.location.href
   const [isOpenModal, setIsOpenModal] = useState(false)
   const { isOpen, onClose } = useSimpleModal({
@@ -23,16 +22,6 @@ const AuthButton = ({ className }: JSX.IntrinsicElements['button']) => {
     if (data?.data.session) return
     setIsOpenModal(true)
   }
-
-  useEffect(() => {
-    setMounted(true)
-  }, [])
-
-  useEffect(() => {
-    if (!mounted) {
-      trigger()
-    }
-  }, [mounted, trigger])
 
   return (
     <>

@@ -13,7 +13,7 @@ type Props = UseModalProps
 const SignInModal = ({ isOpen, onClose }: Props) => {
   const toast = useToast()
   const router = useRouter()
-  const { data, trigger } = useGoogleLogin({
+  const { trigger } = useGoogleLogin({
     onSuccess(data) {
       router.push(data.data.url)
     },
@@ -48,10 +48,6 @@ const SignInModal = ({ isOpen, onClose }: Props) => {
   const onClickGoogleSignIn = useCallback(() => {
     trigger({ redirectUrl: window.location.href })
   }, [trigger])
-
-  useEffect(() => {
-    console.log(data)
-  }, [data])
 
   return (
     <SimpleModal isOpen={isOpen} onClose={onClose} title='로그인'>

@@ -9,8 +9,8 @@ const fetcher: MutationFetcher<Data> = (url: string) =>
     return res.json()
   })
 
-const useGetSession = (configuration?: SWRMutationConfiguration<Data, any, Key, never, any>) => {
-  return useSWRMutation<Data>('api/session', fetcher, { ...configuration })
+const useTriggerSession = (configuration?: SWRMutationConfiguration<Data, any, Key, never, any>) => {
+  return useSWRMutation<Data>('/api/session', fetcher, { ...configuration })
 }
 
-export default useGetSession
+export default useTriggerSession
