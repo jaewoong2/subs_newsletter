@@ -1,6 +1,7 @@
 import React from 'react'
 import FormBase from './FormBase'
 import { twMerge } from 'tailwind-merge'
+import useIsMobile from '@/hooks/useIsMobile'
 
 type Props = {
   label?: string
@@ -8,12 +9,19 @@ type Props = {
   isClicked?: boolean
 } & JSX.IntrinsicElements['textarea']
 
-const FormTextarea = ({ label, helper, isClicked, ...props }: Props) => {
+const FormTextarea = ({ label, helper, isClicked, className, ...props }: Props) => {
+  const { isIos } = useIsMobile()
+
   return (
     <FormBase label={label} required={props.required} helper={helper}>
       <textarea
         rows={6}
-        className={twMerge('textarea-bordered textarea font-tossFace', isClicked && 'peer/form invalid:input-error')}
+        className={twMerge(
+          'textarea-bordered textarea font-tossFace',
+          isClicked && 'peer/form invalid:input-error',
+          isIos() && 'text-[16px]',
+          className
+        )}
         {...props}
       />
     </FormBase>
