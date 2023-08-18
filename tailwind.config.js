@@ -13,6 +13,7 @@ module.exports = {
         PyeongChangPeace: 'PyeongChangPeace-Bold',
         neurimboGothicRegular: 'neurimboGothicRegular',
         SUITE: 'SUITE-Regular',
+        'Yeongdo-Rg': 'Yeongdo-Rg',
       },
 
       colors: {
