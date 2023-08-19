@@ -14,6 +14,7 @@ module.exports = {
         neurimboGothicRegular: 'neurimboGothicRegular',
         SUITE: 'SUITE-Regular',
         'Yeongdo-Rg': 'Yeongdo-Rg',
+        GangwonState: 'GangwonState',
       },
 
       colors: {
