@@ -19,7 +19,9 @@ const Body = ({ children, title, subTitle, button, buttonVariant = 'normal' }: P
       >
         <span className='text-black dark:text-slate-300'>{title}</span>
       </h1>
-      <p className='mb-6 max-w-2xl text-gray-600 dark:text-white md:text-lg lg:mb-8 lg:text-xl'>{subTitle}</p>
+      <p className='mb-6 max-w-2xl text-center text-gray-900 dark:text-white md:text-lg lg:mb-8 lg:text-xl'>
+        {subTitle}
+      </p>
       <button
         className={twMerge(
           'btn relative z-[10] mr-3 inline-flex items-center justify-center rounded-lg px-5 py-3 text-center text-base font-medium hover:text-white focus:ring-4 focus:ring-blue-300',

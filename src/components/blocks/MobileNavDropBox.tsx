@@ -20,9 +20,9 @@ const MobileNavDropBox = ({ asideItems, children }: PropsWithChildren<Props>) =>
           <HiOutlineMenu className='text-xl' />
         </label>
       </div>
-      <div className='drawer-side'>
-        <label htmlFor='drawer' className='drawer-overlay'></label>
-        <div className='h-full w-1/2 bg-white dark:bg-darkBg-300'>
+      <div className='drawer-side overflow-y-hidden'>
+        <label htmlFor='drawer' className='drawer-overlay overflow-y-hidden'></label>
+        <div className='h-full w-2/3 bg-white dark:bg-darkBg-300'>
           <Aside items={asideItems}>{children}</Aside>
         </div>
       </div>

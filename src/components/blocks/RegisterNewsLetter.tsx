@@ -22,6 +22,7 @@ const Register = () => {
       toast({
         title: '등록 완료',
         position: 'top-right',
+        isClosable: true,
       })
     },
     onError: (error) => {
@@ -30,6 +31,7 @@ const Register = () => {
         title: '등록 실패',
         description: error.message,
         position: 'top-right',
+        isClosable: true,
       })
     },
   })
@@ -145,13 +147,21 @@ export const RegisterNewsLetter = () => {
   const { trigger } = useGetSession({
     onSuccess: (data) => {
       if (!data.data.session) {
-        toast({ status: 'error', title: '로그인 후 등록이 가능해요' })
+        toast({
+          isClosable: true,
+          status: 'error',
+          title: '로그인 후 등록이 가능해요',
+        })
         return
       }
       setIsModalOpen(true)
     },
     onError: () => {
-      toast({ status: 'error', title: '로그인 후 등록이 가능해요' })
+      toast({
+        isClosable: true,
+        status: 'error',
+        title: '로그인 후 등록이 가능해요',
+      })
     },
   })
   const toast = useToast()
@@ -169,7 +179,7 @@ export const RegisterNewsLetter = () => {
 
   return (
     <section className='flex w-full justify-center bg-violet-100 p-20 dark:bg-darkBg-400 max-md:p-5 '>
-      <div className='flex w-full flex-col items-center justify-center border-x-0 p-20 dark:bg-darkBg-300 dark:text-white'>
+      <div className='flex w-full flex-col items-center justify-center border-x-0 p-20 dark:bg-darkBg-300 dark:text-white max-md:p-8'>
         <div>
           <span className='card-title font-tossFace'>📰 뉴섭에 소개하고 싶은 나만의 뉴스레터가 있다면?</span>
           <p className='font-semibold'>간단하게 등록하고, 뉴섭에 뉴스레터 소개하기</p>

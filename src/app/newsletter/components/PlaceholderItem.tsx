@@ -7,8 +7,8 @@ const PlaceholderItem = () => {
         </figure>
         <div className='flex h-full flex-col gap-3 text-clip px-6 py-2'>
           <h4 className='card-title w-36 animate-pulse rounded-xl bg-slate-100 text-slate-100'>placeholder</h4>
-          <span className='line-clamp-3 animate-pulse overflow-hidden rounded-xl bg-slate-100 text-slate-100 max-md:text-sm'>
-            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Libero perspiciatis aliquid eaque magnam sunt
+          <span className='line-clamp-3 animate-pulse overflow-hidden rounded-xl bg-slate-100 text-xs text-slate-100 max-md:text-sm'>
+            aorem ipsum dolor sit amet consectetur, adipisicing elit. Libero perspiciatis aliquid eaque magnam sunt
             ipsam debitis numquam. Voluptatum maxime minima, cumque necessitatibus debitis eaque illum, ipsa sint,
             labore sunt aspernatur!
           </span>

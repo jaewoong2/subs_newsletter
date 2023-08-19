@@ -23,7 +23,11 @@ const CheckSome = ({ category, onClose }: Props) => {
   const { trigger, isMutating } = usePostChecksome({
     onSuccess: () => {
       onClose()
-      toast({ title: '문의가 등록 되었어요 👏', position: 'top' })
+      toast({
+        title: '문의가 등록 되었어요 👏',
+        position: 'top',
+        isClosable: true,
+      })
     },
   })
 

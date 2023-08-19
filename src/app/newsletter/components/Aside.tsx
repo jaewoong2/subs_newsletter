@@ -12,7 +12,10 @@ type Props = {
 
 const Aside = ({ items, children }: PropsWithChildren<Props>) => {
   return (
-    <aside className='z-[19] flex h-full w-full flex-col px-3 py-10' aria-label='sidebar'>
+    <aside
+      className='z-[19] flex w-full flex-col bg-white px-3 py-10 dark:border-darkBg-100 dark:bg-darkBg-300'
+      aria-label='sidebar'
+    >
       <ul className='flex flex-col gap-2 bg-white font-tossFace font-semibold dark:border-darkBg-100 dark:bg-darkBg-300 '>
         {items.map(({ href, title, badge }) => (
           <li className={'relative flex w-full flex-col items-end'} key={href}>
