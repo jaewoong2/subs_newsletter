@@ -137,3 +137,23 @@ export async function getNewsLettersByCategory(category?: string) {
     return null
   }
 }
+
+export async function getNewsLettersByName(name?: string) {
+  const supabase = createServerSupabaseClient()
+
+  if (!name) {
+    return null
+  }
+
+  try {
+    const response = await supabase.from('newsletter').select('*').eq('name', decodeURIComponent(name)).single()
+
+    if (!response.data) {
+      throw new Error('No data found')
+    }
+
+    return response
+  } catch (err) {
+    return null
+  }
+}

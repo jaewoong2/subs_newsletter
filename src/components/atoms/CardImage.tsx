@@ -1,6 +1,8 @@
 'use client'
 import { useRef, useEffect } from 'react'
 import { NewsLetter } from '@/types'
+import { IMAGE } from '@/constants'
+import { twMerge } from 'tailwind-merge'
 
 type Props = {
   image: string
@@ -8,14 +10,13 @@ type Props = {
   title?: React.ReactNode
   description?: React.ReactNode
   tags?: string[]
+  className?: string
 } & Partial<NewsLetter>
 
-const IMAGE_PLACEHOLDER =
-  'https://ywnfqdpcmgtllkshgzsl.supabase.co/storage/v1/object/public/newsletter/image/placeholder.png'
 const FIT_WIDTH_CLASS = ['w-full', 'max-w-full', 'h-auto', 'max-h-full', 'object-cover']
 const FIT_HEIGHT_CLASS = ['h-full', 'max-h-full', 'w-auto', 'max-w-full', 'object-cover']
 
-const CardImage = ({ image, alt }: Props) => {
+const CardImage = ({ image, alt, className }: Props) => {
   const imageRef = useRef<HTMLImageElement>(null)
   const figureRef = useRef<HTMLDivElement>(null)
 
@@ -80,15 +81,15 @@ const CardImage = ({ image, alt }: Props) => {
   return (
     <figure className='h-[100%] max-h-[100%] min-h-[100%] w-full' ref={figureRef}>
       <img
-        src={IMAGE_PLACEHOLDER}
+        src={IMAGE.placeholder}
         alt={alt ?? '카드 이미지'}
         ref={imageRef}
         onError={(event) => {
-          event.currentTarget.setAttribute('src', IMAGE_PLACEHOLDER)
+          event.currentTarget.setAttribute('src', IMAGE.placeholder)
         }}
         onLoad={onLoadImage}
         onResize={onLoadImage}
-        className='lazy h-auto w-auto animate-pulse'
+        className={twMerge('lazy h-auto w-auto animate-pulse', className)}
         data-src={image}
       />
     </figure>
