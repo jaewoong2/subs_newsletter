@@ -5,29 +5,33 @@ import { AbsoluteCenter, Box, Divider, UseModalProps, useToast } from '@chakra-u
 import { FcGoogle } from 'react-icons/fc'
 import useMagicLinkLogin from '@/hooks/useMagicLinkLogin'
 import FormInput from '../atoms/FormInput'
-import { useRouter } from 'next/navigation'
 import useGoogleLogin from '@/hooks/useGoogleLogin'
+import useGetSession from '@/hooks/useGetSession'
 
 type Props = UseModalProps
 
 const SignInModal = ({ isOpen, onClose }: Props) => {
   const toast = useToast()
-  const router = useRouter()
+  const { data: session } = useGetSession()
+
   const { trigger } = useGoogleLogin({
     onSuccess(data) {
-      router.push(data.data.url)
+      window.open(data.data.url, '_blank', 'width=500, height=500')
     },
   })
+
   const { trigger: login, isMutating } = useMagicLinkLogin({
     onSuccess: () => {
       onClose()
       toast({
+        isClosable: true,
         title: '로그인 메일 전송 완료',
         description: '이메일을 확인 해주세요',
       })
     },
     onError: (error) => {
       toast({
+        isClosable: true,
         status: 'error',
         title: '등록 실패',
         description: error.message,
@@ -36,6 +40,7 @@ const SignInModal = ({ isOpen, onClose }: Props) => {
     },
   })
   const [email, setEmail] = useState('')
+
   const onChangeEmail = (e: React.ChangeEvent<HTMLInputElement>) => {
     setEmail(e.target.value)
   }
@@ -48,6 +53,18 @@ const SignInModal = ({ isOpen, onClose }: Props) => {
   const onClickGoogleSignIn = useCallback(() => {
     trigger({ redirectUrl: window.location.href })
   }, [trigger])
+
+  useEffect(() => {
+    if (isOpen && session?.data.session) {
+      onClose()
+      toast({
+        isClosable: true,
+        status: 'success',
+        title: '로그인 완료 되었습니다',
+        position: 'top-right',
+      })
+    }
+  }, [session?.data.session, isOpen, onClose, toast])
 
   return (
     <SimpleModal isOpen={isOpen} onClose={onClose} title='로그인'>

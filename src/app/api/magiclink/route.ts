@@ -15,6 +15,12 @@ export async function POST(request: NextRequest): Promise<NextResponse<null> | R
 
     const supabase = createRouteHandlerClient<Database>({ cookies })
 
+    const session = await supabase.auth.getSession()
+
+    if (session.data.session) {
+      return NextResponse.json({ message: '로그인이 완료 되었습니다' }, { status: 401 })
+    }
+
     const response = await supabase.auth.signInWithOtp({
       email: email.email,
       options: {
