@@ -20,12 +20,14 @@ const SignOut = ({ searchParams }: Props) => {
       toast({
         title: '로그아웃 성공 😎',
         position: 'top',
+        isClosable: true,
       })
     },
     onError: () => {
       toast({
         title: '로그아웃 실패',
         position: 'top',
+        isClosable: true,
       })
     },
   })
