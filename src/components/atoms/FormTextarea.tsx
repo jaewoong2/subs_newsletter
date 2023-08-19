@@ -17,7 +17,7 @@ const FormTextarea = ({ label, helper, isClicked, className, ...props }: Props) 
       <textarea
         rows={6}
         className={twMerge(
-          'textarea-bordered textarea font-tossFace',
+          'textarea-bordered textarea placeholder:font-tossFace',
           isClicked && 'peer/form invalid:input-error',
           isIos() && 'text-[16px]',
           className

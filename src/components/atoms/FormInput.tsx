@@ -16,7 +16,7 @@ const FormInput = ({ label, helper, isClicked, className, ...props }: Props) => 
     <FormBase label={label} required={props.required} helper={helper}>
       <input
         className={twMerge(
-          'input-bordered input font-tossFace',
+          'input-bordered input placeholder:font-tossFace',
           isClicked && 'peer/form invalid:input-error',
           isIos() && 'text-[16px]',
           className
