@@ -23,6 +23,8 @@ const Creator = async ({ params }: NextPageProps<Params>) => {
   // 4. creator db
   // 5. creator`s contents
 
+  // 6. 세션에 로그인된 아이디의 등록된 ID가 해당 뉴스레터를 관리 할 수 있으면 수정 페이지 OK
+
   return (
     <div className='flex w-full flex-col items-center px-4'>
       <CardLink
