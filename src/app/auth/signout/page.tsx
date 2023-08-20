@@ -16,7 +16,7 @@ const SignOut = ({ searchParams }: Props) => {
 
   const { trigger } = useSignout({
     onSuccess: () => {
-      navigtaion.replace(searchParams.redirectUrl)
+      navigtaion.replace(searchParams?.redirectUrl ?? '/')
       toast({
         title: '로그아웃 성공 😎',
         position: 'top',

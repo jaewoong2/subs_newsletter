@@ -16,7 +16,7 @@ export async function GET(request: NextRequest) {
   }
 
   if (!redirectUrl) {
-    return NextResponse.redirect(requestUrl.origin)
+    return NextResponse.redirect(requestUrl.origin + '/auth/signin')
   }
 
   // URL to redirect to after sign in process completes
