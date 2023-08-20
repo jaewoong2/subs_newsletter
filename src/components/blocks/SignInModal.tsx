@@ -21,7 +21,16 @@ const SignInModal = ({ isOpen, onClose }: Props) => {
   })
 
   const { trigger: login, isMutating } = useMagicLinkLogin({
-    onSuccess: () => {
+    onSuccess: (data) => {
+      if (200 > data.status || data.status > 299) {
+        toast({
+          isClosable: true,
+          status: 'error',
+          title: '메세지 전송 실패',
+          position: 'top-right',
+        })
+        return
+      }
       onClose()
       toast({
         isClosable: true,
@@ -37,6 +46,7 @@ const SignInModal = ({ isOpen, onClose }: Props) => {
         description: error.message,
         position: 'top-right',
       })
+      onClose()
     },
   })
   const [email, setEmail] = useState('')
@@ -67,7 +77,12 @@ const SignInModal = ({ isOpen, onClose }: Props) => {
   }, [session?.data.session, isOpen, onClose, toast])
 
   return (
-    <SimpleModal isOpen={isOpen} onClose={onClose} title='로그인'>
+    <SimpleModal
+      isOpen={isOpen}
+      onClose={onClose}
+      title='로그인'
+      subTitle='뉴스레터 크리에이터 라면, 더 많은 기능을 사용 할 수 있어요'
+    >
       <div className='form-control w-full pb-5'>
         <label className='label'>
           <span className='label-text'>이메일을 입력하세요.</span>
