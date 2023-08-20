@@ -91,52 +91,78 @@ export interface Database {
         Row: {
           category: string[] | null
           created_at: string | null
+          days: string[] | null
           description: string | null
           id: number
           link: string | null
           name: string | null
           thumbnail: string | null
           view: number | null
-          days: string[] | null
         }
         Insert: {
           category?: string[] | null
           created_at?: string | null
+          days?: string[] | null
           description?: string | null
           id?: number
           link?: string | null
           name?: string | null
           thumbnail?: string | null
           view?: number | null
-          days?: string[] | null
         }
         Update: {
           category?: string[] | null
           created_at?: string | null
+          days?: string[] | null
           description?: string | null
           id?: number
           link?: string | null
           name?: string | null
           thumbnail?: string | null
           view?: number | null
-          days?: string[] | null
         }
         Relationships: []
+      }
+      users: {
+        Row: {
+          avatar_url: string | null
+          full_name: string | null
+          id: string
+          updated_at: string | null
+          username: string | null
+          website: string | null
+        }
+        Insert: {
+          avatar_url?: string | null
+          full_name?: string | null
+          id: string
+          updated_at?: string | null
+          username?: string | null
+          website?: string | null
+        }
+        Update: {
+          avatar_url?: string | null
+          full_name?: string | null
+          id?: string
+          updated_at?: string | null
+          username?: string | null
+          website?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: 'users_id_fkey'
+            columns: ['id']
+            referencedRelation: 'users'
+            referencedColumns: ['id']
+          }
+        ]
       }
     }
     Views: {
       categories: {
         Row: {
-          categories?: string | null
-          count?: number | null
-        }
-        Insert: {
-          categories?: string | null
-          count?: number | null
-        }
-        Update: {
-          categories?: string | null
-          count?: number | null
+          categories: string | null
+          count: number | null
         }
         Relationships: []
       }
@@ -144,20 +170,20 @@ export interface Database {
         Row: {
           category: string[] | null
           created_at: string | null
+          days: string[] | null
           description: string | null
-          id: number
+          id: number | null
           link: string | null
           name: string | null
           thumbnail: string | null
-          days: string[] | null
           view: number | null
         }
         Insert: {
           category?: string[] | null
           created_at?: string | null
+          days?: string[] | null
           description?: string | null
           id?: number | null
-          days?: string[] | null
           link?: string | null
           name?: string | null
           thumbnail?: string | null
