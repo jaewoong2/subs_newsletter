@@ -18,7 +18,6 @@ const ArticlePage = async () => {
           days={[]}
           thumbnail={thumbnail}
           link={link}
-          id={id}
           key={id}
         />
       ))}
