@@ -157,3 +157,19 @@ export async function getNewsLettersByName(name?: string) {
     return null
   }
 }
+
+export async function getSession() {
+  const supabase = createServerSupabaseClient()
+
+  try {
+    const response = await supabase.auth.getSession()
+
+    if (!response.data) {
+      throw new Error('No data found')
+    }
+
+    return response
+  } catch (err) {
+    return null
+  }
+}
