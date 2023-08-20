@@ -1,8 +1,9 @@
 import React from 'react'
 import { getArticles, getNewsLetters } from '@/app/supabase-server'
+import CardItem from '@/app/newsletter/components/CardItem'
 import DataList from '../blocks/DataList'
 import Card from '../atoms/Card'
-import CardItem from '@/app/newsletter/components/CardItem'
+import UserCheckModal from '../blocks/UserCheckModal'
 
 export const Home = async () => {
   const articles = await getArticles()
@@ -16,7 +17,6 @@ export const Home = async () => {
           <CardItem
             days={days}
             key={id}
-            id={id}
             link={link}
             thumbnail={thumbnail}
             name={name}
@@ -45,6 +45,7 @@ export const Home = async () => {
           </>
         }
       />
+      <UserCheckModal />
     </main>
   )
 }
