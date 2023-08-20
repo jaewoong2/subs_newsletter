@@ -3,8 +3,9 @@ import { Providers } from '@/lib/Provider'
 import { ThemeProviders } from '@/lib/ThemeProvider'
 
 import './globals.css'
+import { METADATA } from '@/constants'
 
-export const metadata: Metadata = {}
+export const metadata: Metadata = METADATA
 
 export const dynamic = 'force-dynamic'
 export const revalidate = 0

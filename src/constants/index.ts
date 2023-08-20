@@ -15,24 +15,24 @@ export const IMAGE = {
 
 export const METADATA: Metadata = {
   generator: 'Next.js',
-  applicationName: '회원가입 UX 테스트',
+  applicationName: '뉴섭 | 뉴스레터를 한 곳에',
   referrer: 'origin-when-cross-origin',
-  keywords: ['Next.js', 'UI/UX'],
-  authors: [{ name: '@jaewoong2', url: 'https://github.com/jaewoong2/ux-tester' }],
+  keywords: ['뉴스레터', 'newsletter', '뉴스레터구독', '뉴스레터추천', '뉴스레터 추천'],
+  authors: [{ name: '@jaewoong2', url: 'https://github.com/jaewoong2' }],
   creator: '@jaewoong2',
-  title: '나의 회원가입 UX 테스트',
-  description: '나만의 회원가입 UX 를 만들고 점수를 확인 해보세요 :)',
+  title: '뉴섭 | 뉴스레터를 한 곳에',
+  description: '내가 원하는 뉴스레터를 찾아보고 구독 하세요 🤩',
   openGraph: {
-    title: '나만의 회원가입 UX 테스트',
-    description: '나만의 회원가입 UX 를 만들고 점수를 확인 해보세요 :)',
-    images: 'https://ndavhlqivyieuaehsnne.supabase.co/storage/v1/object/public/image/thumbnail.png',
+    title: '뉴섭 | 뉴스레터를 한 곳에',
+    description: '내가 원하는 뉴스레터를 찾아보고 구독 하세요 🤩',
+    images: IMAGE.placeholder,
   },
   twitter: {
     card: 'summary_large_image',
-    images: 'https://ndavhlqivyieuaehsnne.supabase.co/storage/v1/object/public/image/thumbnail.png',
-    site: '',
-    title: '나만의 회원가입 UX 테스트',
-    description: '나만의 회원가입 UX 를 만들고 점수를 확인 해보세요 :)',
+    images: IMAGE.placeholder,
+    site: BASEURL,
+    title: '뉴섭 | 뉴스레터를 한 곳에',
+    description: '내가 원하는 뉴스레터를 찾아보고 구독 하세요 🤩',
   },
 }
 
