@@ -1,5 +1,5 @@
 'use client'
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import useSimpleModal from '@/hooks/useSimpleModal'
 import SimpleModal from '../atoms/SimpleModal'
 import Link from 'next/link'
@@ -14,13 +14,17 @@ const UserCheckModal = () => {
       setIsOpen_(false)
     },
   })
-  const user = useGetUser()
+  const user = useGetUser({
+    onSuccess(user) {
+      if (user?.data && (!user.data.avatar_url || !user.data.full_name)) {
+        setIsOpen_(true)
+      }
+    },
+  })
 
-  useEffect(() => {
-    if (user.data?.data.user && (!user?.data?.data.user.avatar_url || !!user?.data?.data.user?.full_name)) {
-      setIsOpen_(true)
-    }
-  }, [user])
+  if (!user) {
+    return null
+  }
 
   return (
     <>
@@ -30,7 +34,7 @@ const UserCheckModal = () => {
           <div className='text-sm font-thin text-gray-800'>프로필 완성을 해주세요</div>
           <ModalCloseButton />
         </div>
-        <Link href={`/user/${user?.data?.data.user?.id}`} className='w-full'>
+        <Link href={`/user/${user?.data?.data?.id}`} className='w-full'>
           <button className='btn w-full'>프로필 수정 하기</button>
         </Link>
         <div className='h-6' />

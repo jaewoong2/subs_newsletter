@@ -173,3 +173,20 @@ export async function getSession() {
     return null
   }
 }
+
+export const getUserById = async (id: number | string) => {
+  const supabase = createServerSupabaseClient()
+
+  try {
+    const response = await supabase.from('users').select('*').eq('id', id).single()
+    const user = await supabase.auth.getUser()
+
+    if (!response.data) {
+      throw new Error('No data found')
+    }
+
+    return { ...response, data: { ...response.data, email: user.data.user?.email } }
+  } catch (err) {
+    return null
+  }
+}

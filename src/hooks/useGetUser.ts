@@ -1,7 +1,7 @@
 import useSWR, { Fetcher, SWRConfiguration } from 'swr'
 import { Users } from '@/types'
 
-type Data = { data: { user: Users | null } }
+type Data = { data: Users | null }
 
 const fetcher: Fetcher<Data> = (url: string) =>
   fetch(url, { method: 'GET', cache: 'no-cache' }).then(async (res) => {
