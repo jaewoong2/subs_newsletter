@@ -17,13 +17,13 @@ const getOrder = (searchParams?: string) => {
   return 'created_at'
 }
 
-export async function getNewsLetters(searchParams?: string | 'popular' | 'new') {
+export async function getNewsLetters(searchParams?: string | 'popular' | 'new', limit = 10) {
   const supabase = createServerSupabaseClient()
   try {
     const response = await supabase
       .from('newsletter')
       .select('*')
-      .limit(10)
+      .limit(limit)
       .order(getOrder(searchParams), { foreignTable: '', ascending: false })
 
     if (!response.data) {
