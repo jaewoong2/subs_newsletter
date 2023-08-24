@@ -5,13 +5,19 @@ import SimpleModal from '../atoms/SimpleModal'
 import Link from 'next/link'
 import { ModalCloseButton } from '@chakra-ui/react'
 import useGetUser from '@/hooks/useGetUser'
+import useLocalStorage from '@/hooks/useLocalstorage'
 
 const UserCheckModal = () => {
+  const { value: isProfileEdit, setValue: setIsProfileEdit } = useLocalStorage<boolean>('is_profile_edit', {
+    defaultValue: false,
+  })
+
   const [isOpen_, setIsOpen_] = useState(false)
   const { isOpen, onClose } = useSimpleModal({
     isOpen: isOpen_,
     onClose() {
       setIsOpen_(false)
+      setIsProfileEdit(true)
     },
   })
   const user = useGetUser({
@@ -28,7 +34,7 @@ const UserCheckModal = () => {
 
   return (
     <>
-      <SimpleModal isOpen={isOpen} onClose={onClose} size={'sm'} closeOnOverlayClick>
+      <SimpleModal isOpen={!isProfileEdit && isOpen} onClose={onClose} size={'sm'} closeOnOverlayClick>
         <div className='flex flex-col pb-10 pt-5'>
           <div className='text-lg font-bold'>프로필이 아직 완성이 안되었어요</div>
           <div className='text-sm font-thin text-gray-800'>프로필 완성을 해주세요</div>
