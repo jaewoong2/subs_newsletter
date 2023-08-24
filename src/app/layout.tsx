@@ -15,10 +15,11 @@ type Props = {
 }
 export default function RootLayout({ children }: Props) {
   return (
-    <html lang='kr' className='min-h-screen overflow-scroll'>
+    <html lang='kr' className='min-h-screen'>
       <head>
         <link rel='preconnect' href='https://cdn.jsdelivr.net' crossOrigin='' />
         <link href='https://cdn.jsdelivr.net/gh/toss/tossface/dist/tossface.css' rel='stylesheet' type='text/css' />
+        <link rel='canonical' href='https://newsusbs.site' />
       </head>
       <body suppressHydrationWarning={true} className='relative min-h-screen overflow-scroll bg-white'>
         <ThemeProviders>
