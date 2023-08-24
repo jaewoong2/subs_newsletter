@@ -21,10 +21,10 @@ export const Navigation = ({ className, menu }: Props) => {
       )}
     >
       <Link href={'/'}>
-        <div className='flex items-end justify-center gap-2 whitespace-nowrap font-bold'>
+        <figure className='flex items-end justify-center gap-2 whitespace-nowrap font-bold'>
           <Image src={IMAGE.logo} alt='뉴섭로고' width={'32'} height={32} className='rounded-xl' />
-          <h1 className='translate-y-1 font-Yeongdo-Rg text-2xl font-bold'>newsubs_</h1>
-        </div>
+          <figcaption className='translate-y-1 font-Yeongdo-Rg text-2xl font-bold'>newsubs_</figcaption>
+        </figure>
       </Link>
       <ul className='flex w-full items-center justify-center gap-3 text-base font-semibold max-md:hidden'>
         <Link className='font-SUITE underline hover:text-slate-400' href={'/newsletter'}>

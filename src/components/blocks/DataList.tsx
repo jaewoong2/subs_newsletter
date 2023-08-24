@@ -14,9 +14,9 @@ type Props = {
 const DataList = ({ title, items, lastItem, variant = 'carousel' }: Props) => {
   return items ? (
     <section className='flex w-full flex-col justify-center'>
-      <h1 className='px-20 text-xl font-bold max-lg:px-10 max-md:px-0' id='new'>
+      <h3 className='px-20 text-xl font-bold max-lg:px-10 max-md:px-0' id='new'>
         {title}
-      </h1>
+      </h3>
       {variant === 'carousel' && (
         <ImageCarousel
           items={items.concat(

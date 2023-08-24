@@ -30,7 +30,7 @@ const SimpleModal = ({ onClose, isOpen, title, subTitle, children, size, classNa
           {(title || subTitle) && (
             <ModalHeader className='sticky top-0 border-b bg-white bg-opacity-50 backdrop-blur-sm'>
               <div className='flex flex-col'>
-                <h1>{title}</h1>
+                <span>{title}</span>
                 <div className='font-tossFace text-xs text-gray-600'>{subTitle}</div>
               </div>
               <ModalCloseButton />
