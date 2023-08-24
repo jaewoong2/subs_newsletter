@@ -10,6 +10,7 @@ const AuthButton = ({ className }: JSX.IntrinsicElements['button']) => {
   const { data } = useGetSession({ errorRetryCount: 0 })
 
   const url = typeof window === 'undefined' ? '' : window.location.href
+
   const [isOpenModal, setIsOpenModal] = useState(false)
   const { isOpen, onClose } = useSimpleModal({
     isOpen: isOpenModal,

@@ -13,8 +13,8 @@ const Body = ({ children, title, subTitle, button, buttonVariant = 'normal' }: P
     <>
       <h1
         className={twMerge(
-          'relative mb-4 max-w-2xl text-3xl font-extrabold leading-none  tracking-tight',
-          ' md:text-4xl xl:text-5xl'
+          'relative mb-4 max-w-2xl text-3xl font-extrabold leading-none tracking-tight',
+          'md:text-4xl xl:text-5xl'
         )}
       >
         <span className='text-black dark:text-slate-300'>{title}</span>
