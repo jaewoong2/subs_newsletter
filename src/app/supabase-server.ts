@@ -111,6 +111,22 @@ export async function getCategories() {
   } catch (err) {}
 }
 
+export async function getNewsLettersById(ids: number[]) {
+  const supabase = createServerSupabaseClient()
+
+  try {
+    const response = await supabase.from('newsletter').select('*').contains('id', ids)
+
+    if (!response.data) {
+      throw new Error('No data found')
+    }
+
+    return response
+  } catch (err) {
+    return null
+  }
+}
+
 export async function getNewsLettersByCategory(category?: string) {
   const supabase = createServerSupabaseClient()
 
