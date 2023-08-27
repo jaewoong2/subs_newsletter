@@ -15,13 +15,12 @@ export const Hero = ({}: Props) => {
             뉴스레터는,
             <span className='relative z-10 h-full pl-3 font-GangwonState text-white dark:text-black'>{'뉴섭'}</span>
             에서
-            {'뉴섭'}
             <Image
               src='https://ywnfqdpcmgtllkshgzsl.supabase.co/storage/v1/object/public/newsletter/image/subsubsfamily.PNG'
               alt='섭섭이'
               width={150}
               height={40}
-              className='absolute bottom-[110%] right-0 z-[9] scale-x-[-1] animate-flip-up'
+              className='absolute bottom-[110%] right-0 z-[9] scale-x-[-1] animate-jump'
             />
           </div>
         }
