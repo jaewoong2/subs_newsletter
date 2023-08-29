@@ -87,6 +87,28 @@ export interface Database {
         }
         Relationships: []
       }
+      newsletter_sequences: {
+        Row: {
+          created_at: string | null
+          id: number
+          source_newsletter: number
+          target_newsletter: number
+          count: number
+        }
+        Insert: {
+          id?: number
+          source_newsletter?: number
+          target_newsletter?: number
+          count?: number
+        }
+        Update: {
+          id?: number
+          source_newsletter?: number
+          target_newsletter?: number
+          count?: number
+        }
+        Relationships: []
+      }
       newsletter: {
         Row: {
           category: string[] | null
