@@ -14,7 +14,7 @@ const NewsLetter = async () => {
       variant='block'
       title=''
       items={newsletters?.data.map((newsletter) => (
-        <CardItem {...newsletter} key={newsletter.id} />
+        <CardItem {...newsletter} id={newsletter?.id ? newsletter.id : -1} key={newsletter.id} />
       ))}
     />
   )

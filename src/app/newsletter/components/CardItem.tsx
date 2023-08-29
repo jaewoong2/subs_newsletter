@@ -9,9 +9,11 @@ const CardItem = ({
   thumbnail,
   description,
   days,
-}: Pick<NewsLetter, 'category' | 'name' | 'link' | 'thumbnail' | 'description' | 'days'>) => {
+  id,
+}: Pick<NewsLetter, 'category' | 'name' | 'link' | 'thumbnail' | 'description' | 'days' | 'id'>) => {
   return (
     <Card
+      id={id}
       title={name}
       description={description}
       image={thumbnail ?? ''}

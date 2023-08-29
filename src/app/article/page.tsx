@@ -12,6 +12,7 @@ const ArticlePage = async () => {
       title=''
       items={article?.data.map(({ id, title, description, link, thumbnail }) => (
         <CardItem
+          id={id}
           name={title}
           description={description}
           category={[]}

@@ -15,6 +15,7 @@ export const Home = async () => {
         title='최신 뉴스레터'
         items={newsletters?.data.map(({ id, link, thumbnail, name, description, category, days }) => (
           <CardItem
+            id={id}
             days={days}
             key={id}
             link={link}

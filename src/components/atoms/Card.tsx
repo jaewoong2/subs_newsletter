@@ -14,7 +14,7 @@ type Props = {
   tags?: string[]
 } & Partial<NewsLetter>
 
-const Card = ({ title, description, image, alt, tags, link, id }: Props) => {
+const Card = ({ title, description, image, alt, tags, id }: Props) => {
   return (
     <li
       className={twMerge(
@@ -23,7 +23,7 @@ const Card = ({ title, description, image, alt, tags, link, id }: Props) => {
         'flex flex-col'
       )}
     >
-      <CardLink href={link ?? ''} newsLetterId={id} className='grid h-[90%] w-full grid-rows-2'>
+      <CardLink href={BASEURL + `/${title}`} newsLetterId={id} className='grid h-[90%] w-full grid-rows-2'>
         <div className='h-full w-full'>
           <CardImage image={image} alt={alt} />
         </div>
