@@ -29,15 +29,15 @@ export async function POST(request: NextRequest): Promise<NextResponse<null> | R
       count: 1,
     })
     return NextResponse.json({ status: response.status, statusText: response.statusText })
-  } else {
-    const response = await supabase
-      .from('newsletter_sequences')
-      .update({
-        count: find.data.count + 1,
-      })
-      .eq('source_newsletter', +sourceNewsletter)
-      .eq('target_newsletter', +targetNewsletter)
-
-    return NextResponse.json({ status: response.status, statusText: response.statusText })
   }
+
+  const response = await supabase
+    .from('newsletter_sequences')
+    .update({
+      count: (find.data?.count ?? 0) + 1,
+    })
+    .eq('source_newsletter', +sourceNewsletter)
+    .eq('target_newsletter', +targetNewsletter)
+
+  return NextResponse.json({ status: response.status, statusText: response.statusText })
 }

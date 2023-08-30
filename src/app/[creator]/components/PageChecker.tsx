@@ -2,7 +2,8 @@
 
 import useLocalStorage from '@/hooks/useLocalstorage'
 import usePostNewsletterSequence from '@/hooks/usePostNewsletterSequence'
-import { useCallback, useEffect, useState } from 'react'
+import usePostViews from '@/hooks/usePostViews'
+import { useCallback, useEffect } from 'react'
 
 type Props = {
   id: number | string
@@ -10,6 +11,7 @@ type Props = {
 
 const PageChecker = ({ id: currentId }: Props) => {
   const { value: previousId, setValue } = useLocalStorage<string>('currentNewsletter')
+  const { trigger: postView } = usePostViews()
   const { trigger, isMutating } = usePostNewsletterSequence()
 
   const postNewsLetterSequence = useCallback(async () => {
@@ -21,6 +23,10 @@ const PageChecker = ({ id: currentId }: Props) => {
 
     setValue(`${currentId}`)
   }, [currentId, isMutating, previousId, setValue, trigger])
+
+  useEffect(() => {
+    postView({ id: `${currentId}`, type: 'newsletter' })
+  }, [currentId, postView])
 
   useEffect(() => {
     postNewsLetterSequence()

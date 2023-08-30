@@ -206,3 +206,62 @@ export const getUserById = async (id: number | string) => {
     return null
   }
 }
+
+export const getRelatedNewsletter = async (id: number | string) => {
+  const functionName = 'explore_related_newsletters'
+
+  const supabase = createServerSupabaseClient()
+
+  try {
+    const response = await supabase.rpc(functionName, { starting_item_id: +id })
+
+    if (!response.data) {
+      throw new Error('No data found')
+    }
+
+    return response
+  } catch (err) {
+    return null
+  }
+}
+
+export const getRelatedNewsletterByCategory = async (id: number | string) => {
+  const supabase = createServerSupabaseClient()
+
+  try {
+    const currentNewsletter = await supabase.from('newsletter').select('id, category').eq('id', +id).single()
+
+    if (!currentNewsletter.data?.category) {
+      throw new Error('No data found')
+    }
+
+    const response = await supabase
+      .from('newsletter')
+      .select('id')
+      .or(currentNewsletter.data?.category?.map((category) => `category.ov.{${category}}`).join(', ') ?? '')
+
+    if (!response.data) {
+      throw new Error('No data found')
+    }
+
+    return response
+  } catch (err) {
+    return null
+  }
+}
+
+export const getRelatedNewsletters = async (ids: number[]) => {
+  const supabase = createServerSupabaseClient()
+
+  try {
+    const newsletters = await supabase.from('newsletter').select('*').in('id', ids)
+
+    if (!newsletters.data || newsletters.data.length === 0) {
+      throw new Error('No data found')
+    }
+
+    return newsletters
+  } catch (err) {
+    return null
+  }
+}
