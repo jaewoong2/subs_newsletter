@@ -14,7 +14,11 @@ import FormDropzone from '../atoms/FormDropzone'
 import FormBase from '../atoms/FormBase'
 import useGetSession from '@/hooks/useTriggerSession'
 
-const Register = () => {
+type Props = {
+  onClose: () => void
+}
+
+const Register = ({ onClose }: Props) => {
   const toast = useToast()
   const [isClicked, setIsClicked] = useState<boolean>(false)
   const { trigger, isMutating } = usePostNewsletter({
@@ -24,6 +28,7 @@ const Register = () => {
         position: 'top-right',
         isClosable: true,
       })
+      onClose()
     },
     onError: (error) => {
       toast({
@@ -33,6 +38,7 @@ const Register = () => {
         position: 'top-right',
         isClosable: true,
       })
+      onClose()
     },
   })
   const [newsLetter, setNewsLetter] = useState<Partial<NewsLetter>>({})
@@ -194,7 +200,7 @@ export const RegisterNewsLetter = () => {
         title={'뉴스레터 등록하기'}
         subTitle='등록하시고자 하는 뉴스레터에 대해 알려주세요 🤩'
       >
-        <Register />
+        <Register onClose={onClose} />
       </SimpleModal>
     </section>
   )

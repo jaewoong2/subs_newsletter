@@ -20,7 +20,6 @@ export const useSearch = () => {
   const { data, ...rest } = useSWR<SearchResponse>(url, fetcher, {
     keepPreviousData: true,
     onSuccess(data) {
-      console.log(data)
       setIsEmpty(
         data?.articles.error !== null ||
           data?.letters.error !== null ||

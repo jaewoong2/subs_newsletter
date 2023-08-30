@@ -20,7 +20,8 @@ const Card = ({ title, description, image, alt, tags, id }: Props) => {
       className={twMerge(
         'group card mx-auto h-full w-full scale-95 overflow-hidden border bg-base-100 transition-transform',
         'hover:scale-100 hover:border-slate-400 dark:border-darkBg-800 dark:bg-darkBg-100',
-        'flex flex-col'
+        'flex flex-col',
+        'animate-fade'
       )}
     >
       <CardLink href={BASEURL + `/${title}`} newsLetterId={id} className='grid h-[90%] w-full grid-rows-2'>

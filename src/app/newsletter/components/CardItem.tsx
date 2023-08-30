@@ -12,15 +12,17 @@ const CardItem = ({
   id,
 }: Pick<NewsLetter, 'category' | 'name' | 'link' | 'thumbnail' | 'description' | 'days' | 'id'>) => {
   return (
-    <Card
-      id={id}
-      title={name}
-      description={description}
-      image={thumbnail ?? ''}
-      tags={category ?? []}
-      link={link}
-      days={days}
-    />
+    <div className='h-[450px] max-md:h-[300px]'>
+      <Card
+        id={id}
+        title={name}
+        description={description}
+        image={thumbnail ?? ''}
+        tags={category ?? []}
+        link={link}
+        days={days}
+      />
+    </div>
   )
 }
 

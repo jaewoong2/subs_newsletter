@@ -11,7 +11,7 @@ import ThemeToogleButton from '@/components/blocks/ThemeToogleButton'
 
 const NewsLetterLayout = ({ children }: PropsWithChildren) => {
   return (
-    <div className='flex w-full flex-col'>
+    <div className='flex min-h-screen w-full flex-col'>
       <Navigation
         className={twMerge(
           'flex h-16 border-b bg-opacity-100 text-black',
@@ -31,8 +31,9 @@ const NewsLetterLayout = ({ children }: PropsWithChildren) => {
       <section
         className={twMerge(
           'mt-16 grid grid-cols-[1fr_4fr_1fr] max-xl:grid-cols-[1fr_3fr]',
-          'min-h-screen max-md:flex',
-          'dark:bg-darkBg-300 dark:text-white'
+          'min-h-screen bg-white max-md:flex',
+          'dark:bg-darkBg-300 dark:text-white',
+          'h-full'
         )}
       >
         <div className='max-md:hidden'>
@@ -40,7 +41,7 @@ const NewsLetterLayout = ({ children }: PropsWithChildren) => {
             <CategoryList />
           </Aside>
         </div>
-        <main className='min-h-screen pb-20'>{children}</main>
+        <main className='h-full min-h-screen pb-20'>{children}</main>
       </section>
       <Footer />
     </div>

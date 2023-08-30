@@ -1,6 +1,6 @@
 const PlaceholderItem = () => {
   return (
-    <figure className='h-[400px] w-full'>
+    <figure className='h-[450px] w-full max-md:h-[300px]'>
       <li className='group card mx-auto h-full w-full scale-95 border bg-base-100 transition-transform hover:scale-100 hover:border-slate-400 dark:border-darkBg-800 dark:bg-darkBg-100 '>
         <figure className='h-full max-h-[50%] min-h-[50%] w-full'>
           <div className='h-full w-full animate-pulse bg-slate-100'></div>

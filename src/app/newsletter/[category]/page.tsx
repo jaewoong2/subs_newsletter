@@ -18,13 +18,11 @@ const NewsLetter = async ({ params }: Props) => {
   }
 
   return (
-    <DataList
-      variant='block'
-      title=''
-      items={newsletters?.data.map((newsletter) => (
+    <DataList variant='block' title=''>
+      {newsletters?.data.map((newsletter) => (
         <CardItem {...newsletter} key={newsletter.id} />
       ))}
-    />
+    </DataList>
   )
 }
 

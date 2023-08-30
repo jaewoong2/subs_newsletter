@@ -7,10 +7,8 @@ const ArticlePage = async () => {
   const article = await getArticles()
 
   return (
-    <DataList
-      variant='block'
-      title=''
-      items={article?.data.map(({ id, title, description, link, thumbnail }) => (
+    <DataList variant='block' title=''>
+      {article?.data.map(({ id, title, description, link, thumbnail }) => (
         <CardItem
           id={id}
           name={title}
@@ -22,7 +20,7 @@ const ArticlePage = async () => {
           key={id}
         />
       ))}
-    />
+    </DataList>
   )
 }
 

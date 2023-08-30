@@ -54,7 +54,7 @@ const SearchInput = () => {
             <span className='loading loading-dots loading-lg text-gray-700' />
           </div>
         )}
-        <ul className='flex max-h-96 flex-col gap-1 px-1'>
+        <ul className='flex flex-col gap-1 px-1'>
           {data?.letters?.data?.map(({ name, id, description, thumbnail, link }) => (
             <SearchResult name={name} key={id} description={description} thumbnail={thumbnail} link={link} />
           ))}
@@ -67,7 +67,7 @@ const SearchInput = () => {
             </AbsoluteCenter>
           </Box>
         )}
-        <ul className='flex max-h-96 flex-col gap-1 px-1'>
+        <ul className='flex flex-col gap-1 px-1'>
           {data?.articles?.data?.map(({ title, id, description, thumbnail, link }) => (
             <SearchResult name={title} key={id} description={description} thumbnail={thumbnail} link={link} />
           ))}

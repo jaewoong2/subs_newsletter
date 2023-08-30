@@ -10,13 +10,11 @@ const NewsLetter = async () => {
   const newsletters = await getNewsLettersRandom()
 
   return (
-    <DataList
-      variant='block'
-      title=''
-      items={newsletters?.data.map((newsletter) => (
+    <DataList variant='block' title=''>
+      {newsletters?.data.map((newsletter) => (
         <CardItem {...newsletter} id={newsletter?.id ? newsletter.id : -1} key={newsletter.id} />
       ))}
-    />
+    </DataList>
   )
 }
 

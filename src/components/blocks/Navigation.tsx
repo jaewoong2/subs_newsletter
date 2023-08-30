@@ -22,7 +22,7 @@ export const Navigation = ({ className, menu }: Props) => {
       )}
     >
       <Link href={'/'}>
-        <figure className='flex items-end justify-center gap-2 whitespace-nowrap font-bold'>
+        <figure className='flex w-fit items-end justify-center gap-2 whitespace-nowrap pl-2 font-bold'>
           <Image src={IMAGE.logo} alt='뉴섭로고' width={32} height={32} className='rounded-xl' />
           <figcaption className='translate-y-1 font-Yeongdo-Rg text-2xl font-bold'>newsubs_</figcaption>
         </figure>
@@ -35,10 +35,12 @@ export const Navigation = ({ className, menu }: Props) => {
           소식
         </Link>
       </ul>
-      <div className='flex items-center justify-center'>
-        <SearchInput />
+      <div className='flex w-fit items-center justify-end'>
+        <div className='flex items-center justify-center'>
+          <SearchInput />
+        </div>
+        {menu}
       </div>
-      {menu}
     </nav>
   )
 }
