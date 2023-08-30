@@ -5,6 +5,7 @@ export interface Database {
     Tables: {
       article: {
         Row: {
+          category: string[] | null
           created_at: string | null
           description: string | null
           id: number
@@ -14,6 +15,7 @@ export interface Database {
           view: number | null
         }
         Insert: {
+          category?: string[] | null
           created_at?: string | null
           description?: string | null
           id?: number
@@ -23,6 +25,7 @@ export interface Database {
           view?: number | null
         }
         Update: {
+          category?: string[] | null
           created_at?: string | null
           description?: string | null
           id?: number
@@ -87,28 +90,6 @@ export interface Database {
         }
         Relationships: []
       }
-      newsletter_sequences: {
-        Row: {
-          created_at: string | null
-          id: number
-          source_newsletter: number
-          target_newsletter: number
-          count: number
-        }
-        Insert: {
-          id?: number
-          source_newsletter?: number
-          target_newsletter?: number
-          count?: number
-        }
-        Update: {
-          id?: number
-          source_newsletter?: number
-          target_newsletter?: number
-          count?: number
-        }
-        Relationships: []
-      }
       newsletter: {
         Row: {
           category: string[] | null
@@ -118,7 +99,10 @@ export interface Database {
           id: number
           link: string | null
           name: string | null
+          register: string | null
+          status: string
           thumbnail: string | null
+          updated_at: string
           view: number | null
         }
         Insert: {
@@ -129,7 +113,10 @@ export interface Database {
           id?: number
           link?: string | null
           name?: string | null
+          register?: string | null
+          status?: string
           thumbnail?: string | null
+          updated_at?: string
           view?: number | null
         }
         Update: {
@@ -140,47 +127,111 @@ export interface Database {
           id?: number
           link?: string | null
           name?: string | null
+          register?: string | null
+          status?: string
           thumbnail?: string | null
+          updated_at?: string
           view?: number | null
         }
         Relationships: []
+      }
+      newsletter_sequences: {
+        Row: {
+          count: number | null
+          created_at: string
+          id: number
+          source_newsletter: number | null
+          target_newsletter: number | null
+        }
+        Insert: {
+          count?: number | null
+          created_at?: string
+          id?: number
+          source_newsletter?: number | null
+          target_newsletter?: number | null
+        }
+        Update: {
+          count?: number | null
+          created_at?: string
+          id?: number
+          source_newsletter?: number | null
+          target_newsletter?: number | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: 'newsletter_sequences_source_newsletter_fkey'
+            columns: ['source_newsletter']
+            referencedRelation: 'newsletter'
+            referencedColumns: ['id']
+          },
+          {
+            foreignKeyName: 'newsletter_sequences_source_newsletter_fkey'
+            columns: ['source_newsletter']
+            referencedRelation: 'newsletter_random'
+            referencedColumns: ['id']
+          },
+          {
+            foreignKeyName: 'newsletter_sequences_target_newsletter_fkey'
+            columns: ['target_newsletter']
+            referencedRelation: 'newsletter'
+            referencedColumns: ['id']
+          },
+          {
+            foreignKeyName: 'newsletter_sequences_target_newsletter_fkey'
+            columns: ['target_newsletter']
+            referencedRelation: 'newsletter_random'
+            referencedColumns: ['id']
+          }
+        ]
       }
       users: {
         Row: {
           avatar_url: string | null
           full_name: string | null
           id: string
+          newsletter_id: number | null
+          role: string
           updated_at: string | null
           username: string | null
           website: string | null
-          newsletter_id: number | null
-          role: 'USER' | 'ADMIN' | 'CREATOR' | null
         }
         Insert: {
           avatar_url?: string | null
           full_name?: string | null
           id: string
+          newsletter_id?: number | null
+          role?: string
           updated_at?: string | null
           username?: string | null
           website?: string | null
-          newsletter_id?: number | null
-          role?: 'USER' | 'ADMIN' | 'CREATOR' | null
         }
         Update: {
           avatar_url?: string | null
           full_name?: string | null
           id?: string
+          newsletter_id?: number | null
+          role?: string
           updated_at?: string | null
           username?: string | null
           website?: string | null
-          newsletter_id?: number | null
-          role?: 'USER' | 'ADMIN' | 'CREATOR' | null
         }
         Relationships: [
           {
             foreignKeyName: 'users_id_fkey'
             columns: ['id']
             referencedRelation: 'users'
+            referencedColumns: ['id']
+          },
+          {
+            foreignKeyName: 'users_newsletter_id_fkey'
+            columns: ['newsletter_id']
+            referencedRelation: 'newsletter'
+            referencedColumns: ['id']
+          },
+          {
+            foreignKeyName: 'users_newsletter_id_fkey'
+            columns: ['newsletter_id']
+            referencedRelation: 'newsletter_random'
             referencedColumns: ['id']
           }
         ]
@@ -232,7 +283,16 @@ export interface Database {
       }
     }
     Functions: {
-      [_ in never]: never
+      explore_related_newsletters: {
+        Args: {
+          starting_item_id: number
+        }
+        Returns: {
+          related_item_id: number
+          counts: number
+          depths: number
+        }[]
+      }
     }
     Enums: {
       [_ in never]: never
