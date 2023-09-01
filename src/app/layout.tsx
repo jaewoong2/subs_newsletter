@@ -2,6 +2,7 @@ import { Metadata } from 'next'
 import { Providers } from '@/lib/Provider'
 import { ThemeProviders } from '@/lib/ThemeProvider'
 
+import './font.css'
 import './globals.css'
 import { METADATA } from '@/constants'
 import GoogleAnalytics from '@/lib/GoogleAnalytics'
@@ -18,10 +19,10 @@ export default function RootLayout({ children }: Props) {
   return (
     <html lang='kr' className='min-h-screen'>
       <head>
-        <link rel='preconnect' href='https://cdn.jsdelivr.net' crossOrigin='' />
-        <link href='https://cdn.jsdelivr.net/gh/toss/tossface/dist/tossface.css' rel='stylesheet' type='text/css' />
         <link rel='canonical' href='https://newsusbs.site' />
-        <GoogleAnalytics GA_TRACKING_ID={process.env.NEXT_PUBLIC_GA_TRACKING_ID ?? ''} />
+        {process.env.NODE_ENV !== 'development' && (
+          <GoogleAnalytics GA_TRACKING_ID={process.env.NEXT_PUBLIC_GA_TRACKING_ID ?? ''} />
+        )}
       </head>
       <body suppressHydrationWarning={true} className='relative min-h-screen overflow-scroll bg-white'>
         <ThemeProviders>
