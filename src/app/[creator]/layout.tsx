@@ -10,7 +10,7 @@ import CategoryList from '../newsletter/components/CaretoryList'
 
 const CreatorLayout = ({ children }: PropsWithChildren) => {
   return (
-    <section className='flex h-full w-full flex-col items-center dark:bg-darkBg-300'>
+    <section className='flex h-fit min-h-screen w-full flex-col items-center dark:bg-darkBg-300'>
       <Navigation
         className={twMerge(
           'flex h-16 border-b bg-opacity-100 text-black',
@@ -27,7 +27,7 @@ const CreatorLayout = ({ children }: PropsWithChildren) => {
           </div>
         }
       />
-      <main className='flex h-full min-h-screen  w-full max-w-lg justify-center py-24 dark:text-white'>{children}</main>
+      <main className='flex h-full min-h-screen w-full max-w-lg justify-center py-24 dark:text-white'>{children}</main>
       <div className='w-full'>
         <Footer />
       </div>
