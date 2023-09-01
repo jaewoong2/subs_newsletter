@@ -87,7 +87,7 @@ const SignInModal = ({ isOpen, onClose }: Props) => {
       subTitle='뉴스레터 크리에이터 라면, 더 많은 기능을 사용 할 수 있어요'
     >
       <div className='form-control w-full pb-5'>
-        <label className='label'>
+        <label className='label' aria-label='이메일 입력'>
           <span className='label-text'>이메일을 입력하세요.</span>
         </label>
         <form
@@ -105,7 +105,12 @@ const SignInModal = ({ isOpen, onClose }: Props) => {
             value={email}
             onChange={onChangeEmail}
           />
-          <button className='btn-accent btn justify-start text-white' type='submit' disabled={isMutating}>
+          <button
+            className='btn-accent btn justify-start text-white'
+            type='submit'
+            disabled={isMutating}
+            aria-label='로그인'
+          >
             로그인
           </button>
         </form>
@@ -121,6 +126,7 @@ const SignInModal = ({ isOpen, onClose }: Props) => {
           className='btn-primary btn-square btn flex w-full text-white'
           onClick={onClickGoogleSignIn}
           disabled={isMutating}
+          aria-label='구글로그인'
         >
           <FcGoogle className='text-xl' />
           구글로 로그인 하기

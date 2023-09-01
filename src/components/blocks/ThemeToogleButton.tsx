@@ -16,7 +16,7 @@ const ThemeToogleButton = () => {
         }
       }}
     >
-      <label className='swap'>
+      <label className='swap' aria-label='다크모드 토글'>
         {/* this hidden checkbox controls the state */}
         <input
           type='checkbox'

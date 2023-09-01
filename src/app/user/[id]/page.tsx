@@ -58,7 +58,9 @@ const User = async ({ params }: NextPageProps<Params>) => {
         <div className='divider mx-auto w-[200px] p-0'>
           <span className='font-SUITE text-sm font-semibold text-gray-600'>정보 수정 하기</span>
         </div>
-        <button className='btn-success btn w-full'>수정 하기</button>
+        <button className='btn-success btn w-full' aria-label='수정'>
+          수정 하기
+        </button>
       </div>
     </div>
   )

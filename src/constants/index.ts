@@ -15,15 +15,15 @@ export const IMAGE = {
 
 export const METADATA: Metadata = {
   generator: 'Next.js',
-  applicationName: '뉴섭 | 뉴스레터를 한 곳에',
+  applicationName: '뉴섭 | 나에게 맞는 뉴스레터를 추천 받으세요',
   referrer: 'origin-when-cross-origin',
   keywords: ['뉴스레터', 'newsletter', '뉴스레터구독', '뉴스레터추천', '뉴스레터 추천'],
   authors: [{ name: '@jaewoong2', url: 'https://github.com/jaewoong2' }],
   creator: '@jaewoong2',
-  title: '뉴섭 | 뉴스레터를 한 곳에',
+  title: '뉴섭 | 나에게 맞는 뉴스레터를 추천 받으세요',
   description: '내가 원하는 뉴스레터를 찾아보고 구독 하세요 🤩',
   openGraph: {
-    title: '뉴섭 | 뉴스레터를 한 곳에',
+    title: '뉴섭 | 나에게 맞는 뉴스레터를 추천 받으세요',
     description: '내가 원하는 뉴스레터를 찾아보고 구독 하세요 🤩',
     images: IMAGE.placeholder,
   },
@@ -31,7 +31,7 @@ export const METADATA: Metadata = {
     card: 'summary_large_image',
     images: IMAGE.placeholder,
     site: BASEURL,
-    title: '뉴섭 | 뉴스레터를 한 곳에',
+    title: '뉴섭 | 나에게 맞는 뉴스레터를 추천 받으세요',
     description: '내가 원하는 뉴스레터를 찾아보고 구독 하세요 🤩',
   },
 }
@@ -47,10 +47,6 @@ export const NEWSLETTER_ASIDE_LINK_ITEM = [
     title: '인기 뉴스레터 🔥',
     badge: '인기',
   },
-  {
-    href: BASEURL + '/newsletter/random',
-    title: '랜덤 뉴스레터 🎲',
-  },
 ]
 
 export const ARTICLE_ASIDE_LINK_ITEM = [
@@ -65,3 +61,6 @@ export const ARTICLE_ASIDE_LINK_ITEM = [
     badge: '인기',
   },
 ]
+
+export const SEO_TITLE =
+  '뉴섭 | 나에게 맞는 뉴스레터를 추천 받으세요. 수많은 뉴스레터들을 모아, 다양한 뉴스레터를 추천 하는 서비스를 제공 합니다'

@@ -19,12 +19,13 @@ const HeroBody = ({ title, subTitle }: Props) => {
             <>
               <a
                 href='#new'
-                className='absolute left-0 right-0 z-[11] flex h-full w-full items-center gap-2 px-5 py-3'
-              />
-
+                className='absolute left-0 right-0 z-[11] flex h-full w-full items-center gap-2 bg-transparent px-5 py-3 text-black'
+              >
+                둘러보기
+              </a>
               <div className='flex h-full w-full items-center gap-2'>
                 <span>둘러보기</span>
-                <GoArrowRight className='text-lg' />
+                <GoArrowRight className='text-lg text-black' />
               </div>
             </>
           }

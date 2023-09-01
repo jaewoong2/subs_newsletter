@@ -34,7 +34,9 @@ const AuthButton = ({ className }: JSX.IntrinsicElements['button']) => {
           )}
           href={`/auth/signout?redirectUrl=${url}`}
         >
-          <button className=' text-black dark:text-white'>로그아웃</button>
+          <button className=' text-black dark:text-white' aria-label='로그아웃'>
+            로그아웃
+          </button>
         </Link>
       )}
       {!data?.data.session && (
@@ -43,6 +45,7 @@ const AuthButton = ({ className }: JSX.IntrinsicElements['button']) => {
             'cursor-pointer list-none rounded-xl px-3 py-3 text-left text-sm font-bold hover:bg-slate-50 dark:hover:bg-darkBg-100',
             className
           )}
+          aria-label='로그인'
           onClick={onClickSignInButton}
         >
           로그인

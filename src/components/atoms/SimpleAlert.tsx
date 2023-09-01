@@ -33,10 +33,10 @@ const SimpleAlert = ({
         <AlertDialogCloseButton />
         <AlertDialogBody>{children}</AlertDialogBody>
         <AlertDialogFooter>
-          <Button ref={cancelRef} onClick={onClose}>
+          <Button ref={cancelRef} onClick={onClose} aria-label='아니요'>
             아니요
           </Button>
-          <Button colorScheme='green' ml={3}>
+          <Button colorScheme='green' ml={3} aria-label='예'>
             예
           </Button>
         </AlertDialogFooter>

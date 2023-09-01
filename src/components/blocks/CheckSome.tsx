@@ -70,6 +70,7 @@ const CheckSome = ({ category, onClose }: Props) => {
       </form>
       <div className='form-control my-6'>
         <button
+          aria-label='전송'
           disabled={isMutating}
           className='btn-primary btn'
           type='submit'

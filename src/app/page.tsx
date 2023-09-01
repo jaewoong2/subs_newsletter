@@ -7,7 +7,7 @@ import { RegisterNewsLetter } from '@/components/blocks/RegisterNewsLetter'
 import MobileNavDropBox from '@/components/blocks/MobileNavDropBox'
 import NavDropBox from '@/components/blocks/NavDropBox'
 import ThemeToogleButton from '@/components/blocks/ThemeToogleButton'
-import { ARTICLE_ASIDE_LINK_ITEM, NEWSLETTER_ASIDE_LINK_ITEM } from '@/constants'
+import { ARTICLE_ASIDE_LINK_ITEM, NEWSLETTER_ASIDE_LINK_ITEM, SEO_TITLE } from '@/constants'
 import CategoryList from './newsletter/components/CaretoryList'
 
 const MOBILE_NAV_ITEMS = [...NEWSLETTER_ASIDE_LINK_ITEM, ...ARTICLE_ASIDE_LINK_ITEM].map(({ badge, ...items }) => items)
@@ -15,6 +15,7 @@ const MOBILE_NAV_ITEMS = [...NEWSLETTER_ASIDE_LINK_ITEM, ...ARTICLE_ASIDE_LINK_I
 export default function Page() {
   return (
     <div className='min-h-full w-full'>
+      <h1 className='sr-only'>{SEO_TITLE}</h1>
       <Navigation
         className='h-16 bg-white bg-opacity-10 dark:border-darkBg-200 dark:bg-opacity-10'
         menu={

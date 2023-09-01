@@ -6,7 +6,7 @@ const NavDropBox = () => {
   return (
     <div className='flex-none max-md:hidden'>
       <div className='dropdown-end dropdown'>
-        <button className='btn-ghost btn-square btn'>
+        <button className='btn-ghost btn-square btn' aria-label='메뉴 햄버거'>
           <HiOutlineMenu className='text-2xl' />
         </button>
         <ul

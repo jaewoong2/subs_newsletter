@@ -16,12 +16,12 @@ const MobileNavDropBox = ({ asideItems, children }: PropsWithChildren<Props>) =>
       <input id='drawer' type='checkbox' className='drawer-toggle' />
       <div className='drawer-content'>
         {/* Page content here */}
-        <label htmlFor='drawer' className='btn-ghost drawer-button btn'>
+        <label htmlFor='drawer' className='btn-ghost drawer-button btn' aria-label='왼쪽 드롭박스 열기'>
           <HiOutlineMenu className='text-xl' />
         </label>
       </div>
       <div className='drawer-side'>
-        <label htmlFor='drawer' className='drawer-overlay overflow-y-hidden'></label>
+        <label htmlFor='drawer' className='drawer-overlay overflow-y-hidden' aria-label='드롭박스 오버레이'></label>
         <div className='h-full w-2/3 bg-white dark:bg-darkBg-300'>
           <Aside items={asideItems}>{children}</Aside>
         </div>

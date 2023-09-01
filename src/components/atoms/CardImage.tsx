@@ -89,7 +89,8 @@ const CardImage = ({ image, alt, className }: Props) => {
         }}
         onLoad={onLoadImage}
         onResize={onLoadImage}
-        className={twMerge('lazy h-auto w-auto animate-pulse', className)}
+        loading='lazy'
+        className={twMerge('h-auto w-auto animate-pulse', className)}
         data-src={image}
       />
     </figure>

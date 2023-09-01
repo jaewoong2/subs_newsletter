@@ -16,7 +16,7 @@ type Props = {
 
 const Card = ({ title, description, image, alt, tags, id }: Props) => {
   return (
-    <li
+    <article
       className={twMerge(
         'group card mx-auto h-full w-full scale-95 overflow-hidden border bg-base-100 transition-transform',
         'hover:scale-100 hover:border-slate-400 dark:border-darkBg-800 dark:bg-darkBg-100',
@@ -45,7 +45,7 @@ const Card = ({ title, description, image, alt, tags, id }: Props) => {
           </Link>
         ))}
       </div>
-    </li>
+    </article>
   )
 }
 

@@ -23,7 +23,9 @@ const SearchForm = ({ value, className, onChange }: JSX.IntrinsicElements['input
           className
         )}
       />
-      <button className='btn-ghost btn px-4 py-2 font-tossFace text-lg'>&times;</button>
+      <button className='btn-ghost btn px-4 py-2 font-tossFace text-lg' aria-label='취소'>
+        &times;
+      </button>
     </form>
   )
 }

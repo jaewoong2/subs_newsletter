@@ -120,6 +120,7 @@ const Register = ({ onClose }: Props) => {
           <div className='flex gap-1'>
             {categories?.data.map(({ categories }) => (
               <button
+                aria-label={categories}
                 key={categories}
                 type='button'
                 onClick={() => toggleBadge(categories)}
@@ -136,6 +137,7 @@ const Register = ({ onClose }: Props) => {
       </form>
       <div className='form-control my-6'>
         <button
+          aria-label='등록'
           disabled={isMutating}
           className='btn-primary btn'
           type='submit'
@@ -189,7 +191,7 @@ export const RegisterNewsLetter = () => {
         <div>
           <span className='card-title font-tossFace'>📰 뉴섭에 소개하고 싶은 나만의 뉴스레터가 있다면?</span>
           <p className='font-semibold'>간단하게 등록하고, 뉴섭에 뉴스레터 소개하기</p>
-          <button className='btn-primary btn mt-4 w-full' onClick={onClickButton}>
+          <button className='btn-primary btn mt-4 w-full' onClick={onClickButton} aria-label='등록'>
             등록하기
           </button>
         </div>

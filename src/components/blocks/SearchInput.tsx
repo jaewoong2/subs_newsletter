@@ -21,6 +21,7 @@ const SearchInput = () => {
   return (
     <>
       <button
+        aria-label='검색창 열기'
         className='btn-ghost btn'
         onClick={() => {
           setIsSearchOpen(true)

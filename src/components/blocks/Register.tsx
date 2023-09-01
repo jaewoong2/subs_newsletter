@@ -41,7 +41,7 @@ export const Register = () => {
         <fieldset className='flex w-full flex-col items-center justify-center gap-3 rounded-xl font-semibold md:gap-6'>
           <h2 className='mb-5 font-tossFace text-lg font-bold'>📰 뉴섭에 문의 해주세요</h2>
           <div className='flex w-full flex-col justify-start md:w-[450px]'>
-            <label className='flex cursor-pointer items-center gap-3'>
+            <label className='flex cursor-pointer items-center gap-3' aria-label='문의 체크박스 (등록)'>
               <input
                 type='radio'
                 name='checksome'
@@ -53,7 +53,7 @@ export const Register = () => {
             </label>
           </div>
           <div className='flex w-full flex-col justify-start md:w-[450px]'>
-            <label className='flex cursor-pointer items-center gap-3'>
+            <label className='flex cursor-pointer items-center gap-3' aria-label='문의 체크박스 (문의)'>
               <input
                 type='radio'
                 name='checksome'
@@ -64,7 +64,7 @@ export const Register = () => {
             </label>
           </div>
           <div className='flex w-full flex-col justify-start md:w-[450px]'>
-            <label className='flex cursor-pointer items-center gap-3'>
+            <label className='flex cursor-pointer items-center gap-3' aria-label='문의 체크박스 (etc)'>
               <input
                 type='radio'
                 name='checksome'
@@ -75,7 +75,11 @@ export const Register = () => {
             </label>
           </div>
         </fieldset>
-        <button type='submit' className='btn mt-10 w-full dark:border-darkBg-300 dark:bg-violet-400'>
+        <button
+          type='submit'
+          className='btn mt-10 w-full dark:border-darkBg-300 dark:bg-violet-400'
+          aria-label='문의하기'
+        >
           문의하기
         </button>
       </form>
