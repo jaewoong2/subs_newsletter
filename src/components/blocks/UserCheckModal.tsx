@@ -1,11 +1,13 @@
 'use client'
 import React, { useState } from 'react'
-import useSimpleModal from '@/hooks/useSimpleModal'
-import SimpleModal from '../atoms/SimpleModal'
 import Link from 'next/link'
+import useSimpleModal from '@/hooks/useSimpleModal'
 import { ModalCloseButton } from '@chakra-ui/react'
 import useGetUser from '@/hooks/useGetUser'
 import useLocalStorage from '@/hooks/useLocalstorage'
+import dynamic from 'next/dynamic'
+
+const SimpleModal = dynamic(() => import('../atoms/SimpleModal'))
 
 const UserCheckModal = () => {
   const { value: isProfileEdit, setValue: setIsProfileEdit } = useLocalStorage<boolean>('is_profile_edit', {
@@ -41,7 +43,9 @@ const UserCheckModal = () => {
           <ModalCloseButton />
         </div>
         <Link href={`/user/${user?.data?.data?.id}`} className='w-full'>
-          <button className='btn w-full'>프로필 수정 하기</button>
+          <button className='btn w-full' aria-label='프로필 수정'>
+            프로필 수정 하기
+          </button>
         </Link>
         <div className='h-6' />
       </SimpleModal>
