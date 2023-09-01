@@ -39,7 +39,6 @@ export async function GET(request: NextRequest) {
   const page = +`${params.get('page') ?? 1}`
   const limit = +`${params.get('limit') ?? 10}`
   const supabase = createRouteHandlerClient<Database>({ cookies: cookies })
-
   const from = limit * page
   const to = limit * (page + 1) - 1
 
