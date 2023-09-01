@@ -11,8 +11,9 @@ import CardImage from '@/components/atoms/CardImage'
 import CardLink from '@/components/blocks/CardLink'
 import PageChecker from './components/PageChecker'
 import { getRelatedItems } from '@/lib/recommend'
+import Card from '@/components/atoms/Card'
 import DataList from '@/components/blocks/DataList'
-import CardItem from '../newsletter/components/CardItem'
+import ImageCarousel from '@/components/blocks/ImageCarousel'
 
 type Params = {
   creator?: string
@@ -35,7 +36,7 @@ const Creator = async ({ params }: NextPageProps<Params>) => {
   )
 
   return (
-    <div className='flex w-full flex-col items-center px-4'>
+    <div className='flex h-full min-h-screen w-full flex-col items-center px-4'>
       <CardLink
         newsLetterId={newsletter.data.id}
         href={newsletter.data.link ?? ''}
@@ -52,10 +53,24 @@ const Creator = async ({ params }: NextPageProps<Params>) => {
       </CardLink>
       <h2 className='w-full px-10 pt-5 text-center font-SUITE text-base font-bold'>{newsletter.data.description}</h2>
       <div className='divider mx-auto w-[150px] p-0 dark:before:bg-darkBg-200 dark:after:bg-darkBg-200' />
-      <DataList variant='block' title='해당 뉴스레터를 조회한 분이 확인한 뉴스레터 에요 ❗️'>
-        {relatedNewsltters?.data.map((newsletter) => (
-          <CardItem {...newsletter} key={newsletter.id} />
-        ))}
+      <DataList title={<p className='flex w-full justify-center font-tossFace'> 함께 찾아본 뉴스레터에요 🧐</p>}>
+        <ImageCarousel
+          className='w-full'
+          itemWrapperClassName='gap-1'
+          itemClassName='w-[50%] max-lg:w-[50%] max-md:w-[50%] max-sm:w-[50%] h-[250px] gap-0 px-1'
+          items={
+            relatedNewsltters?.data.map((newsletter) => (
+              <div className='h-[240px] w-full' key={newsletter.id}>
+                <Card
+                  {...newsletter}
+                  image={newsletter.thumbnail ?? ''}
+                  title={newsletter.name}
+                  tags={newsletter.category ?? []}
+                />
+              </div>
+            )) ?? []
+          }
+        />
       </DataList>
       <div className='flex gap-2'>
         {newsletter.data.days?.map((day) => (

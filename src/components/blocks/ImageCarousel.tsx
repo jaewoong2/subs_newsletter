@@ -7,13 +7,15 @@ import { twMerge } from 'tailwind-merge'
 type Props = {
   items: React.ReactElement[]
   className?: string
+  itemClassName?: string
+  itemWrapperClassName?: string
 }
 
-const ImageCarousel = ({ items, className }: Props) => {
+const ImageCarousel = ({ items, className, itemClassName, itemWrapperClassName }: Props) => {
   const [buttonStatus, setButtonStatus] = useState<number[]>([])
 
-  const scrollRef = useRef<HTMLDivElement>(null)
-  const itemRef = useRef<HTMLDivElement>(null)
+  const scrollRef = useRef<HTMLUListElement>(null)
+  const itemRef = useRef<HTMLLIElement>(null)
 
   const onClickNext = () => {
     scrollRef.current?.scrollBy({ behavior: 'smooth', left: itemRef.current?.clientWidth })
@@ -31,19 +33,29 @@ const ImageCarousel = ({ items, className }: Props) => {
       )}
     >
       {!buttonStatus.includes(0) && (
-        <button className='btn-ghost btn-circle btn absolute left-0 z-10 border max-md:-left-4' onClick={onClickPrev}>
+        <button
+          className='btn-ghost btn-circle btn absolute left-0 z-10 border max-md:-left-4'
+          onClick={onClickPrev}
+          aria-label='왼쪽'
+        >
           <CgArrowLongLeft className='text-2xl text-black dark:text-white max-md:text-xl' />
         </button>
       )}
-      <div
+      <ul
         ref={scrollRef}
-        className='flex h-full w-full max-w-full gap-5 overflow-x-scroll py-5 max-md:carousel-center max-md:carousel'
+        className={twMerge(
+          'flex h-full w-full max-w-full gap-5 overflow-x-scroll py-5 max-md:carousel-center max-md:carousel',
+          itemWrapperClassName
+        )}
       >
         {items?.map((item, index) => (
-          <motion.div
+          <motion.li
             ref={itemRef}
             key={`${item.key}_${index}_carousel`}
-            className='h-[400px] w-1/4 flex-shrink-0 max-md:carousel-item max-lg:w-[40%] max-md:w-[49%] max-sm:w-full'
+            className={twMerge(
+              'h-[400px] w-1/4 flex-shrink-0 max-md:carousel-item max-lg:w-[40%] max-md:w-[49%] max-sm:w-full',
+              itemClassName
+            )}
             onViewportEnter={() => {
               setButtonStatus((prev) => {
                 return [...prev, index]
@@ -56,11 +68,15 @@ const ImageCarousel = ({ items, className }: Props) => {
             }}
           >
             {item}
-          </motion.div>
+          </motion.li>
         ))}
-      </div>
+      </ul>
       {!buttonStatus.includes(items.length - 1) && (
-        <button className='btn-ghost btn-circle btn absolute right-0 max-md:-right-4' onClick={onClickNext}>
+        <button
+          className='btn-ghost btn-circle btn absolute right-0 max-md:-right-4'
+          onClick={onClickNext}
+          aria-label='오른쪽'
+        >
           <CgArrowLongRight className='text-2xl text-black dark:text-white max-md:text-xl' />
         </button>
       )}
