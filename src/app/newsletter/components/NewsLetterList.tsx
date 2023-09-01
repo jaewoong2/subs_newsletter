@@ -3,13 +3,14 @@ import React, { useMemo } from 'react'
 import useInfiniteNewsletter from '@/hooks/useInfiniteNewsletter'
 import { motion } from 'framer-motion'
 import CardItem from './CardItem'
+import PlaceholderItem from './PlaceholderItem'
 
 type Props = {
   q?: 'createdAt' | 'popular'
 }
 
 const NewsLetterList = ({ q = 'createdAt' }: Props) => {
-  const { data, setSize, limit } = useInfiniteNewsletter(q, {
+  const { data, setSize, limit, isLoading } = useInfiniteNewsletter(q, {
     suspense: true,
     fallbackData: [],
   })
@@ -19,7 +20,7 @@ const NewsLetterList = ({ q = 'createdAt' }: Props) => {
   return (
     <>
       {!newsletters ||
-        (newsletters?.length === 0 && (
+        (newsletters?.length === 0 && !isLoading && (
           <motion.div
             className='h-0 w-0 bg-red-500'
             onViewportEnter={() => {
@@ -30,7 +31,13 @@ const NewsLetterList = ({ q = 'createdAt' }: Props) => {
       {newsletters?.map((newsletter) => (
         <CardItem {...newsletter} key={newsletter.id} />
       ))}
-      {data?.[data.length - 1]?.data.length === limit && (
+      {isLoading && (
+        <>
+          <PlaceholderItem />
+          <PlaceholderItem />
+        </>
+      )}
+      {data?.[data.length - 1]?.data.length === limit && !isLoading && (
         <motion.div
           className='h-0 w-0'
           onViewportEnter={() => {
