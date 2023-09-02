@@ -265,3 +265,35 @@ export const getRelatedNewsletters = async (ids: number[]) => {
     return null
   }
 }
+
+export const getLettersByNewsLetterId = async (id: number) => {
+  const supabase = createServerSupabaseClient()
+
+  try {
+    const letters = await supabase.from('letters').select('id, title').eq('newsletter_id', id)
+
+    if (!letters.data || letters.data.length === 0) {
+      throw new Error('No data found')
+    }
+
+    return letters
+  } catch (err) {
+    return null
+  }
+}
+
+export const getLettersById = async (id: number) => {
+  const supabase = createServerSupabaseClient()
+
+  try {
+    const letters = await supabase.from('letters').select('*').eq('id', id).single()
+
+    if (!letters.data || letters.error) {
+      throw new Error('No data found')
+    }
+
+    return letters
+  } catch (err) {
+    return null
+  }
+}

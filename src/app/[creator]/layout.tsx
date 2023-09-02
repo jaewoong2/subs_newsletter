@@ -27,7 +27,7 @@ const CreatorLayout = ({ children }: PropsWithChildren) => {
           </div>
         }
       />
-      <main className='flex h-full min-h-screen w-full max-w-lg justify-center py-24 dark:text-white'>{children}</main>
+      <main className='container flex h-full min-h-screen w-full justify-center py-24 dark:text-white'>{children}</main>
       <div className='w-full'>
         <Footer />
       </div>
