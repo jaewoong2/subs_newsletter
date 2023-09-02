@@ -1,5 +1,5 @@
 'use client'
-import { useRef, useEffect } from 'react'
+import { useRef, useEffect, useState } from 'react'
 import { NewsLetter } from '@/types'
 import { IMAGE } from '@/constants'
 import { twMerge } from 'tailwind-merge'
@@ -17,6 +17,7 @@ const FIT_WIDTH_CLASS = ['w-full', 'max-w-full', 'h-auto', 'max-h-full', 'object
 const FIT_HEIGHT_CLASS = ['h-full', 'max-h-full', 'w-auto', 'max-w-full', 'object-cover']
 
 const CardImage = ({ image, alt, className }: Props) => {
+  const [isError, setIsError] = useState(false)
   const imageRef = useRef<HTMLImageElement>(null)
   const figureRef = useRef<HTMLDivElement>(null)
 
@@ -80,19 +81,33 @@ const CardImage = ({ image, alt, className }: Props) => {
 
   return (
     <figure className='h-[100%] max-h-[100%] min-h-[100%] w-full' ref={figureRef}>
-      <img
-        src={IMAGE.placeholder}
-        alt={alt ?? '카드 이미지'}
-        ref={imageRef}
-        onError={(event) => {
-          event.currentTarget.setAttribute('src', IMAGE.placeholder)
-        }}
-        onLoad={onLoadImage}
-        onResize={onLoadImage}
-        loading='lazy'
-        className={twMerge('h-auto w-auto animate-pulse', className)}
-        data-src={image}
-      />
+      {!isError && (
+        <img
+          src={IMAGE.placeholder}
+          alt={alt ?? '카드 이미지'}
+          ref={imageRef}
+          onError={() => {
+            setIsError(true)
+          }}
+          onLoad={onLoadImage}
+          onResize={onLoadImage}
+          loading='lazy'
+          className={twMerge('h-auto w-auto animate-pulse', className)}
+          data-src={image}
+        />
+      )}
+      {isError && (
+        <img
+          src={IMAGE.placeholder}
+          alt={alt ?? '카드 이미지'}
+          ref={imageRef}
+          onError={() => {
+            setIsError(true)
+          }}
+          loading='lazy'
+          className={twMerge('h-auto w-auto grayscale-[30%]', className)}
+        />
+      )}
     </figure>
   )
 }
