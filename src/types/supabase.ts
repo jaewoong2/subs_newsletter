@@ -90,6 +90,46 @@ export interface Database {
         }
         Relationships: []
       }
+      letters: {
+        Row: {
+          content: string | null
+          created_at: string
+          id: number
+          newsletter_id: number | null
+          released_at: string | null
+          title: string | null
+        }
+        Insert: {
+          content?: string | null
+          created_at?: string
+          id?: number
+          newsletter_id?: number | null
+          released_at?: string | null
+          title?: string | null
+        }
+        Update: {
+          content?: string | null
+          created_at?: string
+          id?: number
+          newsletter_id?: number | null
+          released_at?: string | null
+          title?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: 'letters_newsletter_id_fkey'
+            columns: ['newsletter_id']
+            referencedRelation: 'newsletter'
+            referencedColumns: ['id']
+          },
+          {
+            foreignKeyName: 'letters_newsletter_id_fkey'
+            columns: ['newsletter_id']
+            referencedRelation: 'newsletter_random'
+            referencedColumns: ['id']
+          }
+        ]
+      }
       newsletter: {
         Row: {
           category: string[] | null
