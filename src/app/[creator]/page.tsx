@@ -59,7 +59,7 @@ const Creator = async ({ params }: NextPageProps<Params>) => {
         target='_blank'
       >
         <h2 className='font-SUITE text-2xl font-bold'>{newsletter.data.name}</h2>
-        <RxOpenInNewWindow className='absolute left-[calc(100%+4px)] top-0 rounded-xl text-base' />
+        <RxOpenInNewWindow className='absolute left-[calc(100%+4px)] top-2 rounded-xl text-base' />
       </CardLink>
       <div className='flex items-center justify-center gap-1 pt-2 text-xs'>
         <CgEye />

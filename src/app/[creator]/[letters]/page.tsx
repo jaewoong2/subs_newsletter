@@ -14,7 +14,7 @@ const CreatorsLetters = async ({ params }: NextPageProps<Props>) => {
   const letter = await getLettersById(+params.letters)
 
   return (
-    <section className='w-full max-w-2xl'>
+    <section className='w-full max-w-2xl px-3'>
       <Link
         href={`/${decodeURIComponent(params.creator)}`}
         className='link flex w-fit items-center gap-4 pb-4 text-xl font-bold text-blue-600'
@@ -23,11 +23,10 @@ const CreatorsLetters = async ({ params }: NextPageProps<Props>) => {
         {decodeURIComponent(params.creator)}
       </Link>
       <div className='flex w-full items-center justify-between rounded-lg bg-slate-100 px-2 py-5'>
-        <p className='text-lg font-semibold'>{letter?.data.title}</p>
-        <p className='text-sm font-semibold text-gray-600'>{letter?.data.released_at?.slice(0, 10)}</p>
+        <p className='text-lg font-semibold max-md:text-base'>{letter?.data.title}</p>
+        <p className='text-sm font-semibold text-gray-600 max-md:text-xs'>{letter?.data.released_at?.slice(2, 10)}</p>
       </div>
       <div className='divider mx-auto w-full p-0 pb-6 dark:before:bg-darkBg-200 dark:after:bg-darkBg-200' />
-      {/* <div dangerouslySetInnerHTML={{ __html: `${letter?.data.content}` }} /> */}
       <Content
         className='absolute left-0 top-0 h-full w-full'
         id={`${letter?.data.id}`}
