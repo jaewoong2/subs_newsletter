@@ -44,31 +44,40 @@ const ImageCarousel = ({ items, className, itemClassName, itemWrapperClassName }
       <ul
         ref={scrollRef}
         className={twMerge(
+          'relative',
           'flex h-full w-full max-w-full gap-5 overflow-x-scroll py-5 max-md:carousel-center max-md:carousel',
           itemWrapperClassName
         )}
       >
         {items?.map((item, index) => (
-          <motion.li
+          <li
             ref={itemRef}
             key={`${item.key}_${index}_carousel`}
             className={twMerge(
-              'h-[400px] w-1/4 flex-shrink-0 max-md:carousel-item max-lg:w-[40%] max-md:w-[49%] max-sm:w-full',
+              'relative h-[400px] w-1/4 flex-shrink-0 max-md:carousel-item max-lg:w-[40%] max-md:w-[49%] max-sm:w-full',
               itemClassName
             )}
-            onViewportEnter={() => {
-              setButtonStatus((prev) => {
-                return [...prev, index]
-              })
-            }}
-            onViewportLeave={() => {
-              setButtonStatus((prev) => {
-                return prev.filter((value) => value !== index)
-              })
-            }}
           >
+            {(index === 0 || index + 1 === items.length) && (
+              <motion.div
+                id={`${index}`}
+                className='absolute left-0 top-0 h-0 w-0'
+                onViewportEnter={(event) => {
+                  if (!event?.target.id) {
+                    return
+                  }
+                  setButtonStatus((prev) => [...prev, +event?.target.id])
+                }}
+                onViewportLeave={(event) => {
+                  if (!event?.target.id) {
+                    return
+                  }
+                  setButtonStatus((prev) => prev.filter((value) => value !== +event?.target.id))
+                }}
+              />
+            )}
             {item}
-          </motion.li>
+          </li>
         ))}
       </ul>
       {!buttonStatus.includes(items.length - 1) && (
