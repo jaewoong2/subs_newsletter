@@ -21,6 +21,8 @@ const CardItem = ({
         tags={category ?? []}
         link={link}
         days={days}
+        width={330}
+        height={150}
       />
     </div>
   )

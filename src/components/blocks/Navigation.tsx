@@ -28,12 +28,16 @@ export const Navigation = ({ className, menu }: Props) => {
         </figure>
       </Link>
       <ul className='flex w-full items-center justify-center gap-3 text-base font-semibold max-md:hidden'>
-        <Link className='font-SUITE underline hover:text-slate-400' href={'/newsletter'}>
-          뉴스레터
-        </Link>
-        <Link className='font-SUITE underline hover:text-slate-400' href={'/article'}>
-          소식
-        </Link>
+        <li>
+          <Link className='font-SUITE underline hover:text-slate-400' href={'/newsletter'}>
+            뉴스레터
+          </Link>
+        </li>
+        <li>
+          <Link className='font-SUITE underline hover:text-slate-400' href={'/article'}>
+            소식
+          </Link>
+        </li>
       </ul>
       <div className='flex w-fit items-center justify-end'>
         <div className='flex items-center justify-center'>

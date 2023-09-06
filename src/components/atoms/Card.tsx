@@ -12,9 +12,12 @@ type Props = {
   title?: React.ReactNode
   description?: React.ReactNode
   tags?: string[]
+
+  width?: string | number
+  height?: string | number
 } & Partial<NewsLetter>
 
-const Card = ({ title, description, image, alt, tags, id }: Props) => {
+const Card = ({ title, description, image, alt, tags, id, width, height }: Props) => {
   return (
     <article
       className={twMerge(
@@ -26,7 +29,7 @@ const Card = ({ title, description, image, alt, tags, id }: Props) => {
     >
       <CardLink href={BASEURL + `/${title}`} newsLetterId={id} className='grid h-[90%] w-full grid-rows-2'>
         <div className='h-full w-full'>
-          <CardImage image={image} alt={alt} />
+          <CardImage image={image} alt={alt} width={width} height={height} />
         </div>
         <div className='flex flex-col gap-3 text-clip px-6 py-2'>
           <h4 className='card-title'>{title}</h4>

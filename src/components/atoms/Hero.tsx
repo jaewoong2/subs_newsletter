@@ -20,7 +20,8 @@ export const Hero = ({}: Props) => {
               alt='섭섭이'
               width={150}
               height={40}
-              className='absolute bottom-[110%] right-0 z-[9] scale-x-[-1] animate-jump'
+              priority={true}
+              className='absolute bottom-[110%] right-0 z-[9] scale-x-[-1] animate-jump will-change-transform'
             />
           </div>
         }

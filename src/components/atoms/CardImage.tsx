@@ -11,12 +11,15 @@ type Props = {
   description?: React.ReactNode
   tags?: string[]
   className?: string
+
+  width?: string | number
+  height?: string | number
 } & Partial<NewsLetter>
 
 const FIT_WIDTH_CLASS = ['w-full', 'max-w-full', 'h-auto', 'max-h-full', 'object-cover']
 const FIT_HEIGHT_CLASS = ['h-full', 'max-h-full', 'w-auto', 'max-w-full', 'object-cover']
 
-const CardImage = ({ image, alt, className }: Props) => {
+const CardImage = ({ image, alt, className, width, height }: Props) => {
   const [isError, setIsError] = useState(false)
   const imageRef = useRef<HTMLImageElement>(null)
   const figureRef = useRef<HTMLDivElement>(null)
@@ -94,6 +97,8 @@ const CardImage = ({ image, alt, className }: Props) => {
           loading='lazy'
           className={twMerge('h-auto w-auto animate-pulse', className)}
           data-src={image}
+          width={width}
+          height={height}
         />
       )}
       {isError && (
@@ -105,7 +110,9 @@ const CardImage = ({ image, alt, className }: Props) => {
             setIsError(true)
           }}
           loading='lazy'
-          className={twMerge('h-auto w-auto grayscale-[30%]', className)}
+          className={twMerge('h-auto w-auto grayscale-[80%]', className)}
+          width={width}
+          height={height}
         />
       )}
     </figure>

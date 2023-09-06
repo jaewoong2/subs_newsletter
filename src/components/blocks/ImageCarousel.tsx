@@ -5,7 +5,7 @@ import { motion } from 'framer-motion'
 import { twMerge } from 'tailwind-merge'
 
 type Props = {
-  items: React.ReactElement[]
+  items?: React.ReactElement[]
   className?: string
   itemClassName?: string
   itemWrapperClassName?: string
@@ -80,7 +80,7 @@ const ImageCarousel = ({ items, className, itemClassName, itemWrapperClassName }
           </li>
         ))}
       </ul>
-      {!buttonStatus.includes(items.length - 1) && (
+      {items && !buttonStatus.includes(items.length - 1) && (
         <button
           className='btn-ghost btn-circle btn absolute right-0 max-md:-right-4'
           onClick={onClickNext}

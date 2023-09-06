@@ -3,9 +3,6 @@ import React from 'react'
 import { getNewsLettersRandom } from '@/app/supabase-server'
 import CardItem from '../components/CardItem'
 
-export const revalidate = 0
-export const dynamic = 'force-dynamic'
-
 const NewsLetter = async () => {
   const newsletters = await getNewsLettersRandom()
 
