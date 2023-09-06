@@ -4,7 +4,7 @@ export const BASEURL = process.env.NEXT_PUBLIC_CURRENT_URL ?? 'https://newsubs.s
 
 export const IMAGE = {
   logo: 'https://ywnfqdpcmgtllkshgzsl.supabase.co/storage/v1/object/public/newsletter/image/logo2.png',
-  placeholder: 'https://ywnfqdpcmgtllkshgzsl.supabase.co/storage/v1/object/public/newsletter/image/placeholder.png',
+  placeholder: '/placeholder.png',
   example: {
     image1: 'https://ndavhlqivyieuaehsnne.supabase.co/storage/v1/object/public/image/kakao-share.png',
     image2: 'https://ndavhlqivyieuaehsnne.supabase.co/storage/v1/object/public/image/thumbnail.png',
