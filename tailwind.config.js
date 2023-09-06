@@ -9,7 +9,8 @@ module.exports = {
   theme: {
     extend: {
       fontFamily: {
-        Pretendard: 'Pretendard-Regular',
+        'SpoqaHanSansNeo-Regular': 'SpoqaHanSansNeo-Regular',
+        Pretendard: 'Pretendard Variable',
         tossFace: 'Tossface',
         PyeongChangPeace: 'PyeongChangPeace-Bold',
         neurimboGothicRegular: 'neurimboGothicRegular',
