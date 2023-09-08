@@ -3,7 +3,7 @@ import DataList from '@/components/blocks/DataList'
 import { getArticles } from '@/app/supabase-server'
 import CardItem from '@/app/newsletter/components/CardItem'
 
-const NewsLetter = async () => {
+const PopularArticle = async () => {
   const article = await getArticles('popular')
 
   return (
@@ -24,4 +24,4 @@ const NewsLetter = async () => {
   )
 }
 
-export default NewsLetter
+export default PopularArticle

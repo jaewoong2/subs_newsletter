@@ -17,7 +17,7 @@ export const Home = async () => {
       <DataList title='최신 뉴스레터'>
         <ImageCarousel
           items={newsletters?.data
-            .map(({ id, link, thumbnail, name, description, category }) => (
+            .map(({ id, link, thumbnail, name, description, category, days }) => (
               <figure key={`card-${id}-${name}`} className='h-full w-full'>
                 <Card
                   title={name}
@@ -27,6 +27,7 @@ export const Home = async () => {
                   tags={category ?? []}
                   width={300}
                   height={150}
+                  days={days}
                 />
               </figure>
             ))

@@ -118,6 +118,7 @@ const Creator = async ({ params }: NextPageProps<Params>) => {
                   image={newsletter.thumbnail ?? ''}
                   title={newsletter.name}
                   tags={newsletter.category ?? []}
+                  days={newsletter.days}
                 />
               </div>
             )) ?? []
