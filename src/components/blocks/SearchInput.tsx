@@ -56,8 +56,8 @@ const SearchInput = () => {
           </div>
         )}
         <ul className='flex flex-col gap-1 px-1'>
-          {data?.letters?.data?.map(({ name, id, description, thumbnail, link }) => (
-            <SearchResult name={name} key={id} description={description} thumbnail={thumbnail} link={link} />
+          {data?.letters?.data?.map(({ name, id, description, thumbnail }) => (
+            <SearchResult name={name} key={id} description={description} thumbnail={thumbnail} link={name} />
           ))}
         </ul>
         {data?.articles?.data && data?.articles?.data?.length > 0 && (

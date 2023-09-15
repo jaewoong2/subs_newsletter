@@ -35,10 +35,10 @@ const Days = ({ days }: Partial<Pick<NewsLetter, 'days'>>) => {
         {days?.map((day, index) => (
           <motion.div
             key={day}
-            className='badge badge-primary absolute w-[30px] border-none text-white shadow-md'
+            className='badge badge-primary absolute w-[30px] border-none text-xs text-white shadow-md'
             style={{ left: `${index * 7.5}px`, backgroundColor: BADGECOLOR[index] }}
             animate={{
-              left: isHovered ? `${index * 34}px` : `${index * 7.5}px`,
+              left: isHovered ? `${index * 25}px` : `${index * 7.5}px`,
             }}
           >
             {day[0]}

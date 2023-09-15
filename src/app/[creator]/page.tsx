@@ -96,7 +96,7 @@ const Creator = async ({ params }: NextPageProps<Params>) => {
           >
             <Link
               href={`/${params.creator}/${id}`}
-              className='w-full max-w-sm rounded-xl border p-5 group-hover:bg-slate-100 '
+              className='w-full max-w-sm rounded-xl border p-5 group-hover:bg-slate-100 dark:group-hover:bg-darkBg-200'
             >
               {title}
             </Link>
