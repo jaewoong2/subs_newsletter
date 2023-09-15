@@ -5,7 +5,7 @@ import { getCategories } from '@/app/supabase-server'
 const CategoryList = async () => {
   const categories = await getCategories()
 
-  if (!categories) return null
+  if (!categories || categories.data.length === 0 || categories.error) return null
 
   return (
     <ul className='flex flex-col gap-2 bg-white font-tossFace font-semibold dark:border-darkBg-100 dark:bg-darkBg-300'>
