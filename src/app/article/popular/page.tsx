@@ -1,7 +1,7 @@
 import React from 'react'
 import DataList from '@/components/blocks/DataList'
 import { getArticles } from '@/app/supabase-server'
-import CardItem from '@/app/newsletter/components/CardItem'
+import Card from '@/components/atoms/Card'
 
 const PopularArticle = async () => {
   const article = await getArticles('popular')
@@ -9,16 +9,19 @@ const PopularArticle = async () => {
   return (
     <DataList variant='block' title=''>
       {article?.data.map(({ id, title, description, link, thumbnail }) => (
-        <CardItem
-          id={id}
-          name={title}
-          description={description}
-          category={[]}
-          thumbnail={thumbnail}
-          link={link}
-          days={[]}
-          key={id}
-        />
+        <div className='h-[450px] max-md:h-[300px]' key={id}>
+          <Card
+            id={id}
+            title={title}
+            description={description}
+            image={thumbnail ?? ''}
+            tags={[]}
+            link={link}
+            days={[]}
+            width={330}
+            height={150}
+          />
+        </div>
       ))}
     </DataList>
   )

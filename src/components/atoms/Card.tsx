@@ -13,7 +13,6 @@ type Props = {
   title?: React.ReactNode
   description?: React.ReactNode
   tags?: string[]
-
   width?: string | number
   height?: string | number
 } & Partial<NewsLetter>

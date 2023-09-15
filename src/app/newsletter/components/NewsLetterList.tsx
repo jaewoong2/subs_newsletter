@@ -2,8 +2,8 @@
 import React, { useMemo } from 'react'
 import useInfiniteNewsletter from '@/hooks/useInfiniteNewsletter'
 import { motion } from 'framer-motion'
-import CardItem from './CardItem'
 import PlaceholderItem from './PlaceholderItem'
+import Card from '@/components/atoms/Card'
 
 type Props = {
   q?: 'createdAt' | 'popular'
@@ -29,7 +29,18 @@ const NewsLetterList = ({ q = 'createdAt' }: Props) => {
           />
         ))}
       {newsletters?.map((newsletter) => (
-        <CardItem {...newsletter} key={newsletter.id} />
+        <div className='h-[450px] max-md:h-[300px]' key={newsletter.id}>
+          <Card
+            title={newsletter.name}
+            description={newsletter.description}
+            image={newsletter.thumbnail ?? ''}
+            tags={newsletter.category ?? []}
+            link={newsletter.link}
+            days={newsletter.days}
+            width={330}
+            height={150}
+          />
+        </div>
       ))}
       {isLoading && (
         <>
