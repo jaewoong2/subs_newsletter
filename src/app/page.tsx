@@ -9,6 +9,7 @@ import NavDropBox from '@/components/blocks/NavDropBox'
 import ThemeToogleButton from '@/components/blocks/ThemeToogleButton'
 import { ARTICLE_ASIDE_LINK_ITEM, NEWSLETTER_ASIDE_LINK_ITEM, SEO_TITLE } from '@/constants'
 import CategoryList from './newsletter/components/CaretoryList'
+import Aside from './newsletter/components/Aside'
 
 const MOBILE_NAV_ITEMS = [...NEWSLETTER_ASIDE_LINK_ITEM, ...ARTICLE_ASIDE_LINK_ITEM].map(({ badge, ...items }) => items)
 
@@ -21,8 +22,10 @@ export default function Page() {
         menu={
           <div className='flex items-center justify-center gap-2'>
             <NavDropBox />
-            <MobileNavDropBox asideItems={MOBILE_NAV_ITEMS}>
-              <CategoryList />
+            <MobileNavDropBox>
+              <Aside items={MOBILE_NAV_ITEMS}>
+                <CategoryList />
+              </Aside>
             </MobileNavDropBox>
             <ThemeToogleButton />
           </div>

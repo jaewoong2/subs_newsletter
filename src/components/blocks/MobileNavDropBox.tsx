@@ -1,16 +1,7 @@
 import React, { PropsWithChildren } from 'react'
-import Aside from '@/app/newsletter/components/Aside'
 import { HiOutlineMenu } from 'react-icons/hi'
 
-type Props = {
-  asideItems: {
-    href: string
-    title: string
-    badge?: React.ReactNode
-  }[]
-}
-
-const MobileNavDropBox = ({ asideItems, children }: PropsWithChildren<Props>) => {
+const MobileNavDropBox = ({ children }: PropsWithChildren) => {
   return (
     <div className='drawer hidden max-md:grid'>
       <input id='drawer' type='checkbox' className='drawer-toggle' />
@@ -22,9 +13,7 @@ const MobileNavDropBox = ({ asideItems, children }: PropsWithChildren<Props>) =>
       </div>
       <div className='drawer-side'>
         <label htmlFor='drawer' className='drawer-overlay overflow-y-hidden' aria-label='드롭박스 오버레이'></label>
-        <div className='h-full w-2/3 bg-white dark:bg-darkBg-300'>
-          <Aside items={asideItems}>{children}</Aside>
-        </div>
+        <div className='h-full w-2/3 bg-white dark:bg-darkBg-300'>{children}</div>
       </div>
     </div>
   )
