@@ -18,14 +18,6 @@ const User = async ({ params }: NextPageProps<Params>) => {
   if (!user?.data || user.error) {
     notFound()
   }
-  // MAIN 화면 (VIEW GET)
-  // 1. creator === newsletter 이름
-  // 2. newsletter db
-  // 3. newsletter thumbnail, newsletter name, newsletter days
-  // 4. creator db
-  // 5. creator`s contents
-
-  // 6. 세션에 로그인된 아이디의 등록된 ID가 해당 뉴스레터를 관리 할 수 있으면 수정 페이지 OK
 
   return (
     <div className='flex w-full flex-col items-center px-4'>
