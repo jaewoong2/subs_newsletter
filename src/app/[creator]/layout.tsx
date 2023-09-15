@@ -7,6 +7,7 @@ import NavDropBox from '@/components/blocks/NavDropBox'
 import ThemeToogleButton from '@/components/blocks/ThemeToogleButton'
 import { NEWSLETTER_ASIDE_LINK_ITEM } from '@/constants'
 import CategoryList from '../newsletter/components/CaretoryList'
+import Aside from '../newsletter/components/Aside'
 
 const CreatorLayout = ({ children }: PropsWithChildren) => {
   return (
@@ -20,8 +21,10 @@ const CreatorLayout = ({ children }: PropsWithChildren) => {
         menu={
           <div className='flex items-center justify-center gap-2'>
             <NavDropBox />
-            <MobileNavDropBox asideItems={NEWSLETTER_ASIDE_LINK_ITEM}>
-              <CategoryList />
+            <MobileNavDropBox>
+              <Aside items={NEWSLETTER_ASIDE_LINK_ITEM}>
+                <CategoryList />
+              </Aside>
             </MobileNavDropBox>
             <ThemeToogleButton />
           </div>

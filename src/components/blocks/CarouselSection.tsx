@@ -21,28 +21,13 @@ const CarouselSection = () => {
           items={[
             <img
               key={'1'}
-              src={IMAGE.example.image1}
+              src={IMAGE.placeholder}
               alt=''
               className='rounded-box h-auto max-h-full w-auto max-w-full'
             />,
-            <img
-              key={2}
-              src={IMAGE.example.image2}
-              alt=''
-              className='rounded-box h-auto max-h-full w-auto max-w-full'
-            />,
-            <img
-              key={3}
-              alt=''
-              src={IMAGE.example.image3}
-              className='rounded-box h-auto max-h-full w-auto max-w-full'
-            />,
-            <img
-              key={4}
-              src={IMAGE.example.image4}
-              alt=''
-              className='rounded-box h-auto max-h-full w-auto max-w-full'
-            />,
+            <img key={2} src={IMAGE.placeholder} alt='' className='rounded-box h-auto max-h-full w-auto max-w-full' />,
+            <img key={3} alt='' src={IMAGE.placeholder} className='rounded-box h-auto max-h-full w-auto max-w-full' />,
+            <img key={4} src={IMAGE.placeholder} alt='' className='rounded-box h-auto max-h-full w-auto max-w-full' />,
           ]}
         />
       </motion.div>

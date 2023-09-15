@@ -38,13 +38,13 @@ export async function getNewsLetters(searchParams?: string | 'popular' | 'new', 
   } catch (err) {}
 }
 
-export async function getArticles(searchParams?: string | 'popular' | 'new') {
+export async function getArticles(searchParams?: string | 'popular' | 'new', limit = 10) {
   const supabase = createServerSupabaseClient()
   try {
     const response = await supabase
       .from('article')
       .select('*')
-      .limit(10)
+      .limit(limit)
       .order(getOrder(searchParams), { foreignTable: '', ascending: false })
 
     if (!response.data) {
