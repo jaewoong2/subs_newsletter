@@ -3,7 +3,7 @@ import { twMerge } from 'tailwind-merge'
 import Link from 'next/link'
 import CardLink from '../blocks/CardLink'
 import { BASEURL } from '@/constants'
-import { NewsLetter } from '@/types'
+import { Articles, NewsLetter } from '@/types'
 import CardImage from './CardImage'
 import Days from './Days'
 
@@ -15,9 +15,25 @@ type Props = {
   tags?: string[]
   width?: string | number
   height?: string | number
+
+  newsletterId?: NewsLetter['id']
+  articleId?: Articles['id']
 } & Partial<NewsLetter>
 
-const Card = ({ title, description, image, alt, tags, id, width, height, days }: Props) => {
+const Card = ({
+  title,
+  description,
+  image,
+  alt,
+  tags,
+  id,
+  width,
+  height,
+  days,
+  newsletterId,
+  articleId,
+  link,
+}: Props) => {
   return (
     <article className='relative h-full w-full'>
       <div
@@ -28,7 +44,12 @@ const Card = ({ title, description, image, alt, tags, id, width, height, days }:
           'animate-fade'
         )}
       >
-        <CardLink href={BASEURL + `/${title}`} newsLetterId={id} className='grid h-[90%] w-full grid-rows-2'>
+        <CardLink
+          href={link ?? ''}
+          newsLetterId={newsletterId}
+          artlceId={articleId}
+          className='grid h-[90%] w-full grid-rows-2'
+        >
           <div className='h-full w-full'>
             <CardImage image={image} alt={alt} width={width} height={height} />
           </div>

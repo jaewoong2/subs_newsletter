@@ -8,15 +8,15 @@ const ArticlePage = async () => {
 
   return (
     <DataList variant='block' title=''>
-      {article?.data.map(({ id, title, description, link, thumbnail }) => (
+      {article?.data.map(({ id, title, description, thumbnail }) => (
         <div className='h-[450px] max-md:h-[300px]' key={id}>
           <Card
-            id={id}
+            articleId={id}
             title={title}
             description={description}
             image={thumbnail ?? ''}
             tags={[]}
-            link={link}
+            link={`article/${title}?`}
             days={[]}
             width={330}
             height={150}

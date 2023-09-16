@@ -6,6 +6,7 @@ export interface Database {
       article: {
         Row: {
           category: string[] | null
+          content: string | null
           created_at: string | null
           description: string | null
           id: number
@@ -16,6 +17,7 @@ export interface Database {
         }
         Insert: {
           category?: string[] | null
+          content?: string | null
           created_at?: string | null
           description?: string | null
           id?: number
@@ -26,6 +28,7 @@ export interface Database {
         }
         Update: {
           category?: string[] | null
+          content?: string | null
           created_at?: string | null
           description?: string | null
           id?: number

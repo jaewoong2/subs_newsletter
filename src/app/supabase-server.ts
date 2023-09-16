@@ -297,3 +297,19 @@ export const getLettersById = async (id: number) => {
     return null
   }
 }
+
+export const getArticleById = async (title: string) => {
+  const supabase = createServerSupabaseClient()
+
+  try {
+    const article = await supabase.from('article').select('*').eq('title', title).single()
+
+    if (!article.data || article.error) {
+      throw new Error('No data found')
+    }
+
+    return article
+  } catch (err) {
+    return null
+  }
+}

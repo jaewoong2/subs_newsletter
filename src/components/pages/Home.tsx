@@ -17,14 +17,14 @@ export const Home = async () => {
       <DataList title='최신 뉴스레터'>
         <ImageCarousel
           items={newsletters?.data
-            .map(({ id, link, thumbnail, name, description, category, days }) => (
+            .map(({ id, thumbnail, name, description, category, days }) => (
               <figure key={`card-${id}-${name}`} className='h-full w-full'>
                 <Card
                   title={name}
                   description={description}
                   image={thumbnail ?? ''}
-                  link={link}
                   tags={category ?? []}
+                  link={`/${name}`}
                   width={300}
                   height={150}
                   days={days}
@@ -45,9 +45,9 @@ export const Home = async () => {
       <DataList title='뉴스레터 소식'>
         <ImageCarousel
           items={articles?.data
-            .map(({ id, link, description, title, thumbnail }) => (
+            .map(({ id, description, title, thumbnail }) => (
               <figure key={`card-${id}-${title}`} className='h-full w-full'>
-                <Card title={title} description={description} image={thumbnail ?? ''} link={link} />
+                <Card title={title} description={description} image={thumbnail ?? ''} link={`article/${title}`} />
               </figure>
             ))
             .concat(
