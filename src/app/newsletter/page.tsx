@@ -13,12 +13,12 @@ const NewsLetter = async () => {
       {newsletters?.data.map((newsletter) => (
         <div className='h-[450px] max-md:h-[300px]' key={newsletter.id}>
           <Card
-            id={newsletter.id}
+            newsletterId={newsletter.id}
             title={newsletter.name}
             description={newsletter.description}
             image={newsletter.thumbnail ?? ''}
             tags={newsletter.category ?? []}
-            link={newsletter.link}
+            link={`/${newsletter.name}`}
             days={newsletter.days}
             width={330}
             height={150}

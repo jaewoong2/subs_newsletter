@@ -3,7 +3,8 @@ import React, { useState } from 'react'
 import { NewsLetter } from '@/types'
 import { motion } from 'framer-motion'
 
-const BADGECOLOR = ['#313866', '#504099', '#974EC3', '#FE7BE5', '#262A56', '#B8621B', '#E3CCAE']
+const BADGECOLOR = ['#FF9B50', '#504099', '#974EC3', '#FE7BE5', '#CEDEBD', '#435334', '#9EB384']
+const SIZE = 24
 
 const Days = ({ days }: Partial<Pick<NewsLetter, 'days'>>) => {
   const [isHovered, setHovered] = useState(false)
@@ -38,7 +39,7 @@ const Days = ({ days }: Partial<Pick<NewsLetter, 'days'>>) => {
             className='badge badge-primary absolute w-[30px] border-none text-xs text-white shadow-md'
             style={{ left: `${index * 7.5}px`, backgroundColor: BADGECOLOR[index] }}
             animate={{
-              left: isHovered ? `${index * 25}px` : `${index * 7.5}px`,
+              left: isHovered ? `${index * (SIZE + 2)}px` : `${index * 7.5}px`,
             }}
           >
             {day[0]}

@@ -18,8 +18,8 @@ const NewsLetter = async () => {
             description={newsletter.description}
             image={newsletter.thumbnail ?? ''}
             tags={newsletter.category ?? []}
-            link={newsletter.link}
             days={newsletter.days}
+            link={`/${newsletter.name}`}
             width={330}
             height={150}
           />

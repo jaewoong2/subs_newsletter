@@ -31,11 +31,12 @@ const NewsLetterList = ({ q = 'createdAt' }: Props) => {
       {newsletters?.map((newsletter) => (
         <div className='h-[450px] max-md:h-[300px]' key={newsletter.id}>
           <Card
+            newsletterId={newsletter.id}
             title={newsletter.name}
             description={newsletter.description}
             image={newsletter.thumbnail ?? ''}
             tags={newsletter.category ?? []}
-            link={newsletter.link}
+            link={`/${newsletter.name}`}
             days={newsletter.days}
             width={330}
             height={150}
