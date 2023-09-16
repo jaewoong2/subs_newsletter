@@ -108,5 +108,5 @@ module.exports = {
       },
     },
   },
-  plugins: [require('tailwindcss-animated'), require('daisyui')],
+  plugins: [require('tailwindcss-animated'), require('daisyui'), require('@tailwindcss/typography')],
 }

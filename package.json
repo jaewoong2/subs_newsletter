@@ -39,6 +39,7 @@
     "react-dom": "^18.2.0",
     "react-error-boundary": "^4.0.4",
     "react-icons": "^4.8.0",
+    "react-markdown": "^8.0.7",
     "react-redux": "^8.0.5",
     "react-select": "^5.7.3",
     "sharp": "^0.32.1",
@@ -52,6 +53,7 @@
   "devDependencies": {
     "@cloudflare/next-on-pages": "^1.4.0",
     "@motionone/utils": "^10.15.1",
+    "@tailwindcss/typography": "^0.5.10",
     "@types/gtag.js": "^0.0.12",
     "@types/react-beautiful-dnd": "^13.1.4",
     "@typescript-eslint/eslint-plugin": "^5.13.0",
