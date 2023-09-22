@@ -1,5 +1,5 @@
 'use client'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import SimpleModal from '../atoms/SimpleModal'
 import useSimpleModal from '@/hooks/useSimpleModal'
 import { Divider, AbsoluteCenter, Box } from '@chakra-ui/react'
@@ -7,16 +7,30 @@ import { useSearch } from '@/hooks/useSearch'
 import SearchResult from '../atoms/SearchResult'
 import SearchForm from '../atoms/SearchForm'
 
-const SearchInput = () => {
+type Props = {
+  open?: boolean
+}
+
+const SearchInput = ({ children, open, ...props }: Props & JSX.IntrinsicElements['button']) => {
   const { query, setQuery, data, isLoading, isEmpty } = useSearch()
 
-  const [isSearchOpen, setIsSearchOpen] = useState(false)
+  const [isSearchOpen, setIsSearchOpen] = useState(() => {
+    if (typeof open === 'boolean') return open
+    return false
+  })
+
   const { isOpen, onClose } = useSimpleModal({
     isOpen: isSearchOpen,
     onClose() {
       setIsSearchOpen(false)
     },
   })
+
+  useEffect(() => {
+    if (typeof open === 'boolean') {
+      setIsSearchOpen(open)
+    }
+  }, [open])
 
   return (
     <>
@@ -26,6 +40,7 @@ const SearchInput = () => {
         onClick={() => {
           setIsSearchOpen(true)
         }}
+        {...props}
       >
         <svg
           xmlns='http://www.w3.org/2000/svg'
@@ -42,6 +57,7 @@ const SearchInput = () => {
           />
         </svg>
       </button>
+      {children}
       <SimpleModal isOpen={isOpen} onClose={onClose} closeOnOverlayClick isCentered={false} size={'lg'}>
         <SearchForm onChange={(e) => setQuery(e.target.value)} value={query} />
         <Box position='relative' className='py-5'>

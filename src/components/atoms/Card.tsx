@@ -15,7 +15,7 @@ type Props = {
   tags?: string[]
   width?: string | number
   height?: string | number
-
+  className?: string
   newsletterId?: NewsLetter['id']
   articleId?: Articles['id']
 } & Partial<NewsLetter>
@@ -33,6 +33,7 @@ const Card = ({
   newsletterId,
   articleId,
   link,
+  className,
 }: Props) => {
   return (
     <article className='relative h-full w-full'>
@@ -40,8 +41,9 @@ const Card = ({
         className={twMerge(
           'group card mx-auto h-full w-full scale-95 border bg-base-100 bg-transparent transition-transform',
           'hover:scale-100 hover:border-slate-400 dark:border-darkBg-800 dark:bg-darkBg-100',
-          'relative flex flex-col overflow-hidden',
-          'animate-fade'
+          'relative flex flex-col',
+          'animate-fade',
+          className
         )}
       >
         <CardLink
@@ -58,13 +60,16 @@ const Card = ({
             <span className='line-clamp-3 overflow-hidden max-md:line-clamp-2 max-md:text-sm'>{description}</span>
           </div>
         </CardLink>
-        <div className='flex w-fit items-center justify-end gap-3 px-3 pb-4'>
+        <div className='flex w-full items-center justify-start gap-3 overflow-x-scroll px-3 pb-4'>
           {tags?.map((tag) => (
             <Link
               href={BASEURL + `/newsletter/${tag}`}
               tabIndex={0}
               key={tag}
-              className={twMerge('badge badge-outline z-[20]', 'hover:badge-neutral hover:bg-slate-200')}
+              className={twMerge(
+                'badge badge-outline z-[20] whitespace-nowrap',
+                'hover:badge-neutral hover:bg-slate-200'
+              )}
             >
               {tag}
             </Link>

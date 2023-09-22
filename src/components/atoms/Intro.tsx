@@ -28,7 +28,7 @@ export const Intro = ({ title, subTitle, index }: IntroProps) => {
         <div className={`mx-auto text-center font-tossFace text-xl font-bold max-lg:text-lg ${TEXT_COLOR[index - 1]}`}>
           {title}
         </div>
-        <p className='text-lg font-semibold max-lg:text-base'>{subTitle}</p>
+        <p className='text-base max-lg:text-base'>{subTitle}</p>
       </div>
     </motion.li>
   )

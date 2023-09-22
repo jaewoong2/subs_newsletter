@@ -10,14 +10,16 @@ import ThemeToogleButton from '@/components/blocks/ThemeToogleButton'
 import { ARTICLE_ASIDE_LINK_ITEM, NEWSLETTER_ASIDE_LINK_ITEM, SEO_TITLE } from '@/constants'
 import CategoryList from './newsletter/components/CaretoryList'
 import Aside from './newsletter/components/Aside'
+import NewPage from './NewPage'
 
 const MOBILE_NAV_ITEMS = [...NEWSLETTER_ASIDE_LINK_ITEM, ...ARTICLE_ASIDE_LINK_ITEM].map(({ badge, ...items }) => items)
 
 export default function Page() {
   return (
     <div className='min-h-full w-full'>
+      <NewPage />
       <h1 className='sr-only'>{SEO_TITLE}</h1>
-      <Navigation
+      {/* <Navigation
         className='h-16 bg-white bg-opacity-10 dark:border-darkBg-200 dark:bg-opacity-10'
         menu={
           <div className='flex items-center justify-center gap-2'>
@@ -43,7 +45,7 @@ export default function Page() {
       <Home />
       <RegisterNewsLetter />
       <Register />
-      <Footer />
+      <Footer /> */}
     </div>
   )
 }

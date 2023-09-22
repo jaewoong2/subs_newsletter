@@ -98,7 +98,6 @@ export async function getCategories() {
 
   try {
     const response = await supabase.from('categories').select('categories').order('count', { ascending: false })
-
     if (!response.data) {
       throw new Error('No data found')
     }
