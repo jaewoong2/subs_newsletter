@@ -30,7 +30,7 @@ const NewPage = async () => {
   const articles = await getArticles()
 
   return (
-    <main className='flex h-full min-h-screen w-full flex-col items-center'>
+    <main className='flex h-full min-h-screen w-full flex-col items-center dark:bg-darkBg-400 dark:text-white'>
       <div className='container h-fit w-full py-4'>
         <nav className='flex h-[50px] w-full items-center gap-5'>
           <Link href={'/'}>
@@ -60,17 +60,17 @@ const NewPage = async () => {
           </li>
         </ul>
       </div>
-      <div className='w-full border-y bg-slate-100 py-6'>
+      <div className='w-full border-y bg-slate-100 py-6 dark:border-darkBg-200 dark:bg-darkBg-200'>
         <div className='container mx-auto flex w-full justify-center max-md:flex-col'>
-          <div className='container mx-auto grid w-fit grid-cols-4 gap-4 py-4'>
+          <div className='container mx-auto grid w-fit grid-cols-4 gap-4 py-12'>
             {categories?.data.map((category) => {
               return (
                 <Link
                   href={`/newsletter/${category.categories}`}
                   key={category.categories}
                   className='
-                  flex h-20 w-20
-                  cursor-pointer flex-col items-center justify-center rounded-lg border bg-white text-sm shadow-trend transition-transform hover:-translate-y-1'
+                  flex h-20 w-20 cursor-pointer
+                  flex-col items-center justify-center rounded-lg border bg-white text-sm shadow-trend transition-transform hover:-translate-y-1 dark:border-darkBg-200 dark:bg-darkBg-100 dark:shadow-none'
                 >
                   <p className='h-8 font-tossFace text-lg'>{getCategoryIcon(category.categories)}</p>
                   <p className='font-[500]'>{category.categories}</p>
