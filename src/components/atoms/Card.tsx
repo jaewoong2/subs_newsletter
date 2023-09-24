@@ -26,7 +26,6 @@ const Card = ({
   image,
   alt,
   tags,
-  id,
   width,
   height,
   days,
@@ -68,7 +67,7 @@ const Card = ({
               key={tag}
               className={twMerge(
                 'badge badge-outline z-[20] whitespace-nowrap',
-                'hover:badge-neutral hover:bg-slate-200'
+                'text-sm hover:badge-neutral hover:bg-slate-200'
               )}
             >
               {tag}

@@ -9,9 +9,10 @@ import SearchForm from '../atoms/SearchForm'
 
 type Props = {
   open?: boolean
+  onClose?: () => void
 }
 
-const SearchInput = ({ children, open, ...props }: Props & JSX.IntrinsicElements['button']) => {
+const SearchInput = ({ children, open, onClose: propsOnClose, ...props }: Props & JSX.IntrinsicElements['button']) => {
   const { query, setQuery, data, isLoading, isEmpty } = useSearch()
 
   const [isSearchOpen, setIsSearchOpen] = useState(() => {
@@ -23,6 +24,9 @@ const SearchInput = ({ children, open, ...props }: Props & JSX.IntrinsicElements
     isOpen: isSearchOpen,
     onClose() {
       setIsSearchOpen(false)
+      if (propsOnClose) {
+        propsOnClose()
+      }
     },
   })
 

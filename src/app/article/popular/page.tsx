@@ -8,7 +8,7 @@ const PopularArticle = async () => {
 
   return (
     <DataList variant='block' title=''>
-      {article?.data.map(({ id, title, description, link, thumbnail }) => (
+      {article?.data.map(({ id, title, description, thumbnail }) => (
         <div className='h-[450px] max-md:h-[300px]' key={id}>
           <Card
             articleId={id}
