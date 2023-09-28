@@ -1,0 +1,11 @@
+# *
+User-agent: *
+Allow: /
+Disallow: /admin
+
+# Host
+Host: https://newsubs.site
+
+# Sitemaps
+Sitemap: https://newsubs.site/sitemap.xml
+Sitemap: https://newsubs.site/server-sitemap.xml
