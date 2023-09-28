@@ -52,7 +52,6 @@
     "uuid": "^9.0.0"
   },
   "devDependencies": {
-    "@cloudflare/next-on-pages": "^1.4.0",
     "@motionone/utils": "^10.15.1",
     "@tailwindcss/typography": "^0.5.10",
     "@types/gtag.js": "^0.0.12",

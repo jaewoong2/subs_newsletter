@@ -1,4 +1,4 @@
-FROM node:18-alpine AS base
+FROM node:18-slim AS base
 
 # Install dependencies needed for certain node modules
 RUN apk add --no-cache --virtual .gyp python3 make g++ \
