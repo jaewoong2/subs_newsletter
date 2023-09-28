@@ -16,6 +16,7 @@ RUN apk add --no-cache yarn
 
 # Install dependencies based on the preferred package manager
 COPY package.json yarn.lock ./
+RUN yarn cache clean
 RUN yarn
 
 # Rebuild the source code only when needed
