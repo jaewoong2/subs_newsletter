@@ -1,6 +1,32 @@
-import { MetadataRoute } from 'next'
+import { Database } from '@/types/supabase'
+import { createClient } from '@supabase/supabase-js'
 
-export default function sitemap(): MetadataRoute.Sitemap {
+export default async function sitemap() {
+  const supabase = createClient<Database>(
+    process.env.NEXT_PUBLIC_SUPABASE_URL ?? '',
+    process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY ?? ''
+  )
+
+  const newsletters = await supabase.from('newsletter').select('name')
+  const aritcles = await supabase.from('article').select('title')
+
+  if (!newsletters || newsletters.error || !newsletters.data) return
+  if (!aritcles || aritcles.error || !aritcles.data) return
+
+  const newsletterSitemaps = newsletters.data?.map((newsletter) => ({
+    url: `https://newsubs.site/${newsletter.name}`,
+    lastModified: new Date().toISOString(),
+    changeFrequency: 'weekly' as const,
+    priority: 1,
+  }))
+
+  const articleSitemaps = aritcles.data?.map((article) => ({
+    url: `https://newsubs.site/article/${article.title}`,
+    lastModified: new Date().toISOString(),
+    changeFrequency: 'weekly' as const,
+    priority: 1,
+  }))
+
   return [
     {
       url: process.env.NEXT_PUBLIC_CURRENT_URL
@@ -24,5 +50,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 1,
       lastModified: new Date(),
     },
+    ...newsletterSitemaps,
+    ...articleSitemaps,
   ]
 }
