@@ -2,7 +2,7 @@
   "name": "newsubs",
   "options": {
     "allow-unauthenticated": true,
-    "memory": "256Mi",
+    "memory": "512Mi",
     "cpu": "1",
     "port": 3000,
     "http2": false
