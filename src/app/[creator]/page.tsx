@@ -65,9 +65,9 @@ const Creator = async ({ params }: NextPageProps<Params>) => {
         <CgEye />
         {newsletter.data.view}
       </div>
-      <div className='flex gap-2 pt-4'>
+      <div className='container flex gap-2 overflow-x-scroll pt-4'>
         {newsletter.data.category?.map((category) => (
-          <div key={category} className='badge'>
+          <div key={category} className='badge whitespace-nowrap'>
             {category}
           </div>
         ))}
@@ -117,7 +117,7 @@ const Creator = async ({ params }: NextPageProps<Params>) => {
                   {...newsletter}
                   image={newsletter.thumbnail ?? ''}
                   title={newsletter.name}
-                  tags={newsletter.category ?? []}
+                  tags={[]}
                   days={newsletter.days}
                   link={`/${newsletter.name}`}
                 />
