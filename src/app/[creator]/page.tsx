@@ -19,9 +19,34 @@ import Link from 'next/link'
 import { twMerge } from 'tailwind-merge'
 import { CgEye } from 'react-icons/cg'
 import { RxOpenInNewWindow } from 'react-icons/rx'
-
+import { METADATA } from '@/constants'
 type Params = {
   creator?: string
+}
+
+export async function generateMetadata({ params }: NextPageProps<Params>) {
+  const newsletter = await getNewsLettersByName(params.creator)
+
+  if (newsletter?.error || !newsletter?.data) return { ...METADATA }
+
+  return {
+    ...METADATA,
+    title: `뉴섭 | ${newsletter.data.name}`,
+    description: `${newsletter.data.description?.slice(0, 170)}`,
+    openGraph: {
+      title: `뉴섭 | ${newsletter.data.name}`,
+      url: `${process.env.NEXT_PUBLIC_CURRENT_URL}/${decodeURIComponent(params.creator ?? '')}`,
+      images: [newsletter.data.thumbnail ?? ''],
+      type: 'article',
+      description: `${newsletter.data.description}`,
+    },
+    twitter: {
+      title: `뉴섭 | ${newsletter.data.name}`,
+      site: `${process.env.NEXT_PUBLIC_CURRENT_URL}/${decodeURIComponent(params.creator ?? '')}`,
+      images: [newsletter.data.thumbnail ?? ''],
+      description: `${newsletter.data.description}`,
+    },
+  }
 }
 
 const Creator = async ({ params }: NextPageProps<Params>) => {

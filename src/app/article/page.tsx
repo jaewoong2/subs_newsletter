@@ -2,6 +2,10 @@ import React from 'react'
 import { getArticles } from '../supabase-server'
 import DataList from '@/components/blocks/DataList'
 import Card from '@/components/atoms/Card'
+import { Metadata } from 'next'
+import { METADATA } from '@/constants'
+
+export const metadata: Metadata = { ...METADATA, title: '뉴섭 | 뉴스레터 소식' }
 
 const ArticlePage = async () => {
   const article = await getArticles()
