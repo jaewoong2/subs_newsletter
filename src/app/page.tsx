@@ -22,45 +22,10 @@ const getCategoryIcon = (category?: string | null) => {
   return '🥳'
 }
 
-function createEmailFromJson(response: { name: string; category: string }) {
-  const template = `
-안녕하세요, ${response.name} 담당자님.
-“뉴섭”에서 뉴스레터 추천 서비스를 제공하고 있습니다. ${response.name}의 뉴스레터 정보를 “뉴섭”에 등록하여 더 많은 사람들에게 알리고 싶습니다.
-
-왜 "뉴섭"인가요?
-로그인 없이 간편하게 다양한 뉴스레터를 추천하고, 크리에이터와 동의를 통해 뉴스레터 아카이빙까지 제공합니다. 자세한 서비스 내용은 소개 링크에서 확인 가능합니다.
-
-뉴섭에서 제공하는 서비스:
-
-종류별 뉴스레터 정보 제공
-주기적인 뉴스레터 소식 제공
-추천 알고리즘에 따른 다른 뉴스레터 추천
-뉴스레터 아카이빙 기능
-또한, 뉴스레터 리뷰 기능을 곧 추가 예정입니다.
-
-${response.category} 뉴스레터인 ${response.name}을 “뉴섭”에 등록하면, 더 많은 구독자와 공유 기회를 얻을 수 있습니다.
-동의를 위해 [ https://newsubs.site/register?name=${response.name} ]클릭해주세요.
-
-기능 추가나 문의 사항은 메일 회신을 통해 해주시길 바랍니다.
-
-${response.name} 담당자님 잘 부탁 드립니다. 좋은 하루 되세요 :)
-
-뉴섭 드림
-`
-
-  return template
-}
-
 export default async function Page() {
   const categories = await getCategories()
   const newsletters = await getNewsLetters(undefined, 400)
   const articles = await getArticles()
-
-  const reponses = newsletters?.data.map((v) =>
-    createEmailFromJson({ name: v.name ?? '', category: v.category?.join('/') ?? '' })
-  )
-
-  console.log(reponses)
 
   return (
     <div className='min-h-full w-full'>

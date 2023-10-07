@@ -23,7 +23,7 @@ export async function getNewsLetters(searchParams?: string | 'popular' | 'new', 
     const response = await supabase
       .from('newsletter')
       .select('*')
-      // .eq('status', 'active')
+      .eq('status', 'active')
       .limit(limit)
       .order(getOrder(searchParams), { foreignTable: '', ascending: false })
 
