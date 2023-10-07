@@ -45,6 +45,7 @@ export async function GET(request: NextRequest) {
   const response = await supabase
     .from('newsletter')
     .select('*')
+    .eq('status', 'active')
     .range(from, to)
     .order(q === 'popular' ? 'view' : 'created_at', { ascending: false })
 

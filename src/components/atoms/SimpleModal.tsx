@@ -36,7 +36,7 @@ const SimpleModal = ({ onClose, isOpen, title, subTitle, children, size, classNa
               <ModalCloseButton />
             </ModalHeader>
           )}
-          <ModalBody>{children}</ModalBody>
+          <ModalBody className='overflow-y-scroll'>{children}</ModalBody>
         </ModalContent>
       </Modal>
     </>

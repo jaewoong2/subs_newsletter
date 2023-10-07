@@ -21,6 +21,7 @@ export async function GET(request: NextRequest) {
     const letters = await supabase
       .from('newsletter')
       .select('*')
+      .eq('status', 'active')
       .or(`name.like.%${search}%, description.like.%${search}%, category.ov.{${search}}`)
 
     const articles = await supabase

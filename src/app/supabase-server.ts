@@ -23,6 +23,7 @@ export async function getNewsLetters(searchParams?: string | 'popular' | 'new', 
     const response = await supabase
       .from('newsletter')
       .select('*')
+      // .eq('status', 'active')
       .limit(limit)
       .order(getOrder(searchParams), { foreignTable: '', ascending: false })
 
@@ -62,7 +63,7 @@ export async function getArticles(searchParams?: string | 'popular' | 'new', lim
 export async function getNewsLettersRandom() {
   const supabase = createServerSupabaseClient()
   try {
-    const response = await supabase.from('newsletter_random').select('*').limit(10)
+    const response = await supabase.from('newsletter_random').select('*').eq('status', 'active').limit(10)
 
     if (!response.data) {
       throw new Error('No data found')
@@ -114,7 +115,7 @@ export async function getNewsLettersById(ids: number[]) {
   const supabase = createServerSupabaseClient()
 
   try {
-    const response = await supabase.from('newsletter').select('*').contains('id', ids)
+    const response = await supabase.from('newsletter').select('*').eq('status', 'active').contains('id', ids)
 
     if (!response.data) {
       throw new Error('No data found')
@@ -137,6 +138,7 @@ export async function getNewsLettersByCategory(category?: string) {
     const response = await supabase
       .from('newsletter')
       .select('*')
+      .eq('status', 'active')
       .overlaps('category', [decodeURIComponent(category)])
 
     if (!response.data) {
@@ -228,7 +230,12 @@ export const getRelatedNewsletterByCategory = async (id: number | string) => {
   const supabase = createServerSupabaseClient()
 
   try {
-    const currentNewsletter = await supabase.from('newsletter').select('id, category').eq('id', +id).single()
+    const currentNewsletter = await supabase
+      .from('newsletter')
+      .select('id, category')
+      .eq('id', +id)
+      .eq('status', 'active')
+      .single()
 
     if (!currentNewsletter.data?.category) {
       throw new Error('No data found')
@@ -253,7 +260,7 @@ export const getRelatedNewsletters = async (ids: number[]) => {
   const supabase = createServerSupabaseClient()
 
   try {
-    const newsletters = await supabase.from('newsletter').select('*').in('id', ids)
+    const newsletters = await supabase.from('newsletter').select('*').eq('status', 'active').in('id', ids)
 
     if (!newsletters.data || newsletters.data.length === 0) {
       throw new Error('No data found')
@@ -308,6 +315,22 @@ export const getArticleById = async (title: string) => {
     }
 
     return article
+  } catch (err) {
+    return null
+  }
+}
+
+export const registerNewsletter = async (id: number) => {
+  const supabase = createServerSupabaseClient()
+
+  try {
+    const response = await supabase.from('newsletter').update({ status: 'active' }).eq('id', id)
+
+    if (!response.data || response.error) {
+      throw new Error('No data found')
+    }
+
+    return response
   } catch (err) {
     return null
   }
