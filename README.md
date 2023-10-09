@@ -18,25 +18,20 @@
 
 ### 카드 형식의 뉴스레터 소개
 
-![데스크탑](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/ae387698-118f-4fa7-a69f-84632c540b58/Untitled.png)
+<img width="658" alt="image" src="https://github.com/jaewoong2/subs_newsletter/assets/63512217/0a07f966-11bb-4285-860b-79ce4839ee0b">
 
-데스크탑
-
-![모바일](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/90d0ea31-820a-48f0-b186-2a5f50188ac2/Untitled.png)
-
-모바일
 
 - 구독자가 알고 싶은 정보를 한눈에 볼 수 있도록 정리 했어요. 이용자가 원하는 것은, 다양한 뉴스레터에 대한 정보 이기 때문에 간단하게 사용 할 수 있게 하였어요.
 
 ### 뉴스레터 상세페이지 접속 시, 추천 알고리즘에 따른 다른 뉴스레터 추천
 
-![Untitled](https://prod-files-secure.s3.us-west-2.amazonaws.com/31293d4b-685e-4f10-96b6-b62353330714/60145332-2fd5-4428-9d20-28a8e5e322f3/Untitled.png)
+<img width="234" alt="image" src="https://github.com/jaewoong2/subs_newsletter/assets/63512217/f3b9cf7f-993c-48d6-9da7-f643e7e19391">
 
 해당 뉴스레터를 조회한 사람이 조회한 다른 뉴스레터, 해당 뉴스레터와 같은 카테고리 범주에 들어가는 뉴스레터등 추천 알고리즘을 제작하여 상세 페이지 접속시 다른 뉴스레터를 추천 하는 서비스를 제공 합니다.
 
 ### 뉴스레터 아카이빙
 
-![Untitled](https://prod-files-secure.s3.us-west-2.amazonaws.com/31293d4b-685e-4f10-96b6-b62353330714/34022a0c-de69-4f2a-aa5c-06dbc5437433/Untitled.png)
+<img width="325" alt="image" src="https://github.com/jaewoong2/subs_newsletter/assets/63512217/b4ce6a3c-d3b1-48ab-8666-7d955ccf0fe0">
 
 뉴스레터의 지난 소식들을 저장 할 수 있는 아카이빙을 제공 합니다. 지난 소식을 보고 싶어하는 구독자들 및, 뉴스레터에 대해서 깊게 알고 싶어하는 구독자 들이 조금 더 많은 정보를 얻어 갈 수 있습니다.
 
@@ -44,7 +39,7 @@
 
 구글 라이트 하우스 점수의 성능 점수를 100점까지 올렸습니다. 그 어떤 상황에서도 빠르게 뉴스레터 들을 확인 하고, 답답함 없이 뉴스레터 소식을 확인 할 수 있습니다.
 
-![Untitled](https://prod-files-secure.s3.us-west-2.amazonaws.com/31293d4b-685e-4f10-96b6-b62353330714/ebb791c0-0a19-4262-98df-e9f578f064a5/Untitled.png)
+<img width="466" alt="image" src="https://github.com/jaewoong2/subs_newsletter/assets/63512217/dd951ccd-b70c-467f-9db9-fa295a6ffb5b">
 
 ### 빠른 업데이트
 
