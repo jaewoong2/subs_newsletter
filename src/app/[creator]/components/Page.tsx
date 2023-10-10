@@ -48,6 +48,7 @@ const Page = ({ newsletter, letters, relatedNewsltters, className }: Props) => {
         <CgEye />
         {newsletter.view}
       </div>
+
       <div className='container flex justify-center gap-2 overflow-x-scroll pt-4'>
         {newsletter.category?.map((category) => (
           <div key={category} className='badge whitespace-nowrap'>
@@ -63,6 +64,14 @@ const Page = ({ newsletter, letters, relatedNewsltters, className }: Props) => {
           </div>
         ))}
       </div>
+      <Link
+        className='btn-success btn my-4 w-full max-w-xs rounded-xl text-white'
+        href={newsletter.link ?? ''}
+        target='_blank'
+        referrerPolicy='no-referrer'
+      >
+        구독 하러가기
+      </Link>
       {(letters || relatedNewsltters) && (
         <div className='divider mx-auto w-[150px] p-0 dark:before:bg-darkBg-200 dark:after:bg-darkBg-200' />
       )}

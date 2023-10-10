@@ -49,8 +49,8 @@ const Buttons = ({ newsletter }: Props) => {
         미리보기
       </button>
       <SimpleModal isOpen={isOpen} onClose={onClose} title='미리보기' subTitle='카드 및 페이지 미리보기' size={'2xl'}>
-        <section className='flex h-full max-h-full w-full gap-5 overflow-scroll max-sm:flex-col max-sm:items-center'>
-          <figure className='w-full border-dashed border-gray-700 max-sm:border-b-2 max-sm:pb-4 sm:border-r-2 sm:pr-4'>
+        <section className='flex h-full max-h-full w-full flex-col items-center justify-center gap-5'>
+          <figure className='flex w-fit flex-col items-center justify-center'>
             <p className='py-2 text-sm font-semibold'>[카드 미리보기]</p>
             <Card
               className='z-0 h-[350px] w-[250px] bg-white '
@@ -64,9 +64,10 @@ const Buttons = ({ newsletter }: Props) => {
               days={newsletter.days}
             />
           </figure>
-          <figure className='h-96 max-h-full w-full overflow-y-scroll'>
+          <div className='divider' />
+          <figure className='flex w-fit flex-col items-center justify-center'>
             <p className='py-2 text-sm font-semibold'>[페이지 미리보기]</p>
-            <Page newsletter={newsletter} className='min-h-fit' />
+            <Page newsletter={newsletter} className='min-h-fit rounded-xl border py-4' />
           </figure>
         </section>
       </SimpleModal>
