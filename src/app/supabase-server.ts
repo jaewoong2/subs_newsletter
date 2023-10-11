@@ -13,8 +13,8 @@ export const createServerSupabaseClient = () =>
 
 const getOrder = (searchParams?: string) => {
   if (searchParams === 'popular') return 'view'
-  if (searchParams === 'new') return 'created_at'
-  return 'created_at'
+  if (searchParams === 'new') return 'updated_at'
+  return 'updated_at'
 }
 
 export async function getNewsLetters(searchParams?: string | 'popular' | 'new', limit = 10) {

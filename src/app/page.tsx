@@ -24,7 +24,7 @@ const getCategoryIcon = (category?: string | null) => {
 
 export default async function Page() {
   const categories = await getCategories()
-  const newsletters = await getNewsLetters(undefined, 400)
+  const newsletters = await getNewsLetters('new', 400)
   const articles = await getArticles()
 
   return (
@@ -72,10 +72,10 @@ export default async function Page() {
                     key={category.categories}
                     className='
                   flex h-20 w-20 cursor-pointer flex-col items-center
-                  justify-center rounded-lg border bg-white text-sm shadow-trend transition-transform hover:-translate-y-1 dark:border-darkBg-200 dark:bg-darkBg-100 dark:shadow-none max-md:h-16 max-md:w-16'
+                  justify-center rounded-lg border bg-white text-sm shadow-trend transition-transform hover:-translate-y-1 dark:border-darkBg-200 dark:bg-darkBg-100 dark:shadow-none max-md:h-20 max-md:w-20'
                   >
                     <p className='h-8 font-tossFace text-lg'>{getCategoryIcon(category.categories)}</p>
-                    <p className='font-[500] max-md:text-xs'>{category.categories}</p>
+                    <p className='font-[500] max-md:text-sm'>{category.categories}</p>
                   </Link>
                 )
               })}
