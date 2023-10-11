@@ -9,7 +9,7 @@ export const IMAGE = {
 
 export const METADATA: Metadata = {
   generator: 'Next.js',
-  applicationName: '뉴섭 | 나에게 맞는 뉴스레터를 추천 받으세요',
+  applicationName: '뉴섭 | 나에게 맞는 뉴스레터 추천 받으세요',
   referrer: 'origin-when-cross-origin',
   keywords: ['뉴스레터', 'newsletter', '뉴스레터구독', '뉴스레터추천', '뉴스레터 추천'],
   authors: [{ name: '@jaewoong2', url: 'https://github.com/jaewoong2' }],
@@ -18,7 +18,7 @@ export const METADATA: Metadata = {
   description: '내가 원하는 뉴스레터를 찾아보고 구독 하세요 🤩',
   metadataBase: new URL('https://newsubs.site'),
   openGraph: {
-    title: '뉴섭 | 나에게 맞는 뉴스레터를 추천 받으세요',
+    title: '뉴섭 | 나에게 맞는 뉴스레터 추천 받으세요',
     description: '내가 원하는 뉴스레터를 찾아보고 구독 하세요 🤩',
     images: IMAGE.placeholder,
   },
@@ -26,7 +26,7 @@ export const METADATA: Metadata = {
     card: 'summary_large_image',
     images: IMAGE.placeholder,
     site: BASEURL,
-    title: '뉴섭 | 나에게 맞는 뉴스레터를 추천 받으세요',
+    title: '뉴섭 | 나에게 맞는 뉴스레터 추천 받으세요',
     description: '내가 원하는 뉴스레터를 찾아보고 구독 하세요 🤩',
   },
 }

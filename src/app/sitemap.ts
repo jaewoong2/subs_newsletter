@@ -7,7 +7,7 @@ export default async function sitemap() {
     process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY ?? ''
   )
 
-  const newsletters = await supabase.from('newsletter').select('name')
+  const newsletters = await supabase.from('newsletter').select('name').eq('status', 'active')
   const aritcles = await supabase.from('article').select('title')
 
   if (!newsletters || newsletters.error || !newsletters.data) return
