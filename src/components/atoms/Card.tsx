@@ -41,7 +41,7 @@ const Card = ({
           'group card mx-auto h-full w-full scale-95 border bg-base-100 bg-transparent transition-transform',
           'hover:scale-100 hover:border-slate-400 dark:border-darkBg-800 dark:bg-darkBg-100',
           'relative flex flex-col',
-          'animate-fade  overflow-hidden',
+          'animate-fade overflow-hidden',
           className
         )}
       >
