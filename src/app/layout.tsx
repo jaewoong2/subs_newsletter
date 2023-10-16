@@ -19,7 +19,7 @@ export default function RootLayout({ children }: Props) {
     <html lang='kr' className='min-h-screen'>
       <head>
         <meta name='naver-site-verification' content='e8e88ea2a73b01b874af4aa082769ffb504474e6' />
-        <meta name="google-adsense-account" content="ca-pub-2848693550059581">
+        <meta name="google-adsense-account" content="ca-pub-2848693550059581" />
         <link rel='canonical' href='https://newsusbs.site' />
         {process.env.NODE_ENV !== 'development' && (
           <GoogleAnalytics GA_TRACKING_ID={process.env.NEXT_PUBLIC_GA_TRACKING_ID ?? ''} />
