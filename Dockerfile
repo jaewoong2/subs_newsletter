@@ -30,10 +30,10 @@ ENV NEXT_PUBLIC_SUPABASE_URL=${NEXT_PUBLIC_SUPABASE_URL}
 ENV NEXT_PUBLIC_SUPABASE_ANON_KEY=${NEXT_PUBLIC_SUPABASE_ANON_KEY}
 
 
-RUN touch /app/.env
-RUN echo "NEXT_PUBLIC_SUPABASE_URL=${NEXT_PUBLIC_SUPABASE_URL}" >> /app/.env
-RUN echo "NEXT_PUBLIC_SUPABASE_ANON_KEY=${NEXT_PUBLIC_SUPABASE_ANON_KEY}" >> /app/.env
-RUN echo "NEXT_PUBLIC_CURRENT_URL=http://localhost:3000" >> /app/.env
+RUN touch .env.production
+RUN echo "NEXT_PUBLIC_SUPABASE_URL=${NEXT_PUBLIC_SUPABASE_URL}" >> .env.production
+RUN echo "NEXT_PUBLIC_SUPABASE_ANON_KEY=${NEXT_PUBLIC_SUPABASE_ANON_KEY}" >> .env.production
+RUN echo "NEXT_PUBLIC_CURRENT_URL=http://localhost:3000" >> .env.production
 
 # Rebuild the source code only when needed
 FROM base AS builder
