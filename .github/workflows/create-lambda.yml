@@ -24,7 +24,7 @@ jobs:
         aws lambda create-function --function-name ${{ github.event.inputs.lambdaFunctionName }} \
         --package-type Image \
         --code ImageUri=${{ secrets.AWS_ECR_REGISTRY }}/newsubs:latest \
-        --role arn:aws:iam::849441246713:policy/next-lambda
+        --role arn:aws:iam::849441246713:role/lambda_full
       continue-on-error: true
 
     - name: Update Lambda Function Code
