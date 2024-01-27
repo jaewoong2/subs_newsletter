@@ -23,6 +23,8 @@ RUN \
     else echo "Lockfile not found." && exit 1; \
     fi
 
+# 여기에 .env 파일 복사 추가
+COPY .env* ./
 
 # Rebuild the source code only when needed
 FROM base AS builder
