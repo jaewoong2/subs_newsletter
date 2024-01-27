@@ -24,7 +24,7 @@ RUN \
     fi
 
 # 여기에 .env 파일 복사 추가
-COPY .env* ./
+COPY .env* /app
 
 # Rebuild the source code only when needed
 FROM base AS builder
