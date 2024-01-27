@@ -17,14 +17,14 @@ jobs:
       with:
         aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
         aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-        aws-region: your-aws-region
+        aws-region: ap-northeast-2
 
     - name: Create or Update Lambda Function
       run: |
         aws lambda create-function --function-name ${{ github.event.inputs.lambdaFunctionName }} \
         --package-type Image \
         --code ImageUri=${{ secrets.AWS_ECR_REGISTRY }}/newsubs:latest \
-        --role arn:aws:iam::account-id:role/lambda-role
+        --role arn:aws:iam::849441246713:policy/next-lambda
       continue-on-error: true
 
     - name: Update Lambda Function Code
