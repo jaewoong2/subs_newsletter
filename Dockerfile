@@ -1,5 +1,25 @@
 FROM node:18.17-alpine AS base
 
+
+ARG NEXT_PUBLIC_SUPABASE_URL
+ARG NEXT_PUBLIC_SUPABASE_ANON_KEY
+
+ENV NEXT_PUBLIC_SUPABASE_URL=${NEXT_PUBLIC_SUPABASE_URL}
+ENV NEXT_PUBLIC_SUPABASE_ANON_KEY=${NEXT_PUBLIC_SUPABASE_ANON_KEY}
+
+#!/bin/sh
+
+RUN echo "Creating .env.production file..."
+RUN mkdir app
+RUN touch /app/.env
+RUN touch .env
+RUN echo "NEXT_PUBLIC_SUPABASE_URL=${NEXT_PUBLIC_SUPABASE_URL}" > /app/.env
+RUN echo "NEXT_PUBLIC_SUPABASE_ANON_KEY=${NEXT_PUBLIC_SUPABASE_ANON_KEY}" >> /app/.env
+RUN echo "NEXT_PUBLIC_CURRENT_URL=http://localhost:3000" >> /app/.env
+RUN echo "NEXT_PUBLIC_SUPABASE_URL=${NEXT_PUBLIC_SUPABASE_URL}" > .env
+RUN echo "NEXT_PUBLIC_SUPABASE_ANON_KEY=${NEXT_PUBLIC_SUPABASE_ANON_KEY}" >> .env
+RUN echo "NEXT_PUBLIC_CURRENT_URL=http://localhost:3000" >> .env
+
 # Install dependencies needed for certain node modules
 RUN apk add --no-cache --virtual .gyp python3 make g++ \
     && apk del .gyp
@@ -23,17 +43,6 @@ RUN \
     else echo "Lockfile not found." && exit 1; \
     fi
 
-ARG NEXT_PUBLIC_SUPABASE_URL
-ARG NEXT_PUBLIC_SUPABASE_ANON_KEY
-
-ENV NEXT_PUBLIC_SUPABASE_URL=${NEXT_PUBLIC_SUPABASE_URL}
-ENV NEXT_PUBLIC_SUPABASE_ANON_KEY=${NEXT_PUBLIC_SUPABASE_ANON_KEY}
-
-
-RUN touch .env.production
-RUN echo "NEXT_PUBLIC_SUPABASE_URL=${NEXT_PUBLIC_SUPABASE_URL}" >> .env.production
-RUN echo "NEXT_PUBLIC_SUPABASE_ANON_KEY=${NEXT_PUBLIC_SUPABASE_ANON_KEY}" >> .env.production
-RUN echo "NEXT_PUBLIC_CURRENT_URL=http://localhost:3000" >> .env.production
 
 # Rebuild the source code only when needed
 FROM base AS builder
