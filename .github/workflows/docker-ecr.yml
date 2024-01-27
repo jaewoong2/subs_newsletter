@@ -17,11 +17,11 @@ jobs:
     environment: production
 
     steps:
-    - name: Create .env file
-      run: |
-        jq -r 'to_entries|map("\(.key)=\(.value|tostring)")|.[]' <<< "$SECRETS_CONTEXT" > .env
-      env:
-        SECRETS_CONTEXT: ${{ toJson(secrets) }}
+      - name: Setting .env
+        run: |
+          echo "NEXT_PUBLIC_SUPABASE_URL=${{ secrets.NEXT_PUBLIC_SUPABASE_URL }}" >> .env
+          echo "NEXT_PUBLIC_SUPABASE_ANON_KEY=${{ secrets.NEXT_PUBLIC_SUPABASE_ANON_KEY }}" >> .env
+          cat .env
 
     - name: Checkout
       uses: actions/checkout@v2
