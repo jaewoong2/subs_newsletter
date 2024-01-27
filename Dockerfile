@@ -23,8 +23,11 @@ RUN \
     else echo "Lockfile not found." && exit 1; \
     fi
 
-# 여기에 .env 파일 복사 추가
-COPY .env* /app
+ARG NEXT_PUBLIC_SUPABASE_URL
+ARG NEXT_PUBLIC_SUPABASE_ANON_KEY
+
+ENV NEXT_PUBLIC_SUPABASE_URL=${NEXT_PUBLIC_SUPABASE_URL}
+ENV NEXT_PUBLIC_SUPABASE_ANON_KEY=${NEXT_PUBLIC_SUPABASE_ANON_KEY}
 
 # Rebuild the source code only when needed
 FROM base AS builder
