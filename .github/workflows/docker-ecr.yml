@@ -17,8 +17,8 @@ jobs:
     environment: production
 
     steps:
-      - name: Setting .env
-        run: |
+    - name: Setting .env
+      run: |
           echo "NEXT_PUBLIC_SUPABASE_URL=${{ secrets.NEXT_PUBLIC_SUPABASE_URL }}" >> .env
           echo "NEXT_PUBLIC_SUPABASE_ANON_KEY=${{ secrets.NEXT_PUBLIC_SUPABASE_ANON_KEY }}" >> .env
           cat .env
