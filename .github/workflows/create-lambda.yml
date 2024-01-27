@@ -23,7 +23,7 @@ jobs:
       run: |
         aws lambda create-function --function-name ${{ github.event.inputs.lambdaFunctionName }} \
         --package-type Image \
-        --code ImageUri=${{ secrets.AWS_ECR_REGISTRY }}/your-ecr-repo-name:latest \
+        --code ImageUri=${{ secrets.AWS_ECR_REGISTRY }}/newsubs:latest \
         --role arn:aws:iam::account-id:role/lambda-role
       continue-on-error: true
 
@@ -31,4 +31,4 @@ jobs:
       if: ${{ steps.deploy-lambda.outcome == 'failure' }}
       run: |
         aws lambda update-function-code --function-name ${{ github.event.inputs.lambdaFunctionName }} \
-        --image-uri ${{ secrets.AWS_ECR_REGISTRY }}/your-ecr-repo-name:latest
+        --image-uri ${{ secrets.AWS_ECR_REGISTRY }}/newsubs:latest
