@@ -8,17 +8,7 @@ import {
   getRelatedNewsletters,
 } from '../supabase-server'
 import { notFound } from 'next/navigation'
-import CardImage from '@/components/atoms/CardImage'
-import CardLink from '@/components/blocks/CardLink'
-import PageChecker from './components/PageChecker'
 import { getRelatedItems } from '@/lib/recommend'
-import Card from '@/components/atoms/Card'
-import DataList from '@/components/blocks/DataList'
-import ImageCarousel from '@/components/blocks/ImageCarousel'
-import Link from 'next/link'
-import { twMerge } from 'tailwind-merge'
-import { CgEye } from 'react-icons/cg'
-import { RxOpenInNewWindow } from 'react-icons/rx'
 import { METADATA } from '@/constants'
 import Page from './components/Page'
 type Params = {

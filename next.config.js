@@ -1,10 +1,6 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  experimental: {
-    serverActions: true,
-  },
-  reactStrictMode: false,
-  swcMinify: true,
+  output: 'standalone', // docker image
   images: {
     formats: ['image/avif', 'image/webp'],
     minimumCacheTTL: 86400,
