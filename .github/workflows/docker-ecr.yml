@@ -6,7 +6,7 @@ on:
       - main
 
 env:
-  ECR_REGISTRY: ${{ secrets.AWS_ECR_REGISTRY }}
+  AWS_: ${{ secrets.AWS_AWS_ }}
   ECR_REPOSITORY: newsubs
   IMAGE_TAG: latest
 
@@ -35,4 +35,4 @@ jobs:
         file: Dockerfile
         context: .
         push: true
-        tags: ${{ env.ECR_REGISTRY }}/newsubs:v24
+        tags: ${{ env.AWS_ECR_REGISTRY }}/newsubs:v24
