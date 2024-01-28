@@ -1,7 +1,6 @@
 import React from 'react'
 import BlockCard from '../atoms/BlockCard'
 import { getBlocks } from '@/app/supabase-server'
-import Image from 'next/image'
 
 const BG_COLORS = ['bg-[#F1A4CE]', 'bg-[#92C5FE]', 'bg-[#86EFAC]', 'bg-[#b28dea]']
 const BLOCKS_ANIMATION = [
@@ -28,7 +27,7 @@ const BlockCards = async () => {
             className={`${BG_COLORS[index]} text-black dark:text-white`}
           >
             <figure className='flex min-w-[150px] items-end justify-end gap-5 px-10 py-5'>
-              <Image
+              <img
                 src={image ?? ''}
                 alt={subtitle ?? 'block-image'}
                 className={`max-w-auto h-auto max-h-full w-auto min-w-[150px] drop-shadow-2xl
@@ -49,7 +48,7 @@ const BlockCards = async () => {
             className={`${BG_COLORS[index + 2]} text-black dark:text-white`}
           >
             <figure className='flex min-w-[150px] items-end justify-end gap-5 px-10 py-5'>
-              <Image
+              <img
                 src={image ?? ''}
                 alt={subtitle ?? 'block-image'}
                 className={`max-w-auto h-auto max-h-full w-auto min-w-[150px] drop-shadow-2xl

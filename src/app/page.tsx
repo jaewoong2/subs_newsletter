@@ -10,7 +10,6 @@ import ImageCarousel from '@/components/blocks/ImageCarousel'
 import SearchInputMain from '@/components/blocks/SearchInputMain'
 import Link from 'next/link'
 import { getCategories, getNewsLetters, getArticles } from './supabase-server'
-import Image from 'next/image'
 import Card from '@/components/atoms/Card'
 
 const getCategoryIcon = (category?: string | null) => {
@@ -35,7 +34,7 @@ export default async function Page() {
           <nav className='flex h-[50px] w-full items-center justify-between gap-5'>
             <Link href={'/'}>
               <figure className='flex w-fit items-end justify-center gap-2 whitespace-nowrap pl-2 font-bold'>
-                <Image src={IMAGE.logo} alt='뉴섭로고' width={32} height={32} className='rounded-xl' />
+                <img src={IMAGE.logo} alt='뉴섭로고' width={32} height={32} className='rounded-xl' />
                 <figcaption className='translate-y-1 font-Yeongdo-Rg text-2xl font-bold'>newsubs_</figcaption>
               </figure>
             </Link>
