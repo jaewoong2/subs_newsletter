@@ -1,6 +1,11 @@
 name: Update Lambda Function
 
 on:
+  workflow_run:
+    workflows: ['Dockerizing to Amazon ECR']
+    types:
+      - completed
+
   workflow_dispatch:
     inputs:
       lambdaFunctionName:
