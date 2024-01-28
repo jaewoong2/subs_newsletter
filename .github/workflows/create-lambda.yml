@@ -35,12 +35,14 @@ jobs:
       run: |
         aws lambda create-function --function-name ${{ github.event.inputs.lambdaFunctionName }} \
         --package-type Image \
-        --code ImageUri=${{ secrets.AWS_ECR_REGISTRY }}/newsubs:${{ steps.get-latest-tag.outputs.tag }} \
+        --code ImageUri=${{ secrets.ECR_REGISTRY }}/newsubs:${{ steps.get-latest-tag.outputs.tag }} \
         --role arn:aws:iam::849441246713:role/lambda_full
+
+
       continue-on-error: true
 
     - name: Update Lambda Function Code
       if: ${{ steps.deploy-lambda.outcome == 'failure' }}
       run: |
         aws lambda update-function-code --function-name ${{ github.event.inputs.lambdaFunctionName }} \
-        --image-uri ${{ secrets.AWS_ECR_REGISTRY }}/newsubs:${{ steps.get-latest-tag.outputs.tag }}
+        --image-uri ${{ secrets.ECR_REGISTRY }}/newsubs:${{ steps.get-latest-tag.outputs.tag }}
