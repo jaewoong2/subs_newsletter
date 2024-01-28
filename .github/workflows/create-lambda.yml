@@ -22,7 +22,7 @@ jobs:
     - name: Get latest image tag from ECR
       id: get-latest-tag
       run: |
-        LATEST_TAG=$(aws ecr describe-images \
+        LATEST_TAG=$(aws ecr newsubs \
           --repository-name $ECR_REPOSITORY \
           --region $AWS_REGION \
           --output json \
