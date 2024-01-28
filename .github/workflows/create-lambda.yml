@@ -23,8 +23,8 @@ jobs:
       id: get-latest-tag
       run: |
         LATEST_TAG=$(aws ecr describe-images \
-          --repository-name ${{ secrets.AWS_ECR_REGISTRY }} \
-          --region $AWS_REGION \
+          --repository-name newsubs \
+          --region ap-northeast-2 \
           --output json \
           | jq -r '.imageDetails | sort_by(.imagePushedAt) | last | .imageTags[]' \
           | grep -v latest)
