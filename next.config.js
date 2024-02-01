@@ -1,6 +1,6 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  output: 'standalone', // docker image
+  // output: 'standalone', // docker image
   images: {
     formats: ['image/avif', 'image/webp'],
     minimumCacheTTL: 86400,

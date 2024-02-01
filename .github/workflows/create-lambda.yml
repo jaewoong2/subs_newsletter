@@ -2,7 +2,7 @@ name: Update Lambda Function
 
 on:
   workflow_run:
-    workflows: ['Dockerizing to Amazon ECR']
+    workflows: ['Deploy']
     types:
       - completed
 
