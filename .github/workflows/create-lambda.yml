@@ -6,13 +6,6 @@ on:
     types:
       - completed
 
-  workflow_dispatch:
-    inputs:
-      lambdaFunctionName:
-        description: 'Lambda Function Name'
-        required: true
-        default: 'newsubs'
-
 jobs:
   deploy-lambda:
     runs-on: ubuntu-latest
@@ -39,5 +32,5 @@ jobs:
       - name: Update Lambda Function
         if: ${{ steps.deploy-lambda.outcome != 'failure' }}
         run: |
-          aws lambda update-function-code --function-name ${{ github.event.inputs.lambdaFunctionName }} \
+          aws lambda update-function-code --function-name newsubs \
           --image-uri ${{ secrets.ECR_REGISTRY }}/newsubs:${{ steps.get-latest-tag.outputs.tag }}
